@@ -1,4 +1,7 @@
+import { debounceTime, filter, map } from 'rxjs/operators';
+
 import ImageService from '../Api/ImageService.js';
+import store from '../Store.js';
 
 class ImageList extends HTMLElement {
   constructor() {
@@ -7,10 +10,20 @@ class ImageList extends HTMLElement {
     this.imageService = new ImageService();
 
     this.render();
-    document.querySelector('search-bar').addEventListener('searching-images', (e) => this.refreshImages(e.detail));
+  }
+  connectedCallback() {
+    store.searchTextInput
+      .pipe(
+        map((e) => e.target.value),
+        debounceTime(500),
+        filter((text) => text.length > 2),
+      )
+      .subscribe((text) => this.refreshImages(text));
+    store.forcedSearchText.subscribe((e) => this.refreshImages(e.target.value));
   }
 
-  async refreshImages(searchText) {
+  async refreshImages(searchText = '') {
+    console.log(searchText);
     this.images = await this.imageService.getImages(searchText);
     this.render();
   }
