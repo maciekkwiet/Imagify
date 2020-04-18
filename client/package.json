@@ -26,5 +26,9 @@
     "webpack-dev-server": "^3.10.3"
   },
   "keywords": [],
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "babel-polyfill": "^6.26.0",
+    "rxjs": "^6.5.5"
+  }
 }

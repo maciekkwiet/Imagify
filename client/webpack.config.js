@@ -1,24 +1,27 @@
+/*eslint-disable */
+
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: './src/index.js',
+  entry: ['babel-polyfill', './src/index.js'],
   devServer: {
     port: 8080,
     disableHostCheck: true,
+    contentBase: path.join(__dirname, 'public'),
   },
   output: {
     filename: 'bundle.min.js',
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'public'),
   },
-  watch: false,
+  watch: true,
   mode: 'development',
   devtool: 'source-map',
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: './public/index.html',
-    }),
-  ],
+  // plugins: [
+  //   new HtmlWebpackPlugin({
+  //     // template: './public/index.html',
+  //   }),
+  // ],
   resolve: {
     extensions: ['.js'],
   },

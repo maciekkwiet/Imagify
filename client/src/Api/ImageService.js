@@ -1,4 +1,4 @@
-import { UNSPLASH_CLIENT_ID } from '../../secrets.js';
+import { UNSPLASH_CLIENT_ID } from '../../secrets';
 
 class ImageService {
   constructor() {}
