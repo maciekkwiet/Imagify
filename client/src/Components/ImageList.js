@@ -22,10 +22,12 @@ class ImageList extends HTMLElement {
     store.forcedSearchText.subscribe((e) => this.refreshImages(e.target.value));
   }
 
-  async refreshImages(searchText = '') {
+  refreshImages(searchText = '') {
     console.log(searchText);
-    this.images = await this.imageService.getImages(searchText);
-    this.render();
+    this.imageService.getImages(searchText).subscribe((images) => {
+      this.images = images;
+      this.render();
+    });
   }
 
   createImageList() {
