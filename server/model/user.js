@@ -2,10 +2,7 @@ const mongoose = require('mongoose');
 const Joi = require('@hapi/joi');
 const Schema = mongoose.Schema;
 
-
-const user = new Schema
-({
-  
+const user = new Schema({
   login: {
     type: String,
     minlength: 3,
@@ -35,32 +32,17 @@ const user = new Schema
 
   favourities: {
     type: [String], ///////////////////////
-    required: false
-  }
+    required: false,
+  },
 });
-
 
 function validateUser(user) {
   const schema = {
-    login: Joi
-    .String()
-    .alphanum()
-    .min(3)
-    .max(10)
-    .has().not().spaces()
-    .required(),
-    
-    password: Joi
-    .String()
-    .pattern(new RegExp('^[a-zA-Z0-9]{3,30}$'))
-    .has().not().spaces()
-    .required(),
+    login: Joi.String().alphanum().min(3).max(10).has().not().spaces().required(),
 
-    email: Joi
-    .String()
-    .min(5)
-    .max(255)
-    .required().email(),
+    password: Joi.String().pattern(new RegExp('^[a-zA-Z0-9]{3,30}$')).has().not().spaces().required(),
+
+    email: Joi.String().min(5).max(255).required().email(),
   };
   return Joi.validate(user, schema);
 }
