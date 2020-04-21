@@ -15,18 +15,19 @@ mongoose
   .then(() => console.log('Connecting with Data Base is ok'))
   .catch((err) => console.error('Error with Data Base'));
 
-app.use('/api', router);
+app.use('/app',router);//na endpoint api dzieje się to co jest w router
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
 
-app.get('/sciezka', (req, res) => {
-  res.send('Hello Word');
-});
+// app.get('/sciezka', (req, res) => {
+//   res.send('Hello Word');
+// });
 
 // const router = express.Router();
 // router.get('/login', (req, res) => {
 //   res.send('login');
 // });
+
 // router.post('/login', (req, res) => {
 //   res.send('login post');
 // });
