@@ -32,12 +32,12 @@ class ImageList extends HTMLElement {
   }
 
   createImage(url) {
-    return `<img class="four wide column" src="${url}"/>`;
+    return `<img class="five wide doubling column" style="height:100%" src="${url}"/>`;
   }
 
   render() {
     this.innerHTML = ` 
-    <div class="ui grid container">
+    <div class="ui stackable grid centered container">
         ${this.createImageList()}
     </div>`;
   }
