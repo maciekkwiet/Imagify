@@ -1,6 +1,7 @@
 /*eslint-disable */
 
 const path = require('path');
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
@@ -17,11 +18,14 @@ module.exports = {
   watch: true,
   mode: 'development',
   devtool: 'source-map',
-  // plugins: [
-  //   new HtmlWebpackPlugin({
-  //     // template: './public/index.html',
-  //   }),
-  // ],
+  plugins: [
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      jQuery: 'jquery',
+      'window.$': 'jquery',
+      'window.jQuery': 'jquery',
+    }),
+  ],
   resolve: {
     extensions: ['.js'],
   },
