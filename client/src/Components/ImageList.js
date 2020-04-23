@@ -32,7 +32,7 @@ class ImageList extends HTMLElement {
   }
 
   createImage(url) {
-    return `<img class="" style="width:100%; padding: 10px 10px 10px 10px" src="${url}"/>`;
+    return `<img class="" style="width:100%; padding: 5px 5px 5px 5px" src="${url}"/>`;
   }
 
   render() {
@@ -44,7 +44,6 @@ class ImageList extends HTMLElement {
       -webkit-column-count: 3;
       -moz-column-count: 3; 
       column-count: 3
-      
 
       ">
         ${this.createImageList()}
@@ -58,9 +57,9 @@ class ImageList extends HTMLElement {
         column-count: 3;
 
       @media (max-width: 500px){
-        -webkit-column-count: 2;
-        -moz-column-count: 2; 
-        column-count: 2;
+        -webkit-column-count: 1;
+        -moz-column-count: 1; 
+        column-count: 1;
     </style>`;
   }
 }
