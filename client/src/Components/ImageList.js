@@ -37,14 +37,31 @@ class ImageList extends HTMLElement {
 
   render() {
     this.innerHTML = ` 
-    <div class="" style="-webkit-column-count: 3; 
-      -webkit-column-gap: 0px; 
+    <div class="box" style="
+      -webkit-column-gap: 0px;  
+      -moz-column-gap:0px;  
+      column-gap:0px;
+      -webkit-column-count: 3;
       -moz-column-count: 3; 
-      -moz-column-gap:0px; 
-      column-count: 3; 
-      column-gap:0px">
+      column-count: 3
+      
+
+      ">
         ${this.createImageList()}
-    </div>`;
+    </div>
+    
+    <style>
+
+      @media (min-width: 500px){
+        -webkit-column-count: 3;
+        -moz-column-count: 3; 
+        column-count: 3;
+
+      @media (max-width: 500px){
+        -webkit-column-count: 2;
+        -moz-column-count: 2; 
+        column-count: 2;
+    </style>`;
   }
 }
 
