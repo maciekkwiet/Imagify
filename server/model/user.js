@@ -24,8 +24,8 @@ function validate(user) {
   console.log(user);
   const schema = {
     password: Joi.string().required(),
-
     email: Joi.string().required(),
+    favourities: Joi.string(),
   };
 
   return Joi.validate(user, schema);
