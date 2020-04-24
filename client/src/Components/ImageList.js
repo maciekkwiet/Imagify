@@ -41,26 +41,9 @@ class ImageList extends HTMLElement {
       -webkit-column-gap: 0px;  
       -moz-column-gap:0px;  
       column-gap:0px;
-      -webkit-column-count: 3;
-      -moz-column-count: 3; 
-      column-count: 3
-
       ">
         ${this.createImageList()}
-    </div>
-    
-    <style>
-
-      @media (min-width: 500px){
-        -webkit-column-count: 3;
-        -moz-column-count: 3; 
-        column-count: 3;
-
-      @media (max-width: 500px){
-        -webkit-column-count: 1;
-        -moz-column-count: 1; 
-        column-count: 1;
-    </style>`;
+    </div>`;
   }
 }
 
