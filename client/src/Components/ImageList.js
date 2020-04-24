@@ -8,9 +8,9 @@ class ImageList extends HTMLElement {
     super();
     this.images = [];
     this.imageService = new ImageService();
-    this.render();
   }
   connectedCallback() {
+    this.render();
     this.searchTextInputSubscription = store.searchTextInput
       .pipe(
         map((e) => e.target.value),
