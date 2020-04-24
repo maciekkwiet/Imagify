@@ -37,11 +37,7 @@ class ImageList extends HTMLElement {
 
   render() {
     this.innerHTML = ` 
-    <div class="box" style="
-      -webkit-column-gap: 0px;  
-      -moz-column-gap:0px;  
-      column-gap:0px;
-      ">
+    <div class="image__box">
         ${this.createImageList()}
     </div>`;
   }

@@ -1,0 +1,14 @@
+body {
+  background-color: green;
+}
+
+@media (max-width: 500px) {
+  .image__box {
+    column-gap: 0px;
+    column-count: 3;
+  }
+}
+
+image-list > .image__box {
+  column-count: 3;
+}
