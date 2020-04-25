@@ -8,6 +8,7 @@ class ImageList extends HTMLElement {
     super();
     this.images = [];
     this.imageService = new ImageService();
+    this.imageService.getImages();
   }
   connectedCallback() {
     this.render();

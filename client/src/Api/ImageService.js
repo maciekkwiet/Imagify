@@ -1,16 +1,26 @@
+import { fromEvent } from 'rxjs';
+
 import { UNSPLASH_CLIENT_ID } from '../../secrets';
 import { PIXABAY_KEY } from '../../secrets';
 import { PEXELS_KEY } from '../../secrets';
+import store from '../Store.js';
 
 class ImageService {
   constructor() {
     this.allImages = [];
-    this.isUnspalshChecked = true;
-    this.isPixabayChecked = true;
-    this.isPexelsChecked = true;
+    this.isUnspalshChecked = false;
+    this.isPixabayChecked = false;
+    this.isPexelsChecked = false;
+    this.domUnsplash = document.querySelector('.Unsplash');
+    this.domPixabay = document.querySelector('.Pixabay');
+    this.domPexels = document.querySelector('.Pexels');
   }
 
   async getImages(searchText) {
+    store.checkUnsplash = fromEvent(this.domUnsplash, 'click').subscribe(() => (this.isUnspalshChecked = true));
+    store.checkPixabay = fromEvent(this.domPixabay, 'click').subscribe(() => (this.isPixabayChecked = true));
+    store.checkPexels = fromEvent(this.domPexels, 'click').subscribe(() => (this.isPexelsChecked = true));
+
     if (this.isUnspalshChecked) {
       const response = await fetch(
         `https://api.unsplash.com/search/photos?page=1&query=${searchText}&client_id=${UNSPLASH_CLIENT_ID}`,
