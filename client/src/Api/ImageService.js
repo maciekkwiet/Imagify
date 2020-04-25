@@ -32,7 +32,6 @@ class ImageService {
       const { photos } = await response.json();
       this.allImages.push(...photos.map((image) => image.src.medium));
     }
-    console.log(this.allImages);
     return this.shuffleImages(this.allImages);
   }
   shuffleImages(array) {
