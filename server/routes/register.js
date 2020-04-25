@@ -5,20 +5,20 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const router = express.Router();
 
-const { User, validate } = require('../model/user');
+const { User } = require('../model/user');
 const jwtKey = process.env.JWT_SECRET;
 
 router.post('/', async (req, res) => {
   //sprawdzenie czy nie ma błędu w przesłanych danych od użytkownika
-  const { error } = validate(req.body);
-  if (error) return res.status(400).json(error.details[0].message);
+  const { error } = User.validate(req.body);
+  if (error) return res.status(400).json({ error: error.details[0].message });
 
   //tworzymy użytkownika jako obiekt, który zwraca Promisa i sprawdzamy czy email juz jest w DB
 
   let user = await User.findOne({ email: req.body.email });
 
   // //sprawdzenie czy istnieje w bazie
-  if (user) return res.status(400).json('User already registered');
+  if (user) return res.status(400).json({ error: 'User already registered' });
   else {
     // //Jeżeli użytkownika nie ma w bazie to go dodaj
     user = new User(_.pick(req.body, ['email', 'password', 'favourities']));

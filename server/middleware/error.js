@@ -1,4 +1,4 @@
-module.exports=function(err, req, res, next)
-{
-res.status(500).json('Something failed')
-}
+module.exports = function (err, req, res) {
+  console.log(err);
+  res.status(500).json({ error: 'Something failed' });
+};

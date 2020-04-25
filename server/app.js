@@ -13,9 +13,9 @@ api.use(express.json());
 
 const dbKey = process.env.DB_KEY;
 mongoose
-  .connect(dbKey, { useNewUrlParser: true })
+  .connect(dbKey, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('Connecting with Data Base is ok'))
-  .catch((err) => console.error('Error with Data Base'));
+  .catch(() => console.error('Error with Data Base'));
 
 api.use('/app', router); //na endpoint api dzieje się to co jest w router
 router.use('/me', me);
