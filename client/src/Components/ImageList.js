@@ -9,6 +9,7 @@ class ImageList extends HTMLElement {
     this.images = [];
     this.imageService = new ImageService();
   }
+
   connectedCallback() {
     this.render();
     this.searchTextInputSubscription = store.searchTextInput
@@ -27,16 +28,16 @@ class ImageList extends HTMLElement {
   }
 
   createImageList() {
-    return this.images.map((image) => this.createImage(image));
+    return this.images.map((image) => this.createImage(image)).join('');
   }
 
   createImage(url) {
-    return `<img class="ui medium image" src="${url}"/>`;
+    return `<img style="width:100%; padding: 5px 5px 5px 5px" src="${url}"/>`;
   }
 
   render() {
-    this.innerHTML = `
-    <div class="ui container">
+    this.innerHTML = ` 
+    <div class="image__box">
         ${this.createImageList()}
     </div>`;
   }
