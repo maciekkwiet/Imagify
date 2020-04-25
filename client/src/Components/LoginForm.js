@@ -34,4 +34,4 @@ class LoginForm extends HTMLElement {
   }
 }
 
-export default SearchBar;
+export default LoginForm;
