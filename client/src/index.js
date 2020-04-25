@@ -1,9 +1,12 @@
+import 'fomantic-ui-css/semantic';
+import 'fomantic-ui-css/semantic.css';
+
 import SearchBar from './Components/SearchBar.js';
 import ImageList from './Components/ImageList.js';
 
 const setup = () => {
-  customElements.define('search-bar', SearchBar);
-  customElements.define('image-list', ImageList);
+  customElements.define('app-searchbar', SearchBar);
+  customElements.define('app-imagelist', ImageList);
 };
 
 window.addEventListener('load', setup);

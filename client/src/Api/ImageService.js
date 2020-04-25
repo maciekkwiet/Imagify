@@ -13,6 +13,7 @@ class ImageService {
     this.isPixabayChecked = true;
     this.isPexelsChecked = true;
   }
+  
   async getImages(searchText) {
     let response;
     if (this.isUnspalshChecked) {
@@ -38,6 +39,7 @@ class ImageService {
     }
     return this.shuffleImages(this.allImages.concat(this.unsplashImages, this.pixabayImages, this.pexelsImages));
   }
+  
   shuffleImages(array) {
     for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * i);
