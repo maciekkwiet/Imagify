@@ -1,0 +1,13 @@
+@media (min-width: 500px) {
+  image-list > .image__box {
+    column-gap: 0px;
+    column-count: 3;
+  }
+}
+
+@media (max-width: 500px) {
+  image-list > .image__box {
+    column-gap: 0px;
+    column-count: 1;
+  }
+}
