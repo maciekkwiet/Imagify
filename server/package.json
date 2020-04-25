@@ -19,8 +19,7 @@
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.15",
     "mongoose": "^5.9.9",
-    "morgan": "^1.10.0",
-    "pug": "2.0.0-beta11"
+    "morgan": "^1.10.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.3",
