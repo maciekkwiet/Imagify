@@ -5,38 +5,35 @@ import { PEXELS_KEY } from '../../secrets';
 class ImageService {
   constructor() {
     this.allImages = [];
-    this.unsplashImages;
-    this.pixabayImages;
-    this.pexelsImages;
-    this.pixmacImages;
     this.isUnspalshChecked = true;
     this.isPixabayChecked = true;
     this.isPexelsChecked = true;
   }
   async getImages(searchText) {
-    let response;
     if (this.isUnspalshChecked) {
-      response = await fetch(
+      const response = await fetch(
         `https://api.unsplash.com/search/photos?page=1&query=${searchText}&client_id=${UNSPLASH_CLIENT_ID}`,
       );
       const { results } = await response.json();
-      this.unsplashImages = results.map((image) => image.urls.small);
+
+      this.allImages.push(...results.map((image) => image.urls.small));
     }
     if (this.isPixabayChecked) {
-      response = await fetch(`https://pixabay.com/api/?key=${PIXABAY_KEY}&q=${searchText}&image_type=photo`);
+      const response = await fetch(`https://pixabay.com/api/?key=${PIXABAY_KEY}&q=${searchText}&image_type=photo`);
       const { hits } = await response.json();
-      this.pixabayImages = hits.map((image) => image.webformatURL);
+      this.allImages.push(...hits.map((image) => image.webformatURL));
     }
     if (this.isPexelsChecked) {
-      response = await fetch(`https://api.pexels.com/v1/search?query=${searchText}&per_page=80&page=1`, {
+      const response = await fetch(`https://api.pexels.com/v1/search?query=${searchText}&per_page=80&page=1`, {
         headers: {
           Authorization: PEXELS_KEY,
         },
       });
       const { photos } = await response.json();
-      this.pexelsImages = photos.map((image) => image.src.medium);
+      this.allImages.push(...photos.map((image) => image.src.medium));
     }
-    return this.shuffleImages(this.allImages.concat(this.unsplashImages, this.pixabayImages, this.pexelsImages));
+    console.log(this.allImages);
+    return this.shuffleImages(this.allImages);
   }
   shuffleImages(array) {
     for (let i = array.length - 1; i > 0; i--) {
