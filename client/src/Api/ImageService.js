@@ -9,6 +9,7 @@ class ImageService {
     this.isPixabayChecked = true;
     this.isPexelsChecked = true;
   }
+  
   async getImages(searchText) {
     if (this.isUnspalshChecked) {
       const response = await fetch(
@@ -34,6 +35,7 @@ class ImageService {
     }
     return this.shuffleImages(this.allImages);
   }
+  
   shuffleImages(array) {
     for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * i);

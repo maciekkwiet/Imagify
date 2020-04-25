@@ -29,6 +29,8 @@
   "description": "",
   "dependencies": {
     "babel-polyfill": "^6.26.0",
-    "rxjs": "^6.5.5"
+    "rxjs": "^6.5.5",
+    "fomantic-ui-css": "^2.8.4",
+    "jquery": "^3.5.0"
   }
 }
