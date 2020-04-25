@@ -9,14 +9,13 @@ class ImageService {
     this.isPixabayChecked = true;
     this.isPexelsChecked = true;
   }
-  
+
   async getImages(searchText) {
     if (this.isUnspalshChecked) {
       const response = await fetch(
         `https://api.unsplash.com/search/photos?page=1&query=${searchText}&client_id=${UNSPLASH_CLIENT_ID}`,
       );
       const { results } = await response.json();
-
       this.allImages.push(...results.map((image) => image.urls.small));
     }
     if (this.isPixabayChecked) {
@@ -35,7 +34,7 @@ class ImageService {
     }
     return this.shuffleImages(this.allImages);
   }
-  
+
   shuffleImages(array) {
     for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * i);
