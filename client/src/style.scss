@@ -1,12 +1,3 @@
-body {
-  background-color: green;
-}
-
-image-list > .image__box {
-  column-gap: 0px;
-  column-count: 2;
-}
-
 @media (min-width: 500px) {
   image-list > .image__box {
     column-gap: 0px;

@@ -8,9 +8,9 @@ class ImageList extends HTMLElement {
     super();
     this.images = [];
     this.imageService = new ImageService();
-
     this.render();
   }
+
   connectedCallback() {
     store.searchTextInput
       .pipe(
@@ -32,7 +32,7 @@ class ImageList extends HTMLElement {
   }
 
   createImage(url) {
-    return `<img class="" style="width:100%; padding: 5px 5px 5px 5px" src="${url}"/>`;
+    return `<img style="width:100%; padding: 5px 5px 5px 5px" src="${url}"/>`;
   }
 
   render() {
