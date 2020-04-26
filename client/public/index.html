@@ -8,12 +8,17 @@
   </head>
 
   <body>
-    <div class="ui container center aligned">
-      <search-bar></search-bar>
-      <login-form></login-form>
+    <div class="ui grid center">
+      <div class="four wide column center"></div>
+      <div class="four wide column center">
+        <app-searchbar></app-searchbar>
+      </div>
+      <div class="four wide column">
+        <app-loginform></app-loginform>
+      </div>
     </div>
     <div class="ui container center aligned">
-      <image-list></image-list>
+      <app-imagelist></app-imagelist>
     </div>
   </body>
 </html>

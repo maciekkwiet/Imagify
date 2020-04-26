@@ -30,7 +30,7 @@ class LoginForm extends HTMLElement {
           <label>Password</label>
           <input type="password">
         </div>
-        <div class="ui submit button pickLogin">Submit</div>
+        <div class="mini ui submit  button pickLogin" style="padding: 5px 5px 5px 5px">Submit</div>
       </div>
     </div>`;
   }

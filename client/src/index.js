@@ -9,7 +9,7 @@ import './style.scss';
 const setup = () => {
   customElements.define('app-searchbar', SearchBar);
   customElements.define('app-imagelist', ImageList);
-  customElements.define('login-form', LoginForm);
+  customElements.define('app-loginform', LoginForm);
 };
 
 window.addEventListener('load', setup);
