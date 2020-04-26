@@ -12,7 +12,7 @@ router.post('/', async (req, res) => {
   //sprawdzenie czy nie ma błędu w przesłanych danych od użytkownika
   const { error } = User.validate(req.body);
   //   console.log(error);
-  if (error) return res.status(400).json({error : 'error 400'});
+  if (error) return res.status(400).send({error: "error 400"});
   //tworzymy użytkownika jako obiekt, który zwraca Promisa i sprawdzamy czy email juz jest w DB
   let user = await User.findOne({email: req.body.email});
   if (!user) return res.status(400).json({error : 'Invalid email or password'} );
