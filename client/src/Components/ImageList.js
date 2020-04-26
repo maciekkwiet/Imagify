@@ -19,7 +19,10 @@ class ImageList extends HTMLElement {
       )
       .subscribe((text) => this.refreshImages(text));
     this.forcedSearchTextSubscription = store.forcedSearchText
-      .pipe(map((e) => e.target.value))
+      .pipe(
+        map((e) => e.target.value),
+        filter((text) => text.length > 0),
+      )
       .subscribe((text) => this.refreshImages(text));
   }
 
