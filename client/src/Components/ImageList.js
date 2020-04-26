@@ -21,9 +21,9 @@ class ImageList extends HTMLElement {
     this.forcedSearchTextSubscription = store.forcedSearchText
       .pipe(
         map((e) => e.target.value),
-        filter((text) => text.length > 0),
+        filter((forcedText) => forcedText.length > 0),
       )
-      .subscribe((text) => this.refreshImages(text));
+      .subscribe((forcedText) => this.refreshImages(forcedText));
   }
 
   async refreshImages(searchText = '') {
