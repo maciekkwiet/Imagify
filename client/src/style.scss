@@ -1,13 +1,17 @@
 @media (min-width: 500px) {
-  image-list > .image__box {
+  .imagelist {
     column-gap: 0px;
     column-count: 3;
   }
 }
 
 @media (max-width: 500px) {
-  image-list > .image__box {
+  .components > image-list {
     column-gap: 0px;
     column-count: 1;
   }
+}
+
+.searchBarMain {
+  margin-bottom: 30px;
 }

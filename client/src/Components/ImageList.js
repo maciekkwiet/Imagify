@@ -36,10 +36,7 @@ class ImageList extends HTMLElement {
   }
 
   render() {
-    this.innerHTML = ` 
-    <div class="image__box">
-        ${this.createImageList()}
-    </div>`;
+    this.innerHTML = this.createImageList();
   }
 }
 
