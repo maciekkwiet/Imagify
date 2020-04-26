@@ -6,8 +6,8 @@ import ImageList from './Components/ImageList.js';
 import ApiPicker from './Components/ApiPicker.js';
 
 const setup = () => {
-  customElements.define('app-searchbar', SearchBar);
   customElements.define('app-apipicker', ApiPicker);
+  customElements.define('app-searchbar', SearchBar);
   customElements.define('app-imagelist', ImageList);
 };
 
