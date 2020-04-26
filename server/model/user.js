@@ -7,12 +7,14 @@ const User = mongoose.model(
     email: {
       type: String,
       require: true,
+      unique:true,
     },
 
     password: {
       type: String,
       require: true,
-    },
+      unique:true,
+              },
 
     favourities: {
       type: [String],
