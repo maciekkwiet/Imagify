@@ -1,4 +1,4 @@
-import { debounceTime, filter, map } from 'rxjs/operators';
+import { tap, debounceTime, filter, map } from 'rxjs/operators';
 
 import ImageService from '../Api/ImageService.js';
 import store from '../Store.js';
@@ -18,7 +18,10 @@ class ImageList extends HTMLElement {
         filter((text) => text.length > 2),
       )
       .subscribe((text) => this.refreshImages(text));
-    this.forcedSearchTextSubscription = store.forcedSearchText.subscribe((e) => this.refreshImages(e.target.value));
+    // this.forcedSearchTextSubscription = store.forcedSearchText.subscribe((e) => this.refreshImages(e.target.value));
+    this.forcedSearchTextSubscription = store.forcedSearchText
+      .pipe(map((e) => e.target.value))
+      .subscribe((text) => this.refreshImages(text));
   }
 
   async refreshImages(searchText = '') {
