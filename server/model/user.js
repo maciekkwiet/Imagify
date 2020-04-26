@@ -12,7 +12,6 @@ const User = mongoose.model('User',new mongoose.Schema({
     password: {
       type: String,
       require: true,
-      unique:true,
     },
 
     favourities: {
