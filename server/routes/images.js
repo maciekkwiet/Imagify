@@ -1,23 +1,29 @@
-const axios = require('axios').default;
 const express = require('express');
+const Joi = require('@hapi/joi');
+
+const createRequest = require('../utils/createRequest');
 
 const router = express.Router();
 
+const schema = Joi.object({
+  services: Joi.array()
+    .items(Joi.string().uppercase().valid('UNSPLASH', 'PIXABAY', 'PEXELS'))
+    .unique()
+    .default(['UNSPLASH', 'PIXABAY', 'PEXELS']),
+});
+
 router.get('/', async (req, res) => {
   const { searchText } = req.query;
-  const unsplashRequest = axios.get(
-    `https://api.unsplash.com/search/photos?page=1&query=${searchText}&client_id=${process.env.UNSPLASH_CLIENT_ID}`,
-  );
-  const pixabayRequest = axios.get(
-    `https://pixabay.com/api/?key=${process.env.PIXABAY_KEY}&q=${searchText}&image_type=photo`,
-  );
-  const pexelsRequest = axios.get(`https://api.pexels.com/v1/search?query=${searchText}&per_page=80&page=1`, {
-    headers: {
-      Authorization: process.env.PEXELS_KEY,
-    },
-  });
+  const {
+    value: { services },
+    error,
+  } = schema.validate(req.body);
 
-  const responses = await Promise.all([unsplashRequest, pixabayRequest, pexelsRequest]);
+  if (error) res.json({ error: error.details[0].message });
+
+  const apiRequests = services.map((serviceName) => createRequest(serviceName, searchText));
+
+  const responses = await Promise.all([...apiRequests]);
   const [unsplash, pixabay, pexels] = responses.map(({ data }) => data);
   res.json({ unsplash, pixabay, pexels });
 });
