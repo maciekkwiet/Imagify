@@ -1,4 +1,4 @@
-import { map, debounceTime } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
 import { UNSPLASH_CLIENT_ID } from '../../secrets';
 import { PIXABAY_KEY } from '../../secrets';
