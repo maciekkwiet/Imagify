@@ -1,12 +1,13 @@
 class LoginForm extends HTMLElement {
   connectedCallback() {
     this.render();
-    this.login = this.querySelector('email');
-    this.password = this.querySelector('password');
-    this.icon = this.querySelector('pickLogin');
-    store.searchLoginInput = fromEvent(this.login, 'input');
-    store.searchPasswordInput = fromEvent(this.password, 'input');
-    store.forcedLogin = fromEvent(this.icon, 'click');
+    this.button = this.querySelector('button').addEventListener('click', renderlogin);
+    // this.login = this.querySelector('email');
+    // this.password = this.querySelector('password');
+    // this.icon = this.querySelector('pickLogin');
+    // store.searchLoginInput = fromEvent(this.login, 'input');
+    // store.searchPasswordInput = fromEvent(this.password, 'input');
+    // store.forcedLogin = fromEvent(this.icon, 'click');
 
     //     store.searchTextInput
     //       .pipe(
@@ -18,7 +19,7 @@ class LoginForm extends HTMLElement {
     //     store.forcedSearchText.subscribe((e) => this.refreshImages(e.target.value));
   }
 
-  render() {
+  renderlogin() {
     this.innerHTML = `
       <div class="ui form ">
       <div class="fields">
@@ -33,6 +34,11 @@ class LoginForm extends HTMLElement {
         <div class="mini ui submit  button pickLogin" style="padding: 5px 5px 5px 5px">Submit</div>
       </div>
     </div>`;
+  }
+
+  render() {
+    this.innerHTML = `
+    <button class="ui inverted green button">Login</button>`;
   }
 }
 
