@@ -11,9 +11,6 @@ class ImageService {
     this.isUnspalshChecked = false;
     this.isPixabayChecked = false;
     this.isPexelsChecked = false;
-  }
-  async getImages(searchText) {
-    this.allImages = [];
     this.checkUnsplashSubscription = store.checkUnsplash.pipe(map((e) => e.toElement.checked)).subscribe((checked) => {
       if (checked) {
         this.isUnspalshChecked = true;
@@ -29,6 +26,10 @@ class ImageService {
         this.isPexelsChecked = true;
       } else this.isPexelsChecked = false;
     });
+  }
+  async getImages(searchText) {
+    this.allImages = [];
+
     if (this.isUnspalshChecked) {
       const response = await fetch(
         `https://api.unsplash.com/search/photos?page=1&query=${searchText}&client_id=${UNSPLASH_CLIENT_ID}`,
