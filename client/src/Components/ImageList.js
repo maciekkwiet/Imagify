@@ -14,7 +14,7 @@ class ImageList extends HTMLElement {
     this.render();
     this.searchTextInputSubscription = store.searchTextInput
       .pipe(
-        map((e) => e.target.value),
+        map((e) => console.log(e)),
         debounceTime(500),
         filter((text) => text.length > 2),
       )

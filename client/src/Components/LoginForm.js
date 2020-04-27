@@ -1,6 +1,6 @@
 class LoginForm extends HTMLElement {
   connectedCallback() {
-    this.render();
+    //this.render();
     //this.button = this.querySelector('button').addEventListener('click', this.renderlogin);
     // this.login = this.querySelector('email');
     // this.password = this.querySelector('password');
@@ -8,7 +8,6 @@ class LoginForm extends HTMLElement {
     // store.searchLoginInput = fromEvent(this.login, 'input');
     // store.searchPasswordInput = fromEvent(this.password, 'input');
     // store.forcedLogin = fromEvent(this.icon, 'click');
-
     //     store.searchTextInput
     //       .pipe(
     //         map((e) => e.target.value),
