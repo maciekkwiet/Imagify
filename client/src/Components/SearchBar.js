@@ -14,8 +14,7 @@ class SearchBar extends HTMLElement {
     <div class="ui big icon input">
         <input type="text" placeholder="Search big...">
         <i class="search icon link"></i>
-    </div>
-    <br></br>`;
+    </div>`;
   }
 }
 
