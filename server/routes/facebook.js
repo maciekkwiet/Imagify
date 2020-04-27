@@ -11,7 +11,7 @@ const initializaeFacebookStrategy = (passport) => {
     new PassportFacebookStrategy(
       {
         //option for the facebook strategy
-        clientID: process.env.FACEBOOK_APP_ID,
+        clientID: FACEBOOK_APP_ID ,
         clientSecret: FACEBOOK_APP_SECRET,
         callbackURL: 'http://localhost:12345/facebook/callback',
       },
