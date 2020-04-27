@@ -1,12 +1,8 @@
-//import { fromEvent } from 'rxjs';
-
-
 class Image extends HTMLElement {
     constructor() {
       super();
-      this.image = [];
     }
-    //const basic = Observable.create
+   
     connectedCallback() {
       this.render();
     }
@@ -23,4 +19,6 @@ class Image extends HTMLElement {
       }
   }
   export default Image;
+
+
   
