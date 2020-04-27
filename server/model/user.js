@@ -6,18 +6,33 @@ const User = mongoose.model(
   new mongoose.Schema({
     email: {
       type: String,
-      require: true,
-      unique:true,
+      require: false,
+      // unique: true,
     },
 
     password: {
       type: String,
-      require: true,
-      unique:true,
-              },
+      require: false,
+      // unique: true,
+    },
 
     favourities: {
       type: [String],
+      required: false,
+    },
+
+    facebookToken: {
+      type: String,
+      required: false,
+    },
+
+    facebookTokenRefresh: {
+      type: String,
+      required: false,
+    },
+
+    facebookProfile: {
+      type: Object,
       required: false,
     },
   }),
