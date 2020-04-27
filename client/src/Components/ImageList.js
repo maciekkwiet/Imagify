@@ -32,16 +32,16 @@ class ImageList extends HTMLElement {
   }
 
   createImageList() {
-    return this.images.map((image) => this.createImage(image));
+    return this.images.map((image) => this.createImage(image)).join('');
   }
 
   createImage(url) {
-    return `<img class="ui medium image" src="${url}"/>`;
+    return `<img class="five wide doubling column" style="height:100%" src="${url}"/>`;
   }
 
   render() {
-    this.innerHTML = `
-    <div class="ui container">
+    this.innerHTML = ` 
+    <div class="ui stackable grid centered container">
         ${this.createImageList()}
     </div>`;
   }
