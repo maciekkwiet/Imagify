@@ -3,13 +3,13 @@ import 'fomantic-ui-css/semantic.css';
 
 import SearchBar from './Components/SearchBar.js';
 import ImageList from './Components/ImageList.js';
-import Image from './Components/Image.js';
+
+import ApiPicker from './Components/ApiPicker.js';
 
 const setup = () => {
-
-  customElements.define('search-bar', SearchBar);
-  customElements.define('image-list', ImageList);
-  customElements.define('app-image', Image);
+  customElements.define('app-apipicker', ApiPicker);
+  customElements.define('app-searchbar', SearchBar);
+  customElements.define('app-imagelist', ImageList);
 
 };
 
