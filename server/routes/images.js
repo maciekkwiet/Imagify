@@ -19,7 +19,7 @@ router.get('/', async (req, res) => {
     error,
   } = schema.validate(req.body);
 
-  if (error) res.json({ error: error.details[0].message });
+  if (error) return res.status(400).json({ error: error.details[0].message });
 
   const apiRequests = services.map((serviceName) => createRequest(serviceName, searchText));
 
