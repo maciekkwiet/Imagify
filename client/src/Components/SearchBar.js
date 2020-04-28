@@ -12,6 +12,7 @@ class SearchBar extends HTMLElement {
   render() {
     this.innerHTML = `
     <div class="ui big icon input four wide column" style="margin-top: 150px;">
+
         <input type="text" placeholder="Search big...">
         <i class="search icon link"></i>
     </div>

@@ -9,6 +9,7 @@ class Store {
     this.passwordLoginInput = new Observable();
 
     this.forcedLogin = new Observable();
+
   }
 }
 

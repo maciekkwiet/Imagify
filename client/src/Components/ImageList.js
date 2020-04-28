@@ -12,13 +12,18 @@ class ImageList extends HTMLElement {
 
   connectedCallback() {
     this.render();
+    console.log(store.searchTextInput);
     this.searchTextInputSubscription = store.searchTextInput
       .pipe(
-        map((e) => e.target.value),
-        debounceTime(500),
-        filter((text) => text.length > 2),
+        map(
+          (e) => e.target.value,
+          debounceTime(500),
+          filter((text) => text.length > 2),
+        ),
       )
-      .subscribe((text) => this.refreshImages(text));
+      .subscribe((text) => {
+        this.refreshImages(text);
+      });
     this.forcedSearchTextSubscription = store.forcedSearchText.subscribe((e) => this.refreshImages(e.target.value));
   }
 
@@ -36,10 +41,12 @@ class ImageList extends HTMLElement {
   }
 
   render() {
+
     this.innerHTML = ` 
     <div class="image__box">
         ${this.createImageList()}
     </div>`;
+
   }
   disconnectedCallback() {
     this.searchTextInputSubscription.unsubscribe();
