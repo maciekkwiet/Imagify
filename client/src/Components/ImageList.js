@@ -8,18 +8,23 @@ class ImageList extends HTMLElement {
     super();
     this.images = [];
     this.imageService = new ImageService();
-    this.render();
   }
 
   connectedCallback() {
-    store.searchTextInput
+    this.render();
+    console.log(store.searchTextInput);
+    this.searchTextInputSubscription = store.searchTextInput
       .pipe(
-        map((e) => e.target.value),
-        debounceTime(500),
-        filter((text) => text.length > 2),
+        map(
+          (e) => e.target.value,
+          debounceTime(500),
+          filter((text) => text.length > 2),
+        ),
       )
-      .subscribe((text) => this.refreshImages(text));
-    store.forcedSearchText.subscribe((e) => this.refreshImages(e.target.value));
+      .subscribe((text) => {
+        this.refreshImages(text);
+      });
+    this.forcedSearchTextSubscription = store.forcedSearchText.subscribe((e) => this.refreshImages(e.target.value));
   }
 
   async refreshImages(searchText = '') {
@@ -28,7 +33,7 @@ class ImageList extends HTMLElement {
   }
 
   createImageList() {
-    return this.images.map((image) => this.createImage(image)).join('');
+    return this.images.map((image) => this.createImage(image));
   }
 
   createImage(url) {
@@ -37,6 +42,10 @@ class ImageList extends HTMLElement {
 
   render() {
     this.innerHTML = this.createImageList();
+  }
+  disconnectedCallback() {
+    this.searchTextInputSubscription.unsubscribe();
+    this.forcedSearchTextSubscription.unsubscribe();
   }
 }
 
