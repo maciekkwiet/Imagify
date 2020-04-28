@@ -1,0 +1,15 @@
+app-imagelist {
+  column-gap: 0px;
+  column-count: 3;
+  display: block;
+}
+
+@media (max-width: 500px) {
+  app-imagelist {
+    column-count: 1;
+  }
+}
+
+.searchBarMain {
+  margin-bottom: 30px;
+}
