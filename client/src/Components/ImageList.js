@@ -33,7 +33,7 @@ class ImageList extends HTMLElement {
   }
 
   createImageList() {
-    return this.images.map((image) => this.createImage(image));
+    return this.images.map((image) => this.createImage(image)).join('');
   }
 
   createImage(url) {
