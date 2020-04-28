@@ -1,6 +1,7 @@
 import store from '../Store.js';
 import { fromEvent } from 'rxjs';
 import { debounceTime, filter, map } from 'rxjs/operators';
+const axios = require('axios');
 
 class LoginForm extends HTMLElement {
   connectedCallback() {
