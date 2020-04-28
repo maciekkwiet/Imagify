@@ -17,36 +17,68 @@ class LoginForm extends HTMLElement {
   }
 
   rules() {
-    $('.ui.form').form({
-      fields: {
-        email: {
-          identifier: 'email',
-          rules: [
-            {
-              type: 'empty',
-              prompt: 'Please enter your e-mail',
-            },
-            {
-              type: 'email',
-              prompt: 'Please enter a valid e-mail',
-            },
-          ],
+    $(document).ready(function () {
+      $('.ui.form').form({
+        fields: {
+          email: {
+            identifier: 'email',
+            rules: [
+              {
+                type: 'empty',
+                prompt: 'Please enter your e-mail',
+              },
+              {
+                type: 'email',
+                prompt: 'Please enter a valid e-mail',
+              },
+            ],
+          },
+          password: {
+            identifier: 'password',
+            rules: [
+              {
+                type: 'empty',
+                prompt: 'Please enter your password',
+              },
+              {
+                type: 'length[6]',
+                prompt: 'Your password must be at least 6 characters',
+              },
+            ],
+          },
         },
-        password: {
-          identifier: 'password',
-          rules: [
-            {
-              type: 'empty',
-              prompt: 'Please enter your password',
-            },
-            {
-              type: 'length[6]',
-              prompt: 'Your password must be at least 6 characters',
-            },
-          ],
-        },
-      },
+      });
     });
+    // $('.ui.form').form({
+    //   fields: {
+    //     email: {
+    //       identifier: 'email',
+    //       rules: [
+    //         {
+    //           type: 'empty',
+    //           prompt: 'Please enter your e-mail',
+    //         },
+    //         {
+    //           type: 'email',
+    //           prompt: 'Please enter a valid e-mail',
+    //         },
+    //       ],
+    //     },
+    //     password: {
+    //       identifier: 'password',
+    //       rules: [
+    //         {
+    //           type: 'empty',
+    //           prompt: 'Please enter your password',
+    //         },
+    //         {
+    //           type: 'length[6]',
+    //           prompt: 'Your password must be at least 6 characters',
+    //         },
+    //       ],
+    //     },
+    //   },
+    // });
   }
 
   nextViev() {
@@ -66,13 +98,21 @@ class LoginForm extends HTMLElement {
     );
 
     this.submitButton = this.querySelector('.pickLogin').addEventListener('click', () => {
-      let toSend;
-      toSend = {
-        email: `${this.email}`,
-        password: `${this.password}`,
-      };
+      axios
+        .post('http://localhost:12345/api/login', {
+          email: `${this.email}`,
+          password: `${this.password}`,
+        })
+        .then((response) => console.log(response.data))
+        .catch((error) => console.log(error));
 
-      console.log(JSON.stringify(toSend));
+      // let toSend;
+      // toSend = {
+      //   email: `${this.email}`,
+      //   password: `${this.password}`,
+      // };
+
+      // console.log(JSON.stringify(toSend));
     });
     this.rules();
   }

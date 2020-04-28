@@ -6,7 +6,7 @@ class Store {
     this.forcedSearchText = new Observable();
 
     this.emailLoginInput = new Observable();
-    this.passwordLoginInpu = new Observable();
+    this.passwordLoginInput = new Observable();
 
     this.forcedLogin = new Observable();
   }
