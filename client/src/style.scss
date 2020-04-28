@@ -1,11 +1,11 @@
-image-list {
+app-imagelist {
   column-gap: 0px;
   column-count: 3;
   display: block;
 }
 
 @media (max-width: 500px) {
-  image-list {
+  app-imagelist {
     column-count: 1;
   }
 }
