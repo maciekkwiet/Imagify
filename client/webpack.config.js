@@ -9,6 +9,9 @@ module.exports = {
   devServer: {
     port: 8080,
     disableHostCheck: true,
+    proxy: {
+      '/api': 'http://localhost:12345',
+    },
     contentBase: path.join(__dirname, 'public'),
   },
   output: {
