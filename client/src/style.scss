@@ -1,15 +1,14 @@
-app-imagelist {
-  column-gap: 0px;
-  column-count: 3;
-  display: block;
-}
 
-@media (max-width: 500px) {
-  app-imagelist {
-    column-count: 1;
+@media (min-width: 500px) {
+  image-list > .image__box {
+    column-gap: 0px;
+    column-count: 3;
   }
 }
 
-.searchBarMain {
-  margin-bottom: 30px;
+@media (max-width: 500px) {
+  image-list > .image__box {
+    column-gap: 0px;
+    column-count: 1;
+  }
 }

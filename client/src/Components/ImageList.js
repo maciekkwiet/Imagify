@@ -41,7 +41,12 @@ class ImageList extends HTMLElement {
   }
 
   render() {
-    this.innerHTML = this.createImageList();
+
+    this.innerHTML = ` 
+    <div class="image__box">
+        ${this.createImageList()}
+    </div>`;
+
   }
   disconnectedCallback() {
     this.searchTextInputSubscription.unsubscribe();

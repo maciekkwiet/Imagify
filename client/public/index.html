@@ -6,10 +6,18 @@
     <title>Imagify</title>
     <script src="./bundle.min.js" defer></script>
   </head>
+
   <body>
+    <div class="ui grid center">
+      <div class="column" style="width: 25%;"></div>
+      <div class="column" style="width: 25%;" ;>
+        <app-searchbar></app-searchbar>
+      </div>
+      <div class="column" style="width: 50%;">
+        <app-loginform></app-loginform>
+      </div>
+    </div>
     <div class="ui container center aligned">
-      <app-searchbar></app-searchbar>
-      <app-apipicker></app-apipicker>
       <app-imagelist></app-imagelist>
     </div>
   </body>
