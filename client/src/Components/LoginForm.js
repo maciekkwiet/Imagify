@@ -1,6 +1,5 @@
 import store from '../Store.js';
 import { fromEvent } from 'rxjs';
-import { debounceTime, filter, map } from 'rxjs/operators';
 const axios = require('axios');
 
 class LoginForm extends HTMLElement {
@@ -50,36 +49,6 @@ class LoginForm extends HTMLElement {
         },
       });
     });
-    // $('.ui.form').form({
-    //   fields: {
-    //     email: {
-    //       identifier: 'email',
-    //       rules: [
-    //         {
-    //           type: 'empty',
-    //           prompt: 'Please enter your e-mail',
-    //         },
-    //         {
-    //           type: 'email',
-    //           prompt: 'Please enter a valid e-mail',
-    //         },
-    //       ],
-    //     },
-    //     password: {
-    //       identifier: 'password',
-    //       rules: [
-    //         {
-    //           type: 'empty',
-    //           prompt: 'Please enter your password',
-    //         },
-    //         {
-    //           type: 'length[6]',
-    //           prompt: 'Your password must be at least 6 characters',
-    //         },
-    //       ],
-    //     },
-    //   },
-    // });
   }
 
   nextViev() {

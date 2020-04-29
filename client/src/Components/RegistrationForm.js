@@ -19,13 +19,15 @@ class RegistrationForm extends HTMLElement {
     this.passwordDiv = this.querySelector('#password');
     this.confirmPasswordDiv = this.querySelector('#confirmPassword');
 
-    store.emailInput = fromEvent(this.emailDiv, 'input');
-    store.passwordInput = fromEvent(this.passwordDiv, 'input');
-    store.confirmPasswordInput = fromEvent(this.confirmPasswordDiv, 'input');
+    store.emailRegisterInput = fromEvent(this.emailDiv, 'input');
+    store.passwordRegisterInput = fromEvent(this.passwordDiv, 'input');
+    store.confirmPasswordRegisterInput = fromEvent(this.confirmPasswordDiv, 'input');
 
-    this.emailInputSubscription = store.emailInput.subscribe((text) => (this.email = text.target.value));
-    this.passwordInputSubscription = store.passwordInput.subscribe((text) => (this.password = text.target.value));
-    this.confirmPasswordInputSubscription = store.confirmPasswordInput.subscribe(
+    this.emailInputSubscription = store.emailRegisterInput.subscribe((text) => (this.email = text.target.value));
+    this.passwordInputSubscription = store.passwordRegisterInput.subscribe(
+      (text) => (this.password = text.target.value),
+    );
+    this.confirmPasswordInputSubscription = store.confirmPasswordRegisterInput.subscribe(
       (text) => (this.confirmPassword = text.target.value),
     );
 
@@ -40,18 +42,7 @@ class RegistrationForm extends HTMLElement {
           .catch((error) => console.log(error));
       }
     });
-
-    // this.submitButton = this.querySelector('.ui.submit.button').addEventListener('click', () => {
-    //   let toSend;
-    //   if (this.password == this.confirmPassword) {
-    //     if (this.email)
-    //       toSend = {
-    //         email: `${this.email}`,
-    //         password: `${this.password}`,
-    //       };
-    //   } else alert('correct password');
-    //   console.log(JSON.stringify(toSend));
-    // });
+    this.rules();
   }
 
   rules() {
@@ -87,36 +78,6 @@ class RegistrationForm extends HTMLElement {
         },
       });
     });
-    // $('.ui.form').form({
-    //   fields: {
-    //     email: {
-    //       identifier: 'email',
-    //       rules: [
-    //         {
-    //           type: 'empty',
-    //           prompt: 'Please enter your e-mail',
-    //         },
-    //         {
-    //           type: 'email',
-    //           prompt: 'Please enter a valid e-mail',
-    //         },
-    //       ],
-    //     },
-    //     password: {
-    //       identifier: 'password',
-    //       rules: [
-    //         {
-    //           type: 'empty',
-    //           prompt: 'Please enter your password',
-    //         },
-    //         {
-    //           type: 'length[6]',
-    //           prompt: 'Your password must be at least 6 characters',
-    //         },
-    //       ],
-    //     },
-    //   },
-    // });
   }
 
   renderRegistration() {
