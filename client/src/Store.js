@@ -4,9 +4,9 @@ class Store {
   constructor() {
     this.searchTextInput = new Observable();
     this.forcedSearchText = new Observable();
-    this.searchLoginInput = new Observable();
-    this.searchPasswordInput = new Observable();
-    this.forcedLogin = new Observable();
+    this.emailInput = new Observable();
+    this.passwordInput = new Observable();
+    this.confirmPasswordInput = new Observable();
     this.signUp = new Observable();
   }
 }

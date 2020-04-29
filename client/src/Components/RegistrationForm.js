@@ -30,13 +30,79 @@ class RegistrationForm extends HTMLElement {
     this.submitButton = this.querySelector('.ui.submit.button').addEventListener('click', () => {
       let toSend;
       if (this.password == this.confirmPassword) {
-        toSend = {
-          email: `${this.email}`,
-          password: `${this.password}`,
-        };
+        if (this.email)
+          toSend = {
+            email: `${this.email}`,
+            password: `${this.password}`,
+          };
       } else alert('correct password');
       console.log(JSON.stringify(toSend));
     });
+  }
+
+  rules() {
+    $(document).ready(function () {
+      $('.ui.form').form({
+        fields: {
+          email: {
+            identifier: 'email',
+            rules: [
+              {
+                type: 'empty',
+                prompt: 'Please enter your e-mail',
+              },
+              {
+                type: 'email',
+                prompt: 'Please enter a valid e-mail',
+              },
+            ],
+          },
+          password: {
+            identifier: 'password',
+            rules: [
+              {
+                type: 'empty',
+                prompt: 'Please enter your password',
+              },
+              {
+                type: 'length[6]',
+                prompt: 'Your password must be at least 6 characters',
+              },
+            ],
+          },
+        },
+      });
+    });
+    // $('.ui.form').form({
+    //   fields: {
+    //     email: {
+    //       identifier: 'email',
+    //       rules: [
+    //         {
+    //           type: 'empty',
+    //           prompt: 'Please enter your e-mail',
+    //         },
+    //         {
+    //           type: 'email',
+    //           prompt: 'Please enter a valid e-mail',
+    //         },
+    //       ],
+    //     },
+    //     password: {
+    //       identifier: 'password',
+    //       rules: [
+    //         {
+    //           type: 'empty',
+    //           prompt: 'Please enter your password',
+    //         },
+    //         {
+    //           type: 'length[6]',
+    //           prompt: 'Your password must be at least 6 characters',
+    //         },
+    //       ],
+    //     },
+    //   },
+    // });
   }
 
   renderRegistration() {
