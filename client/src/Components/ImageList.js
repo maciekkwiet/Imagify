@@ -12,7 +12,7 @@ class ImageList extends HTMLElement {
 
   connectedCallback() {
     this.render();
-    console.log(store.searchTextInput);
+    //console.log(store.searchTextInput);
     this.searchTextInputSubscription = store.searchTextInput
       .pipe(
         map(
@@ -41,12 +41,10 @@ class ImageList extends HTMLElement {
   }
 
   render() {
-
     this.innerHTML = ` 
     <div class="image__box">
         ${this.createImageList()}
     </div>`;
-
   }
   disconnectedCallback() {
     this.searchTextInputSubscription.unsubscribe();
