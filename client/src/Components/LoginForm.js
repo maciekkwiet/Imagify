@@ -5,6 +5,7 @@ const axios = require('axios');
 
 class LoginForm extends HTMLElement {
   connectedCallback() {
+
     this.render();
     this.signUpButton = this.querySelector('.ui.big.button').addEventListener('click', () => this.nextViev());
   }
