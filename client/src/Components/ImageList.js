@@ -8,7 +8,6 @@ class ImageList extends HTMLElement {
     super();
     this.images = [];
     this.imageService = new ImageService();
-    this.newimage = document.createElement('app-image');
   }
 
   connectedCallback() {
@@ -37,8 +36,8 @@ class ImageList extends HTMLElement {
   }
 
   createImage(url) {
-    return this.appendChild(this.newimage);
     //return `<img style="width:100%; padding: 5px 5px 5px 5px" src="${url}"/>`;
+    return (this.innerHTML = `<app-image></app-image>`);
   }
 
   render() {
