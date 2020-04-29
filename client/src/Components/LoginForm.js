@@ -106,14 +106,6 @@ class LoginForm extends HTMLElement {
         })
         .then((response) => console.log(response.data))
         .catch((error) => console.log(error));
-
-      // let toSend;
-      // toSend = {
-      //   email: `${this.email}`,
-      //   password: `${this.password}`,
-      // };
-
-      // console.log(JSON.stringify(toSend));
     });
     this.rules();
   }
