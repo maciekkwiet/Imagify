@@ -5,9 +5,7 @@ const axios = require('axios');
 class RegistrationForm extends HTMLElement {
   connectedCallback() {
     this.render();
-    this.submitButton = this.querySelector('.ui.submit.button').addEventListener('click', () => {
-      console.log(this.querySelector);
-    });
+
     this.email;
     this.password;
     this.confirmPassword;
