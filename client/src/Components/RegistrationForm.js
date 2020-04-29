@@ -1,5 +1,6 @@
 import { fromEvent, debounceTime, filter, map } from 'rxjs';
 import store from '../Store.js';
+const axios = require('axios');
 
 class RegistrationForm extends HTMLElement {
   connectedCallback() {
@@ -10,12 +11,15 @@ class RegistrationForm extends HTMLElement {
     this.email;
     this.password;
     this.confirmPassword;
+
     this.emailDiv = this.querySelector('#e-mail');
     this.passwordDiv = this.querySelector('#password');
     this.confirmPasswordDiv = this.querySelector('#confirmPassword');
+
     store.emailInput = fromEvent(this.emailDiv, 'input');
     store.passwordInput = fromEvent(this.passwordDiv, 'input');
     store.confirmPasswordInput = fromEvent(this.confirmPasswordDiv, 'input');
+
     this.emailInputSubscription = store.emailInput.subscribe((text) => (this.email = text.target.value));
     this.passwordInputSubscription = store.passwordInput.subscribe((text) => (this.password = text.target.value));
     this.confirmPasswordInputSubscription = store.confirmPasswordInput.subscribe(
@@ -23,16 +27,28 @@ class RegistrationForm extends HTMLElement {
     );
 
     this.submitButton = this.querySelector('.ui.submit.button').addEventListener('click', () => {
-      let toSend;
       if (this.password == this.confirmPassword) {
-        if (this.email)
-          toSend = {
+        axios
+          .post('api/register', {
             email: `${this.email}`,
             password: `${this.password}`,
-          };
-      } else alert('correct password');
-      console.log(JSON.stringify(toSend));
+          })
+          .then((response) => console.log(response.data))
+          .catch((error) => console.log(error));
+      }
     });
+
+    // this.submitButton = this.querySelector('.ui.submit.button').addEventListener('click', () => {
+    //   let toSend;
+    //   if (this.password == this.confirmPassword) {
+    //     if (this.email)
+    //       toSend = {
+    //         email: `${this.email}`,
+    //         password: `${this.password}`,
+    //       };
+    //   } else alert('correct password');
+    //   console.log(JSON.stringify(toSend));
+    // });
   }
 
   rules() {

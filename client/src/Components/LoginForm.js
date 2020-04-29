@@ -91,20 +91,12 @@ class LoginForm extends HTMLElement {
 
     this.submitButton = this.querySelector('.pickLogin').addEventListener('click', () => {
       axios
-        .post('./login', {
+        .post('api/login', {
           email: `${this.email}`,
           password: `${this.password}`,
         })
         .then((response) => console.log(response.data))
         .catch((error) => console.log(error));
-
-      // let toSend;
-      // toSend = {
-      //   email: `${this.email}`,
-      //   password: `${this.password}`,
-      // };
-
-      // console.log(JSON.stringify(toSend));
     });
     this.rules();
   }

@@ -5,10 +5,8 @@ class ModalWindow extends HTMLElement {
     const loginForm = document.createElement('app-loginform');
     this.loginButton = this.querySelector('.ui.big.button').addEventListener('click', () => {
       this.renderModal();
-      const actions = this.querySelector('.actions');
-      console.log(this.querySelector('.actions'));
+      this.appendChild(loginForm);
 
-      actions.appendChild(loginForm);
       this.registerButton = this.querySelector('.ui.big.button').addEventListener('click', () => {
         this.removeChild(loginForm);
         this.appendChild(registerForm);
@@ -22,21 +20,21 @@ class ModalWindow extends HTMLElement {
       Login or Sign Up
     </div>`;
   }
+  // renderModal() {
+  //   this.innerHTML = `
+  //   <div class="modal">
+  //   Create an account
+
+  //   </div>`;
+  // }
   renderModal() {
     this.innerHTML = `
-    <div class="modal">
-    Create an account
-    
-    </div>`;
+  <label>Not registered?</label>
+  <div class="ui big button">
+  <i class="user icon"></i>
+  Create an account
+  </div>`;
   }
-  //   renderModal() {
-  //     this.innerHTML = `
-  // <label>Not registered?</label>
-  // <div class="ui big button">
-  // <i class="user icon"></i>
-  // Create an account
-  // </div>`;
-  //   }
 
   //   renderModal() {
   //     this.innerHTML = `
