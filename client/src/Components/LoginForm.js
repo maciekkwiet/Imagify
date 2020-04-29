@@ -73,31 +73,27 @@ class LoginForm extends HTMLElement {
   render_form() {
     this.innerHTML = `  
        
-          <div class="ui form">
-            <div class="field">
-              <label>Username</label>
-              <div class="ui left icon input">
-                <input class="email" type="email" placeholder="e-mail" name="email" id="e-mail">
-                <i class="user icon"></i>
-              </div>
+      <div class="ui form">
+        <div class="field">
+          <label>Username</label>
+          <div class="ui left icon input">
+              <input class="email" type="email" placeholder="e-mail" name="email" id="e-mail">
+              <i class="user icon"></i>
             </div>
-            <div class="field">
-              <label>Password</label>
-              <div class="ui left icon input">
-                <input class="password" type="password" name="password" id="password">
-                <i class="lock icon"></i>
-              </div>
-            </div>
-            <div class = "ui grid">
-            <div class="ui blue submit button close">Login</div>
-
-            <div class="ui red submit button pickLogin">close</div>
-
-            </div>
-
           </div>
-      
-`;
+          <div class="field">
+            <label>Password</label>
+            <div class="ui left icon input">
+              <input class="password" type="password" name="password" id="password">
+              <i class="lock icon"></i>
+            </div>
+          </div>
+          <div class = "ui grid">
+            <div class="ui blue submit button pickLogin">Login</div>
+            <div class="ui red submit button close">close</div>
+          </div>
+        </div>
+      </div>`;
   }
 }
 

@@ -30,41 +30,42 @@ class ModalWindow extends HTMLElement {
   renderRegister() {
     this.innerHTML = `
   <style>
-  .modal-bg {
-    position: fixed;
-    width: 100%;
-    height: 100vh;
-    top: 0;
-    left: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    visibility: visible;
-    opacity: 1;
-    transition: visibility 0s, opacity 1s;
-  }
+    .modal-bg {
+      position: fixed;
+      width: 100%;
+      height: 100vh;
+      top: 0;
+      left: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      visibility: visible;
+      opacity: 1;
+      transition: visibility 0s, opacity 1s;
+    }
   // .bg-active {
   //   visibility: visible;
   //   opacity: 1;
   // }
   
-  .modal{
-    background-color: white;
-    width: 40%;
-    height: 400px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-  }
+    .modal{
+      background-color: white;
+      width: 40%;
+      height: 400px;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    }
   </style>
   <div class=modal-bg> 
-  <div class=modal
-  <label></label>
-  <button class="ui button">
-  <i class="remove icon"></i>
-  close
-</div>
+    <div class=modal>
+      <label></label>
+      <button class="ui button">
+      <i class="remove icon"></i>
+      close
+    </div>
+  </div>
 `;
   }
   renderButton() {
@@ -84,43 +85,43 @@ class ModalWindow extends HTMLElement {
   renderModal() {
     this.innerHTML = `
     <style>
-    .modal-bg {
-      position: fixed;
-      width: 100%;
-      height: 100vh;
-      top: 0;
-      left: 0;
-      background-color: rgba(0, 0, 0, 0.5);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      visibility: visible;
-      opacity: 1;
-      transition: visibility 0s, opacity 1s;
-    }
-    // .bg-active {
-    //   visibility: visible;
-    //   opacity: 1;
-    // }
+      .modal-bg {
+        position: fixed;
+        width: 100%;
+        height: 100vh;
+        top: 0;
+        left: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        visibility: visible;
+        opacity: 1;
+        transition: visibility 0s, opacity 1s;
+      }
+      // .bg-active {
+      //   visibility: visible;
+      //   opacity: 1;
+      // }
     
-    .modal{
-      background-color: white;
-      width: 70%;
-      height: 200px;
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-    }
+      .modal{
+        background-color: white;
+        width: 70%;
+        height: 200px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+      }
     </style>
     <div class=modal-bg> 
-    <div class=modal
-  <label></label>
-  <div class="ui big button">
-  <i class="user icon"></i>
-  Create an account
-  </div>
-  </div>
-  </div>
+      <div class=modal
+        <label></label>
+        <div class="ui big button">
+          <i class="user icon"></i>
+          Create an account
+        </div>
+      </div>
+    </div>
   `;
   }
 

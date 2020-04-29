@@ -77,42 +77,40 @@ class RegistrationForm extends HTMLElement {
 
   render() {
     this.innerHTML = `
-    
       <div class="ui form">
-      <div class="field">
-        <label>Username</label>
-        <div class="ui left icon input">
-          <input type="text" id="e-mail">
-          <i class="user icon"></i>
+        <div class="field">
+          <label>Username</label>
+          <div class="ui left icon input">
+            <input type="text" id="e-mail">
+            <i class="user icon"></i>
+          </div>
         </div>
-      </div>
-      <div class="field">
-        <label>Password</label>
-        <div class="ui left icon input">
-          <input type="password" id="password">
-          <i class="lock icon"></i>
+        <div class="field">
+          <label>Password</label>
+          <div class="ui left icon input">
+            <input type="password" id="password">
+            <i class="lock icon"></i>
+          </div>
         </div>
-      </div>
-      <div class="field">
-      <label>Confirm Password</label>
-      <div class="ui left icon input">
-        <input type="password" id="confirmPassword">
-        <i class="lock icon"></i>
-      </div>
-    </div>
-    <div class="field">
-      <label>Favourites</label>
-      <div class="ui left icon input">
-        <input type="favourites">
-        <i class="lock icon"></i>
-      </div>
-    </div>
-    <div class="ui submit button">
-    <i class="Submit"></i>
-    Sign Up
-  </div>
-      </div>
-  </div>`;
+        <div class="field">
+          <label>Confirm Password</label>
+          <div class="ui left icon input">
+            <input type="password" id="confirmPassword">
+            <i class="lock icon"></i>
+          </div>
+        </div>
+        <div class="field">
+          <label>Favourites</label>
+          <div class="ui left icon input">
+            <input type="favourites">
+            <i class="lock icon"></i>
+          </div>
+        </div>
+        <div class="ui submit button">
+          <i class="Submit"></i>
+          Sign Up
+        </div>
+      </div>`;
   }
 }
 export default RegistrationForm;
