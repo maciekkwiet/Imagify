@@ -8,6 +8,12 @@ class Store {
     this.passwordInput = new Observable();
     this.confirmPasswordInput = new Observable();
     this.signUp = new Observable();
+
+    this.emailLoginInput = new Observable();
+    this.passwordLoginInput = new Observable();
+
+    this.forcedLogin = new Observable();
+
   }
 }
 

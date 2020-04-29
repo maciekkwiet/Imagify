@@ -8,6 +8,7 @@ module.exports = {
   entry: ['babel-polyfill', './src/index.js'],
   devServer: {
     port: 8080,
+    proxy: { api: 'http://localhost:12345/api' },
     disableHostCheck: true,
     contentBase: path.join(__dirname, 'public'),
   },
@@ -36,6 +37,7 @@ module.exports = {
         use: [
           'style-loader', //3. Inject styles into DOM
           'css-loader', //2. Turns css into commonjs
+          'postcss-loader',
           'sass-loader', //1. Turns sass into css
         ],
       },

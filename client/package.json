@@ -29,9 +29,11 @@
   "description": "",
   "dependencies": {
     "autoprefixer": "^9.7.6",
+    "axios": "^0.19.2",
     "babel-polyfill": "^6.26.0",
-    "rxjs": "^6.5.5",
     "fomantic-ui-css": "^2.8.4",
-    "jquery": "^3.5.0"
+    "jquery": "^3.5.0",
+    "postcss-loader": "^3.0.0",
+    "rxjs": "^6.5.5"
   }
 }

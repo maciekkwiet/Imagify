@@ -1,85 +1,125 @@
+import store from '../Store.js';
+import { fromEvent } from 'rxjs';
+import { debounceTime, filter, map } from 'rxjs/operators';
+const axios = require('axios');
+
 class LoginForm extends HTMLElement {
   connectedCallback() {
-    //this.render();
-    //this.button = this.querySelector('button').addEventListener('click', this.renderlogin);
-    // this.login = this.querySelector('email');
-    // this.password = this.querySelector('password');
-    // this.icon = this.querySelector('pickLogin');
-    // store.searchLoginInput = fromEvent(this.login, 'input');
-    // store.searchPasswordInput = fromEvent(this.password, 'input');
-    // store.forcedLogin = fromEvent(this.icon, 'click');
-    //     store.searchTextInput
-    //       .pipe(
-    //         map((e) => e.target.value),
-    //         debounceTime(500),
-    //         filter((text) => text.length > 2),
-    //       )
-    //       .subscribe((text) => this.refreshImages(text));
-    //     store.forcedSearchText.subscribe((e) => this.refreshImages(e.target.value));
-  }
 
-  renderlogin() {
-    // this.innerHTML = `
-    //   <div class="ui form ">
-    //   <div class="fields">
-    //     <div class="field email">
-    //       <label>E-mail</label>
-    //       <input type="email" placeholder="jan.kowalski@poczta.pl">
-    //     </div>
-    //     <div class="field password">
-    //       <label>Password</label>
-    //       <input type="password">
-    //     </div>
-    //     <div class="mini ui submit  button pickLogin" style="padding: 5px 5px 5px 5px">Submit</div>
-    //   </div>
-    // </div>`;
-
-    // <div class="ui floating dropdown labeled icon button">
-    //   <i class="filter icon"></i>
-    //   <span class="text">Filter Posts</span>
-    //   <div class="menu"></div>
-    //   </div>
-    // </div>
-
-    this.innerHTML = `
-
-    
-
-    <div class="ui placeholder segment">
-  <div class="ui two column very relaxed stackable grid">
-    <div class="column">
-      <div class="ui form">
-        <div class="field">
-          <label>Username</label>
-          <div class="ui left icon input">
-            <input type="text" placeholder="e-mail">
-            <i class="user icon"></i>
-          </div>
-        </div>
-        <div class="field">
-          <label>Password</label>
-          <div class="ui left icon input">
-            <input type="password">
-            <i class="lock icon"></i>
-          </div>
-        </div>
-        <div class="ui blue submit button">Login</div>
-      </div>
-    </div>
-    <div class="middle aligned column">
-      <div class="ui big button">
-        <i class="signup icon"></i>
-        Sign Up
-      </div>
-    </div>
-  </div>
-  <div class="ui vertical divider">
-    Or
-  </div>
-</div>`;
+    this.render();
+    this.signUpButton = this.querySelector('.ui.big.button').addEventListener('click', () => this.nextViev());
   }
 
   render() {
+    this.innerHTML = `
+    <div class="ui big button">
+      <i class="user icon"></i>
+      Login or Sign Up
+    </div>`;
+  }
+
+  rules() {
+    $(document).ready(function () {
+      $('.ui.form').form({
+        fields: {
+          email: {
+            identifier: 'email',
+            rules: [
+              {
+                type: 'empty',
+                prompt: 'Please enter your e-mail',
+              },
+              {
+                type: 'email',
+                prompt: 'Please enter a valid e-mail',
+              },
+            ],
+          },
+          password: {
+            identifier: 'password',
+            rules: [
+              {
+                type: 'empty',
+                prompt: 'Please enter your password',
+              },
+              {
+                type: 'length[6]',
+                prompt: 'Your password must be at least 6 characters',
+              },
+            ],
+          },
+        },
+      });
+    });
+    // $('.ui.form').form({
+    //   fields: {
+    //     email: {
+    //       identifier: 'email',
+    //       rules: [
+    //         {
+    //           type: 'empty',
+    //           prompt: 'Please enter your e-mail',
+    //         },
+    //         {
+    //           type: 'email',
+    //           prompt: 'Please enter a valid e-mail',
+    //         },
+    //       ],
+    //     },
+    //     password: {
+    //       identifier: 'password',
+    //       rules: [
+    //         {
+    //           type: 'empty',
+    //           prompt: 'Please enter your password',
+    //         },
+    //         {
+    //           type: 'length[6]',
+    //           prompt: 'Your password must be at least 6 characters',
+    //         },
+    //       ],
+    //     },
+    //   },
+    // });
+  }
+
+  nextViev() {
+    this.render_form();
+    this.email;
+    this.password;
+
+    this.emailDiv = this.querySelector('#e-mail');
+    this.passwordDiv = this.querySelector('#password');
+
+    store.emailLoginInput = fromEvent(this.emailDiv, 'input');
+    store.passwordLoginInput = fromEvent(this.passwordDiv, 'input');
+
+    this.emailInputLoginSubscription = store.emailLoginInput.subscribe((text) => (this.email = text.target.value));
+    this.passwordInputLoginSubscription = store.passwordLoginInput.subscribe(
+      (text) => (this.password = text.target.value),
+    );
+
+    this.submitButton = this.querySelector('.pickLogin').addEventListener('click', () => {
+      axios
+        .post('./login', {
+          email: `${this.email}`,
+          password: `${this.password}`,
+        })
+        .then((response) => console.log(response.data))
+        .catch((error) => console.log(error));
+
+      // let toSend;
+      // toSend = {
+      //   email: `${this.email}`,
+      //   password: `${this.password}`,
+      // };
+
+      // console.log(JSON.stringify(toSend));
+    });
+    this.rules();
+  }
+
+  render_form() {
     this.innerHTML = `  
       <div class="ui placeholder segment">
       <div class="ui two column very relaxed stackable grid">
@@ -88,18 +128,18 @@ class LoginForm extends HTMLElement {
             <div class="field">
               <label>Username</label>
               <div class="ui left icon input">
-                <input type="text" placeholder="e-mail">
+                <input class="email" type="email" placeholder="e-mail" name="email" id="e-mail">
                 <i class="user icon"></i>
               </div>
             </div>
             <div class="field">
               <label>Password</label>
               <div class="ui left icon input">
-                <input type="password">
+                <input class="password" type="password" name="password" id="password">
                 <i class="lock icon"></i>
               </div>
             </div>
-            <div class="ui blue submit button">Login</div>
+            <div class="ui blue submit button pickLogin">Login</div>
           </div>
         </div>
         <div class="middle aligned column">
