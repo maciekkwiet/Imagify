@@ -5,12 +5,9 @@ const axios = require('axios');
 class RegistrationForm extends HTMLElement {
   connectedCallback() {
     this.render();
-    this.signUpButton = this.querySelector('.ui.big.button').addEventListener('click', () => this.nextView());
-  }
-
-  nextView() {
-    this.renderRegistration();
-
+    this.submitButton = this.querySelector('.ui.submit.button').addEventListener('click', () => {
+      console.log(this.querySelector);
+    });
     this.email;
     this.password;
     this.confirmPassword;
@@ -80,12 +77,10 @@ class RegistrationForm extends HTMLElement {
     });
   }
 
-  renderRegistration() {
+  render() {
     this.innerHTML = `
       <div class="ui placeholder segment">
-    <div class="ui two column very relaxed stackable grid">
-      <div class="column">
-        </div>
+    
       <div class="middle aligned column">
       <div class="ui form">
       <div class="field">
@@ -126,23 +121,6 @@ class RegistrationForm extends HTMLElement {
   </div>`;
   }
 
-  render() {
-    this.innerHTML = `  
-        <div class="ui placeholder segment">
-        <div class="ui two column very relaxed stackable grid">
-          <div class="middle aligned column">
-          <
-        </div>
-            <div class="ui big button">
-              <i class="signup icon"></i>
-              Sign Up
-            </div>
-      </div>
-          </div>
-        </div>
-       
-      </div>`;
-  }
   disconnectedCallback() {
     this.signUpSubscription.unsubscribe();
   }

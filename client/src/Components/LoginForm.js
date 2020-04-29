@@ -5,15 +5,6 @@ const axios = require('axios');
 class LoginForm extends HTMLElement {
   connectedCallback() {
     this.render();
-    this.signUpButton = this.querySelector('.ui.big.button').addEventListener('click', () => this.nextViev());
-  }
-
-  render() {
-    this.innerHTML = `
-    <div class="ui big button">
-      <i class="user icon"></i>
-      Login or Sign Up
-    </div>`;
   }
 
   rules() {
@@ -51,7 +42,7 @@ class LoginForm extends HTMLElement {
     });
   }
 
-  nextViev() {
+  render() {
     this.render_form();
     this.email;
     this.password;
@@ -81,9 +72,7 @@ class LoginForm extends HTMLElement {
 
   render_form() {
     this.innerHTML = `  
-      <div class="ui placeholder segment">
-      <div class="ui two column very relaxed stackable grid">
-        <div class="column">
+       
           <div class="ui form">
             <div class="field">
               <label>Username</label>
@@ -101,18 +90,8 @@ class LoginForm extends HTMLElement {
             </div>
             <div class="ui blue submit button pickLogin">Login</div>
           </div>
-        </div>
-        <div class="middle aligned column">
-          <div class="ui big button">
-            <i class="signup icon"></i>
-            Sign Up
-          </div>
-        </div>
-      </div>
-      <div class="ui vertical divider">
-        Or
-      </div>
-    </div>`;
+      
+`;
   }
 }
 
