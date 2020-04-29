@@ -6,17 +6,15 @@ class Image extends HTMLElement {
 
   connectedCallback() {
     this.render(this.url);
+    this.removeAttribute('src');
   }
 
-  createImage(url) {
-    return `<img class="Image-url" src="${url}"/>`;
+  createImage(img_url) {
+    return `<img class="Image-url" src="${img_url}"/>`;
   }
 
-  render(url) {
-    this.innerHTML = `
-        <div class="app-image">
-        ${this.createImage(url)}
-        </div>`;
+  render(img_url) {
+    this.innerHTML = this.createImage(img_url);
   }
 }
 export default Image;

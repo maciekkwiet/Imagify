@@ -4,6 +4,10 @@ app-imagelist {
   display: block;
 }
 
+app-image {
+  width: 100%;
+}
+
 @media (max-width: 500px) {
   app-imagelist {
     column-count: 1;
