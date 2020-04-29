@@ -36,7 +36,7 @@ class ImageList extends HTMLElement {
   }
 
   createImage(url) {
-    return (this.innerHTML = `<app-image src=${url}></app-image>`);
+    return `<app-image src=${url}></app-image>`;
   }
 
   render() {
