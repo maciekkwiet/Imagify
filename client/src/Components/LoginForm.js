@@ -65,7 +65,7 @@ class LoginForm extends HTMLElement {
           password: `${this.password}`,
         })
         .then((response) => console.log(response.data))
-        .catch((error) => console.log(error));
+        .catch((error) => console.dir(error));
     });
     this.rules();
   }

@@ -29,12 +29,12 @@ class RegistrationForm extends HTMLElement {
     this.submitButton = this.querySelector('.ui.submit.button').addEventListener('click', () => {
       if (this.password == this.confirmPassword) {
         axios
-          .post('api/register', {
+          .post('/api/register', {
             email: `${this.email}`,
             password: `${this.password}`,
           })
           .then((response) => console.log(response.data))
-          .catch((error) => console.log(error));
+          .catch((error) => console.dir(error));
       }
     });
     this.rules();
