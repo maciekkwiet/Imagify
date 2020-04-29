@@ -35,7 +35,7 @@ class ImageList extends HTMLElement {
     return this.images.map((image) => this.createImage(image)).join('');
   }
 
-  createImage(url) {
+  createImage() {
     //return `<img style="width:100%; padding: 5px 5px 5px 5px" src="${url}"/>`;
     return (this.innerHTML = `<app-image></app-image>`);
   }
