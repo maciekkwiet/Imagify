@@ -77,9 +77,7 @@ class RegistrationForm extends HTMLElement {
 
   render() {
     this.innerHTML = `
-      <div class="ui placeholder segment">
     
-      <div class="middle aligned column">
       <div class="ui form">
       <div class="field">
         <label>Username</label>
@@ -114,13 +112,7 @@ class RegistrationForm extends HTMLElement {
     Sign Up
   </div>
       </div>
-      </div>
-    </div>
   </div>`;
-  }
-
-  disconnectedCallback() {
-    this.signUpSubscription.unsubscribe();
   }
 }
 export default RegistrationForm;
