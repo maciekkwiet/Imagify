@@ -5,7 +5,6 @@ const axios = require('axios');
 
 class LoginForm extends HTMLElement {
   connectedCallback() {
-
     this.render();
     this.signUpButton = this.querySelector('.ui.big.button').addEventListener('click', () => this.nextViev());
   }
@@ -101,7 +100,7 @@ class LoginForm extends HTMLElement {
 
     this.submitButton = this.querySelector('.pickLogin').addEventListener('click', () => {
       axios
-        .post('./login', {
+        .post('api/login', {
           email: `${this.email}`,
           password: `${this.password}`,
         })
