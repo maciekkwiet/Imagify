@@ -10,13 +10,22 @@
     <div class="ui container center aligned">
       <app-searchbar></app-searchbar>
       <app-apipicker></app-apipicker>
+      <div class ="Images">
       <app-imagelist></app-imagelist>
+    </div>
     </div>
     <div class="ui modal">
       <div class="header">Header</div>
       <div class="image content">
         <img class="image">
         <div class="description">
+          <img src="" alt="Some image">
+         // co tu dać? api po src?
+          <script>
+            var img = document.getElementsByTagName("image")[0];
+            img.getAttribute("src"); // -> "image-1.jpg"
+            img.getAttribute("alt"); // -> "Some image"
+          </script>
           <p></p>
         </div>
       </div>

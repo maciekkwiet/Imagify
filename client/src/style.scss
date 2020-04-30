@@ -1,19 +1,42 @@
+
+.Images {
+  display:flex;
+  align-items: center;
+  justify-content: center;
+}
+
 app-imagelist {
-  column-gap: 0px;
+  column-gap: 10px;
   column-count: 3;
   display: block;
+  line-height: 30px;
 }
 
 app-image {
   width: 100%;
 }
 
+Image-url{margin-bottom: 100px;}
+
 @media (max-width: 500px) {
   app-imagelist {
     column-count: 1;
+
   }
 }
 
 .searchBarMain {
   margin-bottom: 30px;
+}
+
+app-apipicker {
+  max-width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ui.checkbox label {
+  padding-left: 20px;
+  padding-right: 20px;
 }
