@@ -18,7 +18,7 @@ router.post('/', async (req, res) => {
   let user = await User.findOne({ email: req.body.email });
 
   // //sprawdzenie czy istnieje w bazie
-  if (!user) return res.status(400).json({ error: 'User already registered' });
+  if (user) return res.status(400).json({ error: 'User already registered' });
   else {
     // //Jeżeli użytkownika nie ma w bazie to go dodaj
     user = new User(_.pick(req.body, ['email', 'password', 'favourities']));
