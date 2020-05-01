@@ -11,7 +11,7 @@ const router = express.Router();
 router.use('/register', register);
 router.use('/login', login);
 router.use('/me', auth, me);
-router.use('/favourities', favourities);
+router.use('/favourities', auth, favourities);
 router.use(error);
 
 module.exports = router;

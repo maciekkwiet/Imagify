@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const Joi = require('joi')
+const Joi = require('joi');
 
 const User = mongoose.model('User',new mongoose.Schema({
 
@@ -22,7 +22,7 @@ const User = mongoose.model('User',new mongoose.Schema({
 );
 
 function validate(user) {
-  console.log(user);
+  // console.log(user);
   const schema = {
     password: Joi.string().required(),
     email: Joi.string().required().email(),
