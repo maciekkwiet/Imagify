@@ -3,6 +3,7 @@ const express = require('express');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const router = express.Router();
+const { sendWelcomeEmail } = require('./account');
 
 const { User } = require('../model/user');
 const jwtKey = process.env.JWT_SECRET;
@@ -17,7 +18,7 @@ router.post('/', async (req, res) => {
   let user = await User.findOne({ email: req.body.email });
 
   // //sprawdzenie czy istnieje w bazie
-  if (user) return res.status(400).json({ error: 'User already registered' });
+  if (!user) return res.status(400).json({ error: 'User already registered' });
   else {
     // //Jeżeli użytkownika nie ma w bazie to go dodaj
     user = new User(_.pick(req.body, ['email', 'password', 'favourities']));
@@ -34,6 +35,8 @@ router.post('/', async (req, res) => {
   //auth => name of header
   //token =>value
   res.header('auth', token).json(_.pick(user, ['email', 'favourities']));
+
+  await sendWelcomeEmail(user.email);
 });
 
 module.exports = router;
