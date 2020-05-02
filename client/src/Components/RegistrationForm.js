@@ -114,6 +114,7 @@ class RegistrationForm extends HTMLElement {
           <i class="Submit"></i>
           Sign Up
         </div>
+        <div class ="ui error message"></div>
       </div>`;
   }
 }

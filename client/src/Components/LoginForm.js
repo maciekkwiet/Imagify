@@ -9,37 +9,36 @@ class LoginForm extends HTMLElement {
   }
 
   rules() {
-    $(document).ready(function () {
-      $('.ui.form').form({
-        fields: {
-          email: {
-            identifier: 'email',
-            rules: [
-              {
-                type: 'empty',
-                prompt: 'Please enter your e-mail',
-              },
-              {
-                type: 'email',
-                prompt: 'Please enter a valid e-mail',
-              },
-            ],
-          },
-          password: {
-            identifier: 'password',
-            rules: [
-              {
-                type: 'empty',
-                prompt: 'Please enter your password',
-              },
-              {
-                type: 'length[6]',
-                prompt: 'Your password must be at least 6 characters',
-              },
-            ],
-          },
+    $('.ui.form').form({
+      on: 'blur',
+      fields: {
+        email: {
+          identifier: 'email',
+          rules: [
+            {
+              type: 'empty',
+              prompt: 'Please enter your e-mail',
+            },
+            {
+              type: 'email',
+              prompt: 'Please enter a valid e-mail',
+            },
+          ],
         },
-      });
+        password: {
+          identifier: 'password',
+          rules: [
+            {
+              type: 'empty',
+              prompt: 'Please enter your password',
+            },
+            {
+              type: 'length[6]',
+              prompt: 'Your password must be at least 6 characters',
+            },
+          ],
+        },
+      },
     });
   }
 
@@ -96,6 +95,7 @@ class LoginForm extends HTMLElement {
             <div class="ui blue submit button pickLogin">Login</div>
             <div class="ui red submit button close">close</div>
           </div>
+          <div class ="ui error message"></div>
         </div>
       </div>`;
   }
