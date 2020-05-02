@@ -4,6 +4,7 @@ const axios = require('axios');
 
 class LoginForm extends HTMLElement {
   connectedCallback() {
+    this.token = '';
     this.render();
   }
 
@@ -64,7 +65,10 @@ class LoginForm extends HTMLElement {
           email: `${this.email}`,
           password: `${this.password}`,
         })
-        .then((response) => console.log(response.data))
+        .then((response) => {
+          this.token = response.data.token;
+          localStorage.setItem('token', this.token);
+        })
         .catch((error) => console.dir(error));
     });
     this.rules();

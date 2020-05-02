@@ -5,6 +5,7 @@ const axios = require('axios');
 class RegistrationForm extends HTMLElement {
   connectedCallback() {
     this.render();
+    this.token = '';
 
     this.email;
     this.password;
@@ -33,7 +34,10 @@ class RegistrationForm extends HTMLElement {
             email: `${this.email}`,
             password: `${this.password}`,
           })
-          .then((response) => console.log(response.data))
+          .then((response) => {
+            this.token = response.headers.auth;
+            localStorage.setItem('token', this.token);
+          })
           .catch((error) => console.dir(error));
       }
     });
