@@ -28,54 +28,60 @@ class RegistrationForm extends HTMLElement {
     );
 
     this.submitButton = this.querySelector('.ui.submit.button').addEventListener('click', () => {
-      if (this.password == this.confirmPassword) {
-        axios
-          .post('/api/register', {
-            email: `${this.email}`,
-            password: `${this.password}`,
-          })
-          .then((response) => {
-            this.token = response.headers.auth;
-            localStorage.setItem('token', this.token);
-          })
-          .catch((error) => console.dir(error));
-      }
+      axios
+        .post('/api/register', {
+          email: `${this.email}`,
+          password: `${this.password}`,
+        })
+        .then((response) => {
+          this.token = response.headers.auth;
+          localStorage.setItem('token', this.token);
+        })
+        .catch((error) => console.dir(error));
     });
     this.rules();
   }
 
   rules() {
-    $(document).ready(function () {
-      $('.ui.form').form({
-        fields: {
-          email: {
-            identifier: 'email',
-            rules: [
-              {
-                type: 'empty',
-                prompt: 'Please enter your e-mail',
-              },
-              {
-                type: 'email',
-                prompt: 'Please enter a valid e-mail',
-              },
-            ],
-          },
-          password: {
-            identifier: 'password',
-            rules: [
-              {
-                type: 'empty',
-                prompt: 'Please enter your password',
-              },
-              {
-                type: 'length[6]',
-                prompt: 'Your password must be at least 6 characters',
-              },
-            ],
-          },
+    $('.ui.form').form({
+      on: 'blur',
+      fields: {
+        email: {
+          identifier: 'email',
+          rules: [
+            {
+              type: 'empty',
+              prompt: 'Please enter your e-mail',
+            },
+            {
+              type: 'email',
+              prompt: 'Please enter a valid e-mail',
+            },
+          ],
         },
-      });
+        password: {
+          identifier: 'password',
+          rules: [
+            {
+              type: 'empty',
+              prompt: 'Please enter your password',
+            },
+            {
+              type: 'length[6]',
+              prompt: 'Your password must be at least 6 characters',
+            },
+          ],
+        },
+        confirmPassword: {
+          identifier: 'confirmPassword',
+          rules: [
+            {
+              type: 'match[password]',
+              prompt: 'Your password and confirm password must be the same',
+            },
+          ],
+        },
+      },
     });
   }
 
@@ -100,13 +106,6 @@ class RegistrationForm extends HTMLElement {
           <label>Confirm Password</label>
           <div class="ui left icon input">
             <input type="password" id="confirmPassword">
-            <i class="lock icon"></i>
-          </div>
-        </div>
-        <div class="field">
-          <label>Favourites</label>
-          <div class="ui left icon input">
-            <input type="favourites">
             <i class="lock icon"></i>
           </div>
         </div>
