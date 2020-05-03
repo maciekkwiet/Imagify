@@ -9,13 +9,21 @@ module.exports = async function (req, res, next) {
 
   try {
     const decodedUser = jwt.verify(token, jwtKey);
+    //otrzymujemy id i czas życia tokena
     req.user = decodedUser;
-    const { _id } = req.user;
-    let user = await User.findOne({ _id });
-    req.user = user;
-    next();
+
+    if (req.user) {
+      const { _id } = req.user;
+      const user = await User.findOne({ _id });
+      req.user = user;
+      next();
+
+    } 
+    else 
+    {
+      res.json({ error: "Invalid email or password'" });
+    }
   } catch (ex) {
-    console.log(ex);
     res.status(400).json({ error: 'Invalid token' });
   }
 };

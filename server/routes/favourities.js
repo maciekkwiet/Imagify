@@ -2,10 +2,8 @@ const express = require('express');
 const router = express.Router();
 
 router.get('/', async (req, res) => {
-  console.log(req.user);
   const { favourities } = req.user;
   res.send({ favourities });
-  console.log(favourities);
 });
 
 router.post('/:url', async (req, res) => {
@@ -21,9 +19,10 @@ router.post('/:url', async (req, res) => {
 
 router.delete('/:url', async (req, res) => {
   const { url } = req.params;
-  const { favourities } = req.user;
-  const newarray = favourities.filter((el) => el !== url);
-  res.json({ favourities: newarray });
+  let { favourities } = req.user;
+  favourities = favourities.filter((el) => el !== url);
+  res.json({ favourities });
+  req.user.update({ _id: req.user._id }, { $set: { favourities: favourities } });
 });
 
 module.exports = router;
