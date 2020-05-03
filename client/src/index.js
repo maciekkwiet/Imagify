@@ -6,6 +6,7 @@ import ImageList from './Components/ImageList.js';
 import './style.scss';
 import ApiPicker from './Components/ApiPicker.js';
 import Image from './Components/Image.js';
+//import Image from './Components/ImageModal.js';
 
 const setup = () => {
   customElements.define('app-apipicker', ApiPicker);

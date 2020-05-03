@@ -1,24 +1,46 @@
-class Image extends HTMLElement {
-    constructor() {
-      super();
-    }
-   
-    connectedCallback() {
-      this.render();
-    }
-    
-    createImage() {
-        return `<img class="Image-url" src="${"https://66.media.tumblr.com/9ff6c8d5478fe6ea666d6f14f5342c1b/tumblr_mevhkec7OG1qfvx4yo1_500.gifv"}"/>`;
-      }
+import $ from 'jquery' ;
 
-    render() {
-        this.innerHTML = `
-        <div class="app-image">
-        ${this.createImage()}
-        </div>`;
-      }
-     
-  
+class Image extends HTMLElement {
+  constructor() {
+    super();
+    this.url = this.getAttribute('src');
   }
-  export default Image;
+
+  connectedCallback() {
+    this.render(this.url);
+    this.addEventListener('click', ()=> this.openImage () )
+  }
+
+  createImage(url) {
+    return `<img class="Image-url" src="${url}"/>`;
+  }
+
+  openImage () {
+
+console.log(`#${this.url}`)
+    $(`[id="${this.url}"]`).modal('show')
+    
+  ;
+  }
+  render(url) {
+    this.innerHTML = `
+        <div class="app-image">
+        ${this.createImage(url)}
+        </div>
+        ${this.renderModal()} 
+        `;
+
+  }
+  
+  renderModal () { 
+    return `<div class="ui modal" id="${this.url}">
+    <div class="header">Header</div>
+    <div class="image content">
+    <img class="image">
+    <div class="description">
+      <img src="${this.url}" alt="Some image">
+    </div>`
+  }
+}
+export default Image;
 

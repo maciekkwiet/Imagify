@@ -7,7 +7,13 @@
     <script src="./bundle.min.js" defer></script>
   </head>
   <body>
+
+ <logo-header>
+<div id="logo">imagify</div>
+ <div id="description">The best search engine for you!</div>
+</logo-header>
     <div class="ui container center aligned">
+      <div class='bar'>
       <div class="choose-box">
       <app-searchbar></app-searchbar>
       <app-apipicker></app-apipicker>
@@ -15,22 +21,12 @@
       <app-imagelist></app-imagelist>
       </div>
     </div>
+  </div>
     </div>
-    <div class="ui modal">
-      <div class="header">Header</div>
-      <div class="image content">
-        <img class="image">
-        <div class="description">
-          <img src="" alt="Some image">
-         // co tu dać? api po src?
-          <script>
-            var img = document.getElementsByTagName("image")[0];
-            img.getAttribute("src"); // -> "image-1.jpg"
-            img.getAttribute("alt"); // -> "Some image"
-          </script>
-          <p></p>
-        </div>
+  
       </div>
+    </div>
+    <div class="wrapper">
     </div>
   </body>
 </html>
