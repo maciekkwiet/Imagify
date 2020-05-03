@@ -36,6 +36,7 @@ class RegistrationForm extends HTMLElement {
         .then((response) => {
           this.token = response.headers.auth;
           localStorage.setItem('token', this.token);
+          document.querySelector('.userPlace').innerHTML = `<label>SIGNED UP</label>`;
         })
         .catch((error) => console.dir(error));
     });

@@ -67,6 +67,7 @@ class LoginForm extends HTMLElement {
         .then((response) => {
           this.token = response.data.token;
           localStorage.setItem('token', this.token);
+          document.querySelector('.userPlace').innerHTML = `<label>LOGGED IN</label>`;
         })
         .catch((error) => console.dir(error));
     });
