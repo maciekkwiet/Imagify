@@ -99,10 +99,12 @@ app-imagelist {
 
 app-image {
   width: 100%;
+
 }
 
 @media (max-width: 500px) {
-  app-imagelist {
+  image-list > .image__box {
+    column-gap: 0px;
     column-count: 1;
   }
 }
@@ -202,6 +204,7 @@ label {
     justify-content: center;
     align-content: center;
     flex-flow: row wrap;
+
 }
 .ui.modal {box-shadow: 0px 0px 0px;}
 .description {padding-left: 25%;}
