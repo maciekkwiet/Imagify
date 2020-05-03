@@ -107,7 +107,7 @@ class ModalWindow extends HTMLElement {
       .modal{
         background-color: white;
         width: 70%;
-        height: 200px;
+        height: 30%;
         display: flex;
         justify-content: space-around;
         align-items: center;

@@ -12,6 +12,7 @@ import Image from './Components/Image.js';
 
 const setup = () => {
   customElements.define('app-searchbar', SearchBar);
+  customElements.define('app-apipicker', ApiPicker);
   customElements.define('app-imagelist', ImageList);
   customElements.define('app-image', Image);
   customElements.define('app-loginform', LoginForm);

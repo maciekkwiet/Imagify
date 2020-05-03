@@ -92,7 +92,7 @@ class LoginForm extends HTMLElement {
               <i class="lock icon"></i>
             </div>
           </div>
-          <div class = "ui grid">
+          <div class = "ui grid" style = "margin-top: 10px; margin-bottom:10px">
             <div class="ui blue submit button pickLogin">Login</div>
             <div class="ui red submit button close">close</div>
           </div>
