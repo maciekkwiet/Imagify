@@ -13,14 +13,24 @@ class ImageList extends HTMLElement {
     this.render();
     this.searchTextInputSubscription = store.searchTextInput
       .pipe(
-        map((e) => e.target.value),
+        map(function (e) {
+          console.log(e);
+          console.log(e.target);
+          console.log(e.target.value);
+          return e.target.value;
+        }),
         debounceTime(500),
         filter((text) => text.length > 2),
       )
       .subscribe((text) => this.refreshImages(text));
     this.forcedSearchTextSubscription = store.forcedSearchText
       .pipe(
-        map((e) => e.target.value),
+        map(function (e) {
+          console.log(e);
+          console.log(e.target);
+          console.log(e.target.value);
+          return e.target.value;
+        }),
         filter((forcedText) => forcedText.length > 0),
       )
       .subscribe((forcedText) => this.refreshImages(forcedText));
