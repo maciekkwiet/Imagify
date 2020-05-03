@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const { User } = require('../model/user');
 
 router.get('/', async (req, res) => {
   const { favourities } = req.user;
@@ -21,8 +22,8 @@ router.delete('/:url', async (req, res) => {
   const { url } = req.params;
   let { favourities } = req.user;
   favourities = favourities.filter((el) => el !== url);
+  await User.findOneAndUpdate({ _id: req.user._id }, { $set: { favourities } }, { new: true });
   res.json({ favourities });
-  req.user.update({ _id: req.user._id }, { $set: { favourities: favourities } });
 });
 
 module.exports = router;
