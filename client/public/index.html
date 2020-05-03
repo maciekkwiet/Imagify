@@ -8,15 +8,21 @@
   </head>
 
   <body>
-    <div class="ui grid center">
-      <div class="column" style="width: 25%;"></div>
-      <div class="column" style="width: 25%;" ;>
-        <app-searchbar></app-searchbar>
-      </div>
+
+ <logo-header>
+<div id="logo">imagify</div>
+ <div id="description">The best search engine for you!</div>
+</logo-header>
+    <div class="ui container center aligned">
+      <div class='bar'>
+      <div class="choose-box">
+      <app-searchbar></app-searchbar>
+      <app-apipicker></app-apipicker>
+      <div class ="Images">
       <!-- <div class="column" style="width: 50%;">
         <app-loginform></app-loginform>
       </div> -->
-      <div class="column userPlace" style="width: 50%;">
+      <div class="column userPlace">
         <app-modalwindow></app-modalwindow>
       </div>
       <!-- <div class="column" style="width: 50%;">
@@ -25,6 +31,14 @@
     </div>
     <div class="ui container center aligned">
       <app-imagelist></app-imagelist>
+      </div>
+    </div>
+  </div>
+    </div>
+  
+      </div>
+    </div>
+    <div class="wrapper">
     </div>
   </body>
 </html>

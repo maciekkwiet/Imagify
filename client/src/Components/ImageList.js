@@ -12,7 +12,7 @@ class ImageList extends HTMLElement {
 
   connectedCallback() {
     this.render();
-    //console.log(store.searchTextInput);
+
     this.searchTextInputSubscription = store.searchTextInput
       .pipe(
         map(
@@ -37,7 +37,7 @@ class ImageList extends HTMLElement {
   }
 
   createImage(url) {
-    return `<img style="width:100%; padding: 5px 5px 5px 5px" src="${url}"/>`;
+    return `<app-image src=${url}></app-image>`;
   }
 
   render() {
