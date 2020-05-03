@@ -11,7 +11,7 @@ class RegistrationForm extends HTMLElement {
     this.password;
     this.confirmPassword;
 
-    this.emailDiv = this.querySelector('#e-mail');
+    this.emailDiv = this.querySelector('#email');
     this.passwordDiv = this.querySelector('#password');
     this.confirmPasswordDiv = this.querySelector('#confirmPassword');
 
@@ -91,7 +91,7 @@ class RegistrationForm extends HTMLElement {
         <div class="field">
           <label>Username</label>
           <div class="ui left icon input">
-            <input type="text" id="e-mail">
+            <input type="email" id="email">
             <i class="user icon"></i>
           </div>
         </div>
