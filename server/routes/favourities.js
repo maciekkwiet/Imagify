@@ -7,10 +7,8 @@ const { User } = require('../model/user');
 router.get('/', async (req, res) => {
   const { _id } = req.user;
   let user = await User.findOne({ _id });
-  console.log(req.user);
   const { favourities } = user;
   res.send({ favourities });
-  console.log(favourities);
 });
 
 router.post('/:url', async (req, res) => {
@@ -32,6 +30,7 @@ router.delete('/:url', async (req, res) => {
   let user = await User.findOne({ _id });
   const { favourities } = user;
   const newarray = favourities.filter((el) => el !== url);
+  req.user.save();
   res.json({ favourities: newarray });
 });
 

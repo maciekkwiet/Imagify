@@ -1,17 +1,18 @@
 const mongoose = require('mongoose');
 const Joi = require('joi');
 
-const User = mongoose.model('User',new mongoose.Schema({
-
+const User = mongoose.model(
+  'User',
+  new mongoose.Schema({
     email: {
       type: String,
       require: true,
-      // unique:true,
+      // unique: true,
     },
 
     password: {
       type: String,
-      require: true,
+      // require: true,
     },
 
     favourities: {
