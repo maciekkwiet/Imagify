@@ -5,7 +5,6 @@ const emailKey = process.env.EMAIL_KEY;
 sgMail.setApiKey(emailKey);
 
 const sendWelcomeEmail = (email) => {
-  // console.log(email);
   sgMail.send({
     to: email,
     from: 'no-reply@imagify.pl',
