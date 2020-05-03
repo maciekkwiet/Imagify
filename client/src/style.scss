@@ -1,7 +1,104 @@
+
+
+@import url(https://fonts.googleapis.com/css?family=Lato:300,700,300italic);
+
+$pp-purple: #861a54;
+$pp-blue: #054f7d;
+$pp-ltblue: #00a7cf;
+$sp-yellow: #efe348;
+
+body {
+  align-items: center;
+  background-image: linear-gradient(to right, $pp-blue,$pp-ltblue,$sp-yellow,$pp-purple,$pp-blue);
+  background-size: 600%;
+  background-position: 0 0;
+  background-attachment: fixed;
+  font-family: 'Lato', Arial, sans-serif;
+  height: 100%;
+  justify-content: center;
+  /* Animation */
+  animation-duration: 20s;
+  animation-iteration-count: infinite;
+  animation-name: gradients;
+  z-index: 0 ;
+}
+
+@keyframes gradients {
+    0%   {background-position: 0 0;}
+    25% {background-position: 50% 0;}
+    50% {background-position: 90% 0;}
+    60% {background-position: 60%;}
+    75% {background-position: 40%;}
+    100%  {background-position: 0 0;}
+}
+
+#logo {
+  position: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 50px;
+  font-family: Lovelo;
+  font-style: normal;
+  font-weight: 900;
+  //font-size: 100px;
+  line-height: 130px;
+  text-align: center;
+  /* identical to box height */
+  //nie chce mi się wycentrować
+  color: #fff;
+  margin-left: auto;
+  margin-right: auto;
+  }
+  @media screen and (min-width: 601px) {
+    #logo {
+      font-size: 100px;
+    }
+    #description {
+      font-size: 30px;
+    }
+  }
+  @media screen and (max-width: 600px) {
+    #logo {
+      font-size: 50px;
+    }
+    #description {
+      font-size: 10px;
+    }
+  }
+  #description {
+  position: flex;
+  height: 40px;
+  top: 0%;
+  text-align: center;
+  font-family: Billenia;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 0px;
+  color: #fff;
+  }
+  
+
+
+.Images {
+  align-items: center;
+  justify-content: center;
+}
+
+     
 app-imagelist {
-  column-gap: 0px;
+  column-gap: 10px;
   column-count: 3;
   display: block;
+  line-height: 30px;
+  margin-top: 10px ;
+  background-color: transparent ;
+}  
+.searchBarMain {
+  margin-bottom: 20px;
+}
+
+app-image {
+  width: 100%;
 }
 
 @media (max-width: 500px) {
@@ -12,4 +109,100 @@ app-imagelist {
 
 .searchBarMain {
   margin-bottom: 30px;
+  display:grid;
+  align-items: center;
+  justify-content: center;
 }
+
+
+app-apipicker {
+  max-width: 100%;
+  padding-top: 15px;
+  margin-bottom: 0px;
+  margin-top: -20px;
+ display: grid;
+  align-items: center;
+  justify-content: center;
+  //background-color: white;
+  border-radius: 5px;
+ 
+}
+.bar {
+  max-width: 100%;
+  padding-top: 15px;
+
+  //padding-bottom: 15px;
+  margin-bottom: 20px;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.9);
+  border: white solid 1px;
+  border-radius: 5px;
+}
+
+label {
+      
+  padding-left: 20px;
+  padding-right: 20px;
+
+}
+
+.Image-url {
+  max-width: 350px ;
+  cursor: pointer;
+}
+.header {
+ color: transparent;
+  background-color: transparent;}
+
+  .ui.modal > .content > .icon + .description, .ui.modal > .content > .image + .description {
+    flex: 0 1 auto;
+ align-items: center;
+ justify-content: center;
+    width: auto;
+    margin-top: 0%;
+    margin-left: -25%;
+    }
+
+    
+  .ui.modal > .header {
+    padding: 0rem 0rem; 
+    height: 0px;
+    color: transparent;
+    background-color: transparent;
+    border-bottom: 0px solid rgba(34, 36, 38, 0.15);
+}
+.ui.modal {
+  background-color: transparent ;
+  }
+
+  .ui.modal > .content {
+    display: block;
+    width: 100%;
+    font-size: 1em;
+    line-height: 0;
+    padding: 0rem;
+    background: transparent;
+    box-shadow: 0px 0px 0px;
+    padding: 30px 0px 30px 150px;
+    box-shadow: 0px 0px 0px transparent;
+  }
+  img {width: 600px;
+    align-items: center;
+    justify-content: center;
+    flex-flow: row wrap;
+    
+  }
+  .ui.modal > .image.content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    flex-flow: row wrap;
+}
+.ui.modal {box-shadow: 0px 0px 0px;}
+.description {padding-left: 25%;}
+.ui.dimmer {background-color: rgba(0, 0, 0, 0.55); }
