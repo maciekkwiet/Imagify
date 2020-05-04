@@ -110,9 +110,9 @@ class RegistrationForm extends HTMLElement {
             <i class="lock icon"></i>
           </div>
         </div>
-        <div class="ui submit button">
-          <i class="Submit"></i>
-          Sign Up
+        <div class = "ui grid" style = "margin-top: 10px; margin-bottom:10px">
+          <div class="ui blue submit button pickLogin">Sign up</div>
+          <div class="ui red submit button pickCloseRegister">Close</div>
         </div>
         <div class ="ui error message"></div>
       </div>`;

@@ -133,6 +133,7 @@ app-apipicker {
   //background-color: white;
   border-radius: 5px;
 }
+
 .bar {
   max-width: 100%;
   padding-top: 15px;
@@ -216,4 +217,37 @@ img {
 }
 .ui.dimmer {
   background-color: rgba(0, 0, 0, 0.55);
+}
+
+.modal-bg {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  visibility: visible;
+  opacity: 1;
+  transition: visibility 0s, opacity 1s;
+}
+
+.registerModal {
+  background-color: white;
+  width: 40%;
+  height: 400px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.modal {
+  background-color: white;
+  width: 70%;
+  height: 30%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }

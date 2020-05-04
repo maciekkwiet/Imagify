@@ -94,7 +94,7 @@ class LoginForm extends HTMLElement {
           </div>
           <div class = "ui grid" style = "margin-top: 10px; margin-bottom:10px">
             <div class="ui blue submit button pickLogin">Login</div>
-            <div class="ui red submit button close">close</div>
+            <div class="ui red submit button pickClose">Close</div>
           </div>
           <div class ="ui error message"></div>
         </div>

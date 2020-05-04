@@ -4,23 +4,23 @@ class ModalWindow extends HTMLElement {
     const registerForm = document.createElement('app-registrationform');
     const loginForm = document.createElement('app-loginform');
 
-    this.loginOrSignButton = this.querySelector('.ui.big.button').addEventListener('click', () => {
+    this.loginOrSignButton = this.querySelector('.beginButton').addEventListener('click', () => {
       this.renderModal();
       const modal = this.querySelector('.modal');
       modal.appendChild(loginForm);
-      this.closeModal = this.querySelector('.close').addEventListener('click', () => {
+      this.closeModal = this.querySelector('.pickClose').addEventListener('click', () => {
         this.renderButton();
       });
-      this.registerButton = this.querySelector('.ui.big.button').addEventListener('click', () => {
-        //modal.removeChild(loginForm);
+      this.registerButton = this.querySelector('.registerButton').addEventListener('click', () => {
         this.renderRegister();
-        const registerModal = this.querySelector('.modal');
+        const registerModal = this.querySelector('.registerModal');
         registerModal.appendChild(registerForm);
-        this.closeButton = this.querySelector('.ui.button').addEventListener('click', () => {
+        this.closeButton = this.querySelector('.closeRegister').addEventListener('click', () => {
           this.renderModal();
           const modal = this.querySelector('.modal');
           modal.appendChild(loginForm);
-          this.closeRegister = this.querySelector('.pickLogin').addEventListener('click', () => {
+          this.closeRegister = this.querySelector('.pickCloseRegister').addEventListener('click', () => {
+            //console.log(this);
             this.renderButton();
           });
         });
@@ -29,94 +29,29 @@ class ModalWindow extends HTMLElement {
   }
   renderRegister() {
     this.innerHTML = `
-  <style>
-    .modal-bg {
-      position: fixed;
-      width: 100%;
-      height: 100vh;
-      top: 0;
-      left: 0;
-      background-color: rgba(0, 0, 0, 0.5);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      visibility: visible;
-      opacity: 1;
-      transition: visibility 0s, opacity 1s;
-    }
-  // .bg-active {
-  //   visibility: visible;
-  //   opacity: 1;
-  // }
-  
-    .modal{
-      background-color: white;
-      width: 40%;
-      height: 400px;
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-    }
-  </style>
-  <div class=modal-bg> 
-    <div class=modal>
-      <label></label>
-      <button class="ui button">
-      <i class="remove icon"></i>
-      close
-    </div>
+  <div class="modal-bg"> 
+    <div class="registerModal">
+      <div class="ui big button closeRegister">
+        <i class="user icon"></i>
+        Login
+      </div>
   </div>
 `;
   }
   renderButton() {
     this.innerHTML = `
-    <div class="ui big button">
+    <div class="ui big button beginButton">
       <i class="user icon"></i>
       Login or Sign Up
     </div>`;
   }
-  // renderModal() {
-  //   this.innerHTML = `
-  //   <div class="modal">
-  //   Create an account
 
-  //   </div>`;
-  // }
   renderModal() {
     this.innerHTML = `
-    <style>
-      .modal-bg {
-        position: fixed;
-        width: 100%;
-        height: 100vh;
-        top: 0;
-        left: 0;
-        background-color: rgba(0, 0, 0, 0.5);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        visibility: visible;
-        opacity: 1;
-        transition: visibility 0s, opacity 1s;
-      }
-      // .bg-active {
-      //   visibility: visible;
-      //   opacity: 1;
-      // }
-    
-      .modal{
-        background-color: white;
-        width: 70%;
-        height: 30%;
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-      }
-    </style>
-    <div class=modal-bg> 
-      <div class=modal
+    <div class="modal-bg"> 
+      <div class="modal">
         <label></label>
-        <div class="ui big button">
+        <div class="ui big button registerButton">
           <i class="user icon"></i>
           Create an account
         </div>
@@ -124,23 +59,5 @@ class ModalWindow extends HTMLElement {
     </div>
   `;
   }
-
-  //   renderModal() {
-  //     this.innerHTML = `
-  //   <div class="ui modal">
-  //   <i class="close icon"></i>
-
-  //     <div class="description">
-  //       <div class="ui header">We've auto-chosen a profile image for you.</div>
-  //       <p>We've grabbed the following image from the <a href="https://www.gravatar.com" target="_blank">gravatar</a> image associated with your registered e-mail address.</p>
-  //       <p>Is it okay to use this photo?</p>
-  //     </div>
-  //   </div>
-  //   <div class="actions">
-
-  //   </div>
-  // </div>`;
-  //     $('.ui.modal').modal('show');
-  //   }
 }
 export default ModalWindow;
