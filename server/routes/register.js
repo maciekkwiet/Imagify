@@ -3,9 +3,17 @@ const express = require('express');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const router = express.Router();
-const { sendWelcomeEmail } = require('./welcome');
+const { sendWelcomeEmail } = require('./email/welcome');
 
 const { User } = require('../model/user');
+
+const reset = require('./email/reset');
+const email= reset.email('register');
+
+const text=email.text;
+const subject=email.subject;
+const html=email.html;
+
 const jwtKey = process.env.JWT_SECRET;
 
 router.post('/', async (req, res) => {
@@ -36,7 +44,8 @@ router.post('/', async (req, res) => {
   //token =>value
   res.header('auth', token).json(_.pick(user, ['email', 'favourities']));
 
-  await sendWelcomeEmail(user.email);
+  // await sendWelcomeEmail(user.email, subject, text, html);
+  console.log(user.email);
 });
 
 module.exports = router;

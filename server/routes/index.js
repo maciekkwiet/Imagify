@@ -5,7 +5,7 @@ const register = require('./register');
 const error = require('../middleware/error');
 const me = require('./me');
 const favourities = require('./favourities');
-const resetpassword = require('./resetpassword');
+const resetpassword = require('./email/resetpassword');
 const auth = require('../middleware/auth');
 
 const router = express.Router();

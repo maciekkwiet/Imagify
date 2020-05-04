@@ -1,8 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const { User } = require('../model/user');
+const { User } = require('../../model/user');
 const bcrypt = require('bcrypt');
-const { sendResetEmail } = require('./welcome');
+const { sendWelcomeEmail } = require('./welcome');
+
 
 router.post('/reset/:email', async (req, res) => {
   const { email } = req.params;
@@ -12,10 +13,9 @@ router.post('/reset/:email', async (req, res) => {
   if (!user) return res.status(400).json({ error: 'Invalid email' });
   else {
 
-    await sendResetEmail(email);
+    
+      // await sendWelcomeEmail(user.email,subject,text,html,url);
   }
-
-
   console.log(user.password);
   res.send(user);
 });
@@ -35,11 +35,9 @@ router.post('/create/:email', async (req, res) => {
       if (err) {
         console.log('Something wrong when updating data!');
       }
-
       console.log(doc);
       res.json(doc);
     });
-
     // await user.save();
   }
 });
