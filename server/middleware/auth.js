@@ -13,12 +13,12 @@ module.exports = async function (req, res, next) {
     req.user = decodedUser;
 
     const { _id } = req.user;
-    if (_id) {
+    if (req.user) {
       const user = await User.findOne({ _id });
       req.user = user;
       next();
     } else {
-      res.send('This user not exist');
+      res.json({error: 'This user not exist'});
     }
   } catch (ex) {
     res.status(400).json({ error: 'Invalid token' });
