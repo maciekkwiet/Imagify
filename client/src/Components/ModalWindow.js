@@ -18,57 +18,40 @@ class ModalWindow extends HTMLElement {
       });
     });
   }
-  // renderRegister() {
-  //   this.innerHTML = `
-  // <div class="modal-bg">
-  //   <div class="registerModal">
-  //     <div class="ui big button closeRegister">
-  //       <i class="user icon"></i>
-  //       Login
-  //     </div>
-  // </div>
-  //`;
+
   renderRegister() {
     this.modal.removeChild(this.loginForm);
     this.modal.removeChild(this.registerButton);
     this.modal.appendChild(this.registerForm);
     this.closeRegister = document.querySelector('.pickCloseRegister').addEventListener('click', () => {
       this.renderModal();
-
-      // this.modal.appendChild(this.loginForm);
     });
   }
 
   renderButton() {
-    this.button.innerHTML = `<div class="ui big button beginButton">
-    <i class="user icon"></i>
-    Login or Sign Up
-  </div>`;
+    this.button.innerHTML = `
+    <div class="ui big button beginButton">
+      <i class="user icon"></i>
+      Login or Sign Up
+    </div>`;
   }
   renderRegisterButton() {
     this.registerButton.innerHTML = `
-  <div class="ui big button registerButton">
-  <i class="user icon"></i>
-  Create an account
-</div>`;
+    <div class="ui big button registerButton">
+      <i class="user icon"></i>
+      Create an account
+    </div>`;
   }
   renderModal() {
     this.modal.innerHTML = `
-    
     <div class="modal-bg"> 
-      <div class="modal">
-        <label></label>
-      </div>
-    </div>
-  `;
+      <div class="modal"></div>
+    </div>`;
+
     this.renderRegisterButton();
-
-    console.log(this.modal);
-
     this.modal.appendChild(this.loginForm);
     this.modal.appendChild(this.registerButton);
     this.chooseBox.appendChild(this.modal);
-    console.log(document.querySelector('.pickClose'));
     this.closeModal = document.querySelector('.pickClose').addEventListener('click', () => {
       this.chooseBox.removeChild(this.modal);
     });

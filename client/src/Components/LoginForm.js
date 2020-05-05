@@ -1,11 +1,10 @@
-import store from '../Store.js';
-import { fromEvent } from 'rxjs';
 const axios = require('axios');
 
 class LoginForm extends HTMLElement {
   connectedCallback() {
     this.token = '';
     this.render();
+    this.rules();
   }
 
   rules() {
@@ -47,33 +46,22 @@ class LoginForm extends HTMLElement {
     this.email;
     this.password;
 
-    // this.emailDiv = this.querySelector('#e-mail');
-    // this.passwordDiv = this.querySelector('#password');
-
-    // store.emailLoginInput = fromEvent(this.emailDiv, 'input');
-    // store.passwordLoginInput = fromEvent(this.passwordDiv, 'input');
-
-    // this.emailInputLoginSubscription = store.emailLoginInput.subscribe((text) => (this.email = text.target.value));
-    // this.passwordInputLoginSubscription = store.passwordLoginInput.subscribe(
-    //   (text) => (this.password = text.target.value),
-    // );
-
-    this.submitButton = this.querySelector('.pickLogin').addEventListener('click', () => {
+    this.submitButton = this.querySelector('.pickLogin').addEventListener('click', async () => {
       this.email = this.querySelector('#e-mail').value;
       this.password = this.querySelector('#password').value;
-      axios
-        .post('api/login', {
+      try {
+        const response = await axios.post('api/login', {
           email: `${this.email}`,
           password: `${this.password}`,
-        })
-        .then((response) => {
-          this.token = response.data.token;
-          localStorage.setItem('token', this.token);
-          document.querySelector('.userPlace').innerHTML = `<label>LOGGED IN</label>`;
-        })
-        .catch((error) => console.dir(error));
+        });
+        this.token = await response.data.token;
+        localStorage.setItem('token', this.token);
+        document.querySelector('.userPlace').innerHTML = `<label>LOGGED IN</label>`;
+        document.querySelector('.choose-box').removeChild(document.createElement('app-modal'));
+      } catch (error) {
+        console.dir(error);
+      }
     });
-    this.rules();
   }
 
   renderForm() {

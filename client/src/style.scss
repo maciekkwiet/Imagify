@@ -135,14 +135,14 @@ app-apipicker {
 }
 
 .bar {
-  max-width: 100%;
+  //max-width: 100%;
   padding-top: 15px;
 
   //padding-bottom: 15px;
   margin-bottom: 20px;
-  display: grid;
-  align-items: center;
-  justify-content: center;
+  // display: grid;
+  // align-items: center;
+  // justify-content: center;
   background: rgba(255, 255, 255, 0.9);
   border: white solid 1px;
   border-radius: 5px;
@@ -250,4 +250,32 @@ img {
   display: flex;
   justify-content: space-around;
   align-items: center;
+}
+
+.userPlace {
+  //max-width: 100%;
+  //padding-top: 15px;
+
+  //padding-bottom: 15px;
+  //margin-bottom: 20px;
+  //display: grid;
+  align-items: center;
+  justify-content: center;
+  // background: rgba(255, 255, 255, 0.9);
+  // border: white solid 1px;
+  // border-radius: 5px;
+}
+
+.searchPlace {
+  max-width: 100%;
+  //padding-top: 15px;
+
+  //padding-bottom: 15px;
+  //margin-bottom: 20px;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  // background: rgba(255, 255, 255, 0.9);
+  // border: white solid 1px;
+  // border-radius: 5px;
 }

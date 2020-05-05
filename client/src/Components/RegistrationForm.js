@@ -5,22 +5,22 @@ class RegistrationForm extends HTMLElement {
     this.render();
     this.token = '';
 
-    this.submitButton = this.querySelector('.ui.submit.button').addEventListener('click', () => {
+    this.submitButton = this.querySelector('.pickRegister').addEventListener('click', async () => {
       this.email = this.querySelector('#email').value;
       this.password = this.querySelector('#password').value;
       this.confirmPassword = this.querySelector('#confirmPassword').value;
-
-      axios
-        .post('/api/register', {
+      try {
+        const response = await axios.post('/api/register', {
           email: `${this.email}`,
           password: `${this.password}`,
-        })
-        .then((response) => {
-          this.token = response.headers.auth;
-          localStorage.setItem('token', this.token);
-          document.querySelector('.userPlace').innerHTML = `<label>SIGNED UP</label>`;
-        })
-        .catch((error) => console.dir(error));
+        });
+        this.token = await response.headers.auth;
+        localStorage.setItem('token', this.token);
+        document.querySelector('.userPlace').innerHTML = `<label>SIGNED UP</label>`;
+        document.querySelector('.choose-box').removeChild(document.createElement('app-modal'));
+      } catch (error) {
+        console.dir(error);
+      }
     });
     this.rules();
   }
@@ -93,7 +93,7 @@ class RegistrationForm extends HTMLElement {
           </div>
         </div>
         <div class = "ui grid" style = "margin-top: 10px; margin-bottom:10px">
-          <div class="ui blue submit button pickLogin">Sign up</div>
+          <div class="ui blue submit button pickRegister">Sign up</div>
           <div class="ui red submit button pickCloseRegister">Close</div>
         </div>
         <div class ="ui error message"></div>
