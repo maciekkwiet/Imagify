@@ -43,22 +43,24 @@ class LoginForm extends HTMLElement {
   }
 
   render() {
-    this.render_form();
+    this.renderForm();
     this.email;
     this.password;
 
-    this.emailDiv = this.querySelector('#e-mail');
-    this.passwordDiv = this.querySelector('#password');
+    // this.emailDiv = this.querySelector('#e-mail');
+    // this.passwordDiv = this.querySelector('#password');
 
-    store.emailLoginInput = fromEvent(this.emailDiv, 'input');
-    store.passwordLoginInput = fromEvent(this.passwordDiv, 'input');
+    // store.emailLoginInput = fromEvent(this.emailDiv, 'input');
+    // store.passwordLoginInput = fromEvent(this.passwordDiv, 'input');
 
-    this.emailInputLoginSubscription = store.emailLoginInput.subscribe((text) => (this.email = text.target.value));
-    this.passwordInputLoginSubscription = store.passwordLoginInput.subscribe(
-      (text) => (this.password = text.target.value),
-    );
+    // this.emailInputLoginSubscription = store.emailLoginInput.subscribe((text) => (this.email = text.target.value));
+    // this.passwordInputLoginSubscription = store.passwordLoginInput.subscribe(
+    //   (text) => (this.password = text.target.value),
+    // );
 
     this.submitButton = this.querySelector('.pickLogin').addEventListener('click', () => {
+      this.email = this.querySelector('#e-mail').value;
+      this.password = this.querySelector('#password').value;
       axios
         .post('api/login', {
           email: `${this.email}`,
@@ -74,7 +76,7 @@ class LoginForm extends HTMLElement {
     this.rules();
   }
 
-  render_form() {
+  renderForm() {
     this.innerHTML = `  
        
       <div class="ui form">

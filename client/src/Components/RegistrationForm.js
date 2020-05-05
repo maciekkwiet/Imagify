@@ -1,5 +1,3 @@
-import { fromEvent, debounceTime, filter, map } from 'rxjs';
-import store from '../Store.js';
 const axios = require('axios');
 
 class RegistrationForm extends HTMLElement {
@@ -7,27 +5,11 @@ class RegistrationForm extends HTMLElement {
     this.render();
     this.token = '';
 
-    this.email;
-    this.password;
-    this.confirmPassword;
-
-    this.emailDiv = this.querySelector('#email');
-    this.passwordDiv = this.querySelector('#password');
-    this.confirmPasswordDiv = this.querySelector('#confirmPassword');
-
-    store.emailRegisterInput = fromEvent(this.emailDiv, 'input');
-    store.passwordRegisterInput = fromEvent(this.passwordDiv, 'input');
-    store.confirmPasswordRegisterInput = fromEvent(this.confirmPasswordDiv, 'input');
-
-    this.emailInputSubscription = store.emailRegisterInput.subscribe((text) => (this.email = text.target.value));
-    this.passwordInputSubscription = store.passwordRegisterInput.subscribe(
-      (text) => (this.password = text.target.value),
-    );
-    this.confirmPasswordInputSubscription = store.confirmPasswordRegisterInput.subscribe(
-      (text) => (this.confirmPassword = text.target.value),
-    );
-
     this.submitButton = this.querySelector('.ui.submit.button').addEventListener('click', () => {
+      this.email = this.querySelector('#email').value;
+      this.password = this.querySelector('#password').value;
+      this.confirmPassword = this.querySelector('#confirmPassword').value;
+
       axios
         .post('/api/register', {
           email: `${this.email}`,
