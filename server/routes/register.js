@@ -6,13 +6,12 @@ const router = express.Router();
 const { sendWelcomeEmail } = require('./email/welcome');
 
 const { User } = require('../model/user');
+const Welcome = require('./email/sendemail');
 
-const reset = require('./email/reset');
-const email= reset.email('register');
-
-const text=email.text;
-const subject=email.subject;
-const html=email.html;
+// const text=email.text;
+// const subject=email.subject;
+// const html=email.html;
+// console.log(text);
 
 const jwtKey = process.env.JWT_SECRET;
 
@@ -43,9 +42,14 @@ router.post('/', async (req, res) => {
   //auth => name of header
   //token =>value
   res.header('auth', token).json(_.pick(user, ['email', 'favourities']));
-
-  // await sendWelcomeEmail(user.email, subject, text, html);
-  console.log(user.email);
+  const itemsWelcom = Welcome.welcome(user.email);
+  console.log(itemsWelcom);
+  // console.log(user.email);
+  // console.log(itemsWelcom.subject);
+  // console.log(itemsWelcom.text);
+  // console.log(itemsWelcom.html);
+  await sendWelcomeEmail(user.email, itemsWelcom.subject, itemsWelcom.text, itemsWelcom.html);
+  // console.log(sendWelcomeEmail);
 });
 
 module.exports = router;
