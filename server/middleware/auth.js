@@ -10,15 +10,14 @@ module.exports = async function (req, res, next) {
   try {
     const decodedUser = jwt.verify(token, jwtKey);
     //otrzymujemy id i czas życia tokena
-    req.user = decodedUser;
 
-    const { _id } = req.user;
-    if (req.user) {
+    const { _id } = decodedUser;
+    if (_id) {
       const user = await User.findOne({ _id });
       req.user = user;
       next();
     } else {
-      res.json({error: 'This user not exist'});
+      res.json({ error: 'This user not exist' });
     }
   } catch (ex) {
     res.status(400).json({ error: 'Invalid token' });
