@@ -1,4 +1,4 @@
-import { debounceTime, filter, map } from 'rxjs/operators';
+import {debounceTime, filter, map} from 'rxjs/operators';
 
 import ImageService from '../Api/ImageService.js';
 import store from '../Store.js';
@@ -22,8 +22,7 @@ class ImageList extends HTMLElement {
       .pipe(
         map((e) => {
           e.preventDefault();
-          const text = e.target.querySelector('input').value;
-          return text;
+          return e.target.querySelector('input').value;
         }),
         filter((forcedText) => forcedText.length > 0),
       )
