@@ -12,7 +12,7 @@ class SearchBar extends HTMLElement {
   render() {
     this.innerHTML = `
     <form>
-      <div class="ui big icon input">
+      <div class="ui big icon input searchBarMain">
           <input name="search-text" type="text" placeholder="Search big...">
           <button type="submit"><i class="search icon link"></i></button>
       </div>

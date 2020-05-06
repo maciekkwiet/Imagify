@@ -9,6 +9,9 @@ module.exports = {
   devServer: {
     port: 8080,
     disableHostCheck: true,
+    proxy: {
+      '/api': 'http://localhost:12345',
+    },
     contentBase: path.join(__dirname, 'public'),
   },
   output: {
@@ -36,6 +39,7 @@ module.exports = {
         use: [
           'style-loader', //3. Inject styles into DOM
           'css-loader', //2. Turns css into commonjs
+          'postcss-loader',
           'sass-loader', //1. Turns sass into css
         ],
       },
