@@ -13,23 +13,17 @@ class ImageList extends HTMLElement {
     this.render();
     this.searchTextInputSubscription = store.searchTextInput
       .pipe(
-        map(function (e) {
-          console.log(e);
-          console.log(e.target);
-          console.log(e.target.value);
-          return e.target.value;
-        }),
+        map((e) => e.target.value),
         debounceTime(500),
         filter((text) => text.length > 2),
       )
       .subscribe((text) => this.refreshImages(text));
     this.forcedSearchTextSubscription = store.forcedSearchText
       .pipe(
-        map(function (e) {
-          console.log(e);
-          console.log(e.target);
-          console.log(e.target.value);
-          return e.target.value;
+        map((e) => {
+          e.preventDefault();
+          const text = e.target.querySelector('input').value;
+          return text;
         }),
         filter((forcedText) => forcedText.length > 0),
       )
@@ -60,5 +54,8 @@ class ImageList extends HTMLElement {
     this.forcedSearchTextSubscription.unsubscribe();
   }
 }
+// function getKeyByValue(object, value) {
+//   return Object.keys(object).find((key) => object[key] === value);
+// }
 
 export default ImageList;
