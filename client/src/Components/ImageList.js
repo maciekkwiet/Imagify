@@ -54,8 +54,4 @@ class ImageList extends HTMLElement {
     this.forcedSearchTextSubscription.unsubscribe();
   }
 }
-// function getKeyByValue(object, value) {
-//   return Object.keys(object).find((key) => object[key] === value);
-// }
-
 export default ImageList;
