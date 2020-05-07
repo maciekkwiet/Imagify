@@ -3,6 +3,8 @@ import axios from 'axios';
 class LoginForm extends HTMLElement {
   connectedCallback() {
     this.token = '';
+    this.email;
+    this.password;
     this.render();
     this.rules();
   }
@@ -43,33 +45,31 @@ class LoginForm extends HTMLElement {
 
   render() {
     this.renderForm();
-    this.email;
-    this.password;
+    this.submitButton = this.querySelector('.pickLogin').addEventListener('click', this.handleFormSubmit);
+  }
 
-    this.submitButton = this.querySelector('.pickLogin').addEventListener('click', async () => {
-      this.email = this.querySelector('#e-mail').value;
-      this.password = this.querySelector('#password').value;
-      try {
-        const response = await axios.post('api/login', {
-          email: `${this.email}`,
-          password: `${this.password}`,
-        });
-        console.log(response.config.data.email);
-        this.token = response.data.token;
-        localStorage.setItem('token', this.token);
-        document.querySelector('.userPlace').innerHTML = `<label>LOGGED IN</label>`;
-      } catch (ex) {
-        $('body').toast({
-          message: ex.response.data.error,
-        });
-        console.error(ex);
-      }
-    });
+  async handleFormSubmit() {
+    this.email = document.querySelector('#e-mail').value;
+    this.password = document.querySelector('#password').value;
+    try {
+      const response = await axios.post('api/login', {
+        email: `${this.email}`,
+        password: `${this.password}`,
+      });
+      console.log(response.config.data.email);
+      this.token = response.data.token;
+      localStorage.setItem('token', this.token);
+      document.querySelector('.userPlace').innerHTML = `<label>LOGGED IN</label>`;
+    } catch (ex) {
+      $('body').toast({
+        message: ex.response.data.error,
+      });
+      console.error(ex);
+    }
   }
 
   renderForm() {
     this.innerHTML = `  
-       
       <div class="ui form loginStyle">
         <div class="field">
           <label>Username</label>
