@@ -13,6 +13,7 @@ class ModalWindow extends HTMLElement {
 
     this.loginOrSignButton = document.querySelector('.beginButton').addEventListener('click', () => {
       this.renderModal();
+      this.renderLogin();
 
       this.registerButtonClick = document.querySelector('.registerButton').addEventListener('click', () => {
         this.renderRegister();
@@ -32,8 +33,7 @@ class ModalWindow extends HTMLElement {
     this.login = document.querySelector('.loginButton').addEventListener('click', () => {
       this.test.removeChild(this.registerForm);
       this.test.removeChild(this.loginButton);
-      this.test.appendChild(this.registerButton);
-      this.test.appendChild(this.loginForm);
+      this.renderLogin();
     });
   }
 
@@ -65,11 +65,13 @@ class ModalWindow extends HTMLElement {
     </div>`;
 
     this.test = this.modal.querySelector('.modalTest');
-
     this.renderRegisterButton();
+    this.chooseBox.appendChild(this.modal);
+  }
+
+  renderLogin() {
     this.test.appendChild(this.loginForm);
     this.test.appendChild(this.registerButton);
-    this.chooseBox.appendChild(this.modal);
     this.closeModal = document.querySelector('.pickClose').addEventListener('click', () => {
       this.chooseBox.removeChild(this.modal);
     });
