@@ -4,27 +4,35 @@ class RegistrationForm extends HTMLElement {
   connectedCallback() {
     this.render();
     this.token = '';
-
-    this.submitButton = this.querySelector('.pickRegister').addEventListener('click', async () => {
-      this.email = this.querySelector('#email').value;
-      this.password = this.querySelector('#password').value;
-      this.confirmPassword = this.querySelector('#confirmPassword').value;
-      try {
-        const { headers } = await axios.post('/api/register', {
-          email: `${this.email}`,
-          password: `${this.password}`,
-        });
-        this.token = headers.auth;
-        localStorage.setItem('token', this.token);
-        document.querySelector('.userPlace').innerHTML = `<label>SIGNED AS:</label>`;
-      } catch (ex) {
-        $('body').toast({
-          message: ex.response.data.error,
-        });
-        console.error(ex);
-      }
-    });
+    this.email;
+    this.password;
+    this.confirmPassword;
+    this.submitButton = this.querySelector('.pickRegister').addEventListener('click', this.handleRegisterForm);
     this.rules();
+  }
+
+  async handleRegisterForm() {
+    this.email = document.querySelector('#email').value;
+    this.password = document.querySelector('#password').value;
+    this.confirmPassword = document.querySelector('#confirmPassword').value;
+
+    try {
+      const response = await axios.post('/api/register', {
+        email: `${this.email}`,
+        password: `${this.password}`,
+      });
+      console.log(response);
+
+      this.token = response.headers.auth;
+      localStorage.setItem('token', this.token);
+      console.log(response);
+      document.querySelector('.userPlace').innerHTML = `<label>${this.email}</label>`;
+    } catch (ex) {
+      $('body').toast({
+        message: ex.response.data.error,
+      });
+      console.error(ex);
+    }
   }
 
   rules() {
@@ -94,9 +102,9 @@ class RegistrationForm extends HTMLElement {
             <i class="lock icon"></i>
           </div>
         </div>
-        <div class = "ui grid" style = "margin-top: 10px; margin-bottom:10px">
-          <div class="ui blue submit button pickRegister">Sign up</div>
-          <div class="ui red submit button pickCloseRegister">Close</div>
+        <div class = "ui grid relaxed formButtonsStyle" >
+          <div class="ui blue submit button pickRegister formButton">Sign up</div>
+          <div class="ui red submit button pickCloseRegister formButton">Close</div>
         </div>
         <div class ="ui error message"></div>
       </div>`;

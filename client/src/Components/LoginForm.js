@@ -56,10 +56,9 @@ class LoginForm extends HTMLElement {
         email: `${this.email}`,
         password: `${this.password}`,
       });
-      console.log(response.config.data.email);
       this.token = response.data.token;
       localStorage.setItem('token', this.token);
-      document.querySelector('.userPlace').innerHTML = `<label>LOGGED IN</label>`;
+      document.querySelector('.userPlace').innerHTML = `<label>${this.email}</label>`;
     } catch (ex) {
       $('body').toast({
         message: ex.response.data.error,
@@ -85,9 +84,9 @@ class LoginForm extends HTMLElement {
               <i class="lock icon"></i>
             </div>
           </div>
-          <div class = "ui grid" style = "margin-top: 10px; margin-bottom:10px">
-            <div class="ui blue submit button pickLogin">Login</div>
-            <div class="ui red submit button pickClose">Close</div>
+          <div class = "ui grid relaxed formButtonsStyle" >
+            <div class="ui blue submit   button pickLogin formButton" >Login</div>
+            <div class="ui red submit  button pickClose formButton" >Close</div>
           </div>
           <div class ="ui error message"></div>
         </div>

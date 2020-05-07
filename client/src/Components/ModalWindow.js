@@ -1,10 +1,11 @@
 class ModalWindow extends HTMLElement {
   connectedCallback() {
-    this.button = document.createElement('app-loginbutton');
-    this.registerForm = document.createElement('app-registrationform');
-    this.loginForm = document.createElement('app-loginform');
+    this.button = document.createElement('app-beginButton');
+    this.registerForm = document.createElement('app-registrationForm');
+    this.loginForm = document.createElement('app-loginForm');
     this.modal = document.createElement('app-modal');
     this.registerButton = document.createElement('app-registerButton');
+    this.loginButton = document.createElement('app-loginButton');
 
     this.renderButton();
     this.chooseBox = document.querySelector('.choose-box');
@@ -14,17 +15,26 @@ class ModalWindow extends HTMLElement {
       this.renderModal();
 
       this.registerButtonClick = document.querySelector('.registerButton').addEventListener('click', () => {
+        console.log('dupa');
         this.renderRegister();
       });
     });
   }
 
   renderRegister() {
+    this.renderLoginButton();
     this.test.removeChild(this.loginForm);
     this.test.removeChild(this.registerButton);
     this.test.appendChild(this.registerForm);
+    this.test.appendChild(this.loginButton);
     this.closeRegister = document.querySelector('.pickCloseRegister').addEventListener('click', () => {
-      this.renderModal();
+      this.chooseBox.removeChild(this.modal);
+    });
+    this.login = document.querySelector('.loginButton').addEventListener('click', () => {
+      this.test.removeChild(this.registerForm);
+      this.test.removeChild(this.loginButton);
+
+      this.test.appendChild(this.loginForm);
     });
   }
 
@@ -34,6 +44,13 @@ class ModalWindow extends HTMLElement {
       <i class="user icon"></i>
       Login or Sign Up
     </div>`;
+  }
+  renderLoginButton() {
+    this.loginButton.innerHTML = `
+    <div class="ui big button loginButton">
+    <i class="user icon"></i>
+    Login
+  </div>`;
   }
   renderRegisterButton() {
     this.registerButton.innerHTML = `
