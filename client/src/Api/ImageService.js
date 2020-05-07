@@ -1,35 +1,16 @@
-import { map, debounceTime } from 'rxjs/operators';
-
 import { UNSPLASH_CLIENT_ID } from '../../secrets';
 import { PIXABAY_KEY } from '../../secrets';
 import { PEXELS_KEY } from '../../secrets';
-import store from '../Store.js';
 
 class ImageService {
   constructor() {
-    this.allImages;
-    this.isUnspalshChecked = false;
-    this.isPixabayChecked = false;
-    this.isPexelsChecked = false;
-    this.checkUnsplashSubscription = store.checkUnsplash.pipe(map((e) => e.toElement.checked)).subscribe((checked) => {
-      if (checked) {
-        this.isUnspalshChecked = true;
-      } else this.isUnspalshChecked = false;
-    });
-    this.checkPixabaySubscription = store.checkPixabay.pipe(map((e) => e.toElement.checked)).subscribe((checked) => {
-      if (checked) {
-        this.isPixabayChecked = true;
-      } else this.isPixabayChecked = false;
-    });
-    this.checkPexelsSubscription = store.checkPexels.pipe(map((e) => e.toElement.checked)).subscribe((checked) => {
-      if (checked) {
-        this.isPexelsChecked = true;
-      } else this.isPexelsChecked = false;
-    });
-  }
-  async getImages(searchText) {
     this.allImages = [];
+    this.isUnspalshChecked = true;
+    this.isPixabayChecked = true;
+    this.isPexelsChecked = true;
+  }
 
+  async getImages(searchText) {
     if (this.isUnspalshChecked) {
       const response = await fetch(
         `https://api.unsplash.com/search/photos?page=1&query=${searchText}&client_id=${UNSPLASH_CLIENT_ID}`,

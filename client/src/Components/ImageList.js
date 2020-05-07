@@ -12,6 +12,7 @@ class ImageList extends HTMLElement {
 
   connectedCallback() {
     this.render();
+
     this.searchTextInputSubscription = store.searchTextInput
       .pipe(
         map(
