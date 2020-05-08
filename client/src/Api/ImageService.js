@@ -6,7 +6,7 @@ import store from '../Store.js';
 
 class ImageService {
   constructor() {
-    this.allImages;
+    this.allImages = [];
     this.isUnspalshChecked = false;
     this.isPixabayChecked = false;
     this.isPexelsChecked = false;
