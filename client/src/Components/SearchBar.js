@@ -4,9 +4,7 @@ class SearchBar extends HTMLElement {
   connectedCallback() {
     this.render();
     this.input = this.querySelector('input');
-    this.icon = this.querySelector('form');
     store.searchTextInput = fromEvent(this.input, 'input');
-    store.forcedSearchText = fromEvent(this.icon, 'submit');
   }
 
   render() {
@@ -14,7 +12,7 @@ class SearchBar extends HTMLElement {
     <form>
       <div class="ui big icon input searchBarMain">
           <input name="search-text" type="text" placeholder="Search big...">
-          <button type="submit"><i class="search icon link"></i></button>
+          <i class="search icon"></i>
       </div>
     </form>`;
   }

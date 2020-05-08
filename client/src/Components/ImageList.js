@@ -1,4 +1,4 @@
-import {debounceTime, filter, map} from 'rxjs/operators';
+import { debounceTime, filter, map } from 'rxjs/operators';
 
 import ImageService from '../Api/ImageService.js';
 import store from '../Store.js';
@@ -24,15 +24,6 @@ class ImageList extends HTMLElement {
       .subscribe((text) => {
         this.refreshImages(text);
       });
-    this.forcedSearchTextSubscription = store.forcedSearchText
-      .pipe(
-        map((e) => {
-          e.preventDefault();
-          return e.target.querySelector('input').value;
-        }),
-        filter((forcedText) => forcedText.length > 0),
-      )
-      .subscribe((forcedText) => this.refreshImages(forcedText));
   }
 
   async refreshImages(searchText = '') {
@@ -53,7 +44,6 @@ class ImageList extends HTMLElement {
   }
   disconnectedCallback() {
     this.searchTextInputSubscription.unsubscribe();
-    this.forcedSearchTextSubscription.unsubscribe();
   }
 }
 export default ImageList;
