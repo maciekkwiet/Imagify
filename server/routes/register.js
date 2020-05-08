@@ -8,7 +8,6 @@ const { User } = require('../model/user');
 const jwtKey = process.env.JWT_SECRET;
 
 router.post('/', async (req, res) => {
-  console.log(req.body);
   //sprawdzenie czy nie ma błędu w przesłanych danych od użytkownika
   const { error } = User.validate(req.body);
   if (error) return res.status(400).json({ error: error.details[0].message });
