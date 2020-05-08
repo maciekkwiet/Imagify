@@ -13,7 +13,6 @@ router.post('/reset/:email', async (req, res) => {
   if (!user) return res.status(400).json({ error: 'Invalid email' });
   else {
 
-    
       // await sendWelcomeEmail(user.email,subject,text,html,url);
   }
   console.log(user.password);

@@ -43,13 +43,7 @@ router.post('/', async (req, res) => {
   //token =>value
   res.header('auth', token).json(_.pick(user, ['email', 'favourities']));
   const itemsWelcom = Welcome.welcome(user.email);
-  console.log(itemsWelcom);
-  // console.log(user.email);
-  // console.log(itemsWelcom.subject);
-  // console.log(itemsWelcom.text);
-  // console.log(itemsWelcom.html);
   await sendWelcomeEmail(user.email, itemsWelcom.subject, itemsWelcom.text, itemsWelcom.html);
   // console.log(sendWelcomeEmail);
 });
-
 module.exports = router;
