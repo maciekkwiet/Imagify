@@ -5,12 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Imagify</title>
     <script src="./bundle.min.js" defer></script>
+    <link href="https://fonts.googleapis.com/css2?family=Alatsi&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Parisienne&display=swap" rel="stylesheet" />
   </head>
+
   <body>
-    <div class="ui container center aligned">
-      <app-searchbar></app-searchbar>
-      <app-apipicker></app-apipicker>
-      <app-imagelist></app-imagelist>
+    <logo-header>
+      <div id="logo">imagify</div>
+      <div id="description">The best search engine for you!</div>
+    </logo-header>
+    <div class="ui container">
+      <div class="bar">
+        <div class="ui grid">
+          <div class="five wide column"></div>
+          <app-searchbar class="column six wide searchPlace"></app-searchbar>
+          <app-modalwindow class="toAction column five wide Images userPlace choose-box"></app-modalwindow>
+        </div>
+        <app-apipicker></app-apipicker>
+      </div>
+      <app-imagelist class="ui container center aligned"></app-imagelist>
     </div>
+    <div class="wrapper"></div>
   </body>
 </html>
