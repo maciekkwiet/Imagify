@@ -8,10 +8,8 @@ module.exports = {
   entry: ['babel-polyfill', './src/index.js'],
   devServer: {
     port: 8080,
+    proxy: { '/api': 'http://localhost:12345' },
     disableHostCheck: true,
-    proxy: {
-      '/api': 'http://localhost:12345',
-    },
     contentBase: path.join(__dirname, 'public'),
   },
   output: {

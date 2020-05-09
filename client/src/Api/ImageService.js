@@ -1,5 +1,4 @@
 import { map, debounceTime } from 'rxjs/operators';
-
 import { UNSPLASH_CLIENT_ID } from '../../secrets';
 import { PIXABAY_KEY } from '../../secrets';
 import { PEXELS_KEY } from '../../secrets';
@@ -7,7 +6,7 @@ import store from '../Store.js';
 
 class ImageService {
   constructor() {
-    this.allImages;
+    this.allImages = [];
     this.isUnspalshChecked = false;
     this.isPixabayChecked = false;
     this.isPexelsChecked = false;
@@ -28,8 +27,6 @@ class ImageService {
     });
   }
   async getImages(searchText) {
-    this.allImages = [];
-
     if (this.isUnspalshChecked) {
       const response = await fetch(
         `https://api.unsplash.com/search/photos?page=1&query=${searchText}&client_id=${UNSPLASH_CLIENT_ID}`,
