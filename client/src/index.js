@@ -1,11 +1,14 @@
 import 'fomantic-ui-css/semantic';
 import 'fomantic-ui-css/semantic.css';
 
+import './style/imports.scss';
 import SearchBar from './Components/SearchBar.js';
 import ImageList from './Components/ImageList.js';
-import './style/imports.scss';
 import ApiPicker from './Components/ApiPicker.js';
 import Image from './Components/Image.js';
+import LoginForm from './Components/LoginForm.js';
+import RegistrationForm from './Components/RegistrationForm.js';
+import ModalWindow from './Components/ModalWindow.js';
 
 const setup = () => {
   customElements.define('app-searchbar', SearchBar);
