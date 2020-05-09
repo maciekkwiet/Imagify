@@ -3,10 +3,7 @@ import 'fomantic-ui-css/semantic.css';
 
 import SearchBar from './Components/SearchBar.js';
 import ImageList from './Components/ImageList.js';
-import LoginForm from './Components/LoginForm.js';
-import RegistrationForm from './Components/RegistrationForm.js';
-import ModalWindow from './Components/ModalWindow.js';
-import './style.scss';
+import './style/imports.scss';
 import ApiPicker from './Components/ApiPicker.js';
 import Image from './Components/Image.js';
 
