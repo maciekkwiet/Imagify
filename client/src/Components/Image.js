@@ -8,6 +8,7 @@ class Image extends HTMLElement {
 
   connectedCallback() {
     this.render(this.url);
+    this.renderModal();
     this.addEventListener('click', () => this.openImage());
   }
 
@@ -16,26 +17,22 @@ class Image extends HTMLElement {
   }
 
   openImage() {
-    $(`[id="${this.url}"]`).modal('show');
+    $(`[id="${this.url}"]`).modal({ detachable: false }).modal('show');
   }
 
   render(url) {
     this.innerHTML = `
-        <div class="app-image">
         ${this.createImage(url)}
-        </div>
-        ${this.renderModal()} 
         `;
   }
 
   renderModal() {
-    return `<div class="ui modal" id="${this.url}">
-    <div class="header">Header</div>
-    <div class="image content">
-      <img class="image">
-      <div class="description">
-        <img src="${this.url}" alt="Some image">
-      </div>`;
+    this.modal = document.createElement('div');
+    this.modal.innerHTML = `
+    <div class="ui basic modal image-modal" id="${this.url}">
+          <img class="image" src="${this.url}" alt="Some image">
+    </div>`;
+    this.appendChild(this.modal);
   }
 }
 export default Image;
