@@ -9,7 +9,7 @@ class Image extends HTMLElement {
   connectedCallback() {
     this.render(this.url);
     this.renderModal();
-    this.addEventListener('click', () => this.openImage());
+    this.querySelector('img').addEventListener('click', () => this.openImage());
   }
 
   createImage(url) {
