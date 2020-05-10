@@ -15,9 +15,9 @@ mongoose
   .then(() => console.log('Connecting with Data Base is ok'))
   .catch(() => console.error('Error with Data Base'));
 
-app.get('/passwortreset', (req, res) => {
-  res.sendFile(__dirname + '/public/resetpasswort.html');
-});
+// app.get('/passwortreset', (req, res) => {
+//   res.sendFile(__dirname + '/public/resetpasswort.html');
+// });
 
 app.use(express.json());
 app.use('/api', router); //na endpoint api dzieje się to co jest w router
