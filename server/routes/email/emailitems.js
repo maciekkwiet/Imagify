@@ -4,8 +4,9 @@ const welcome = (email) => {
   let html;
   subject = `Welcome ${email}`;
   text = 'Welcome';
-  html = `<html lang="en">
-    
+  html = `<!DOCTYPE html>
+  <html lang="en">
+  
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -15,10 +16,9 @@ const welcome = (email) => {
     <link href="https://fonts.googleapis.com/css2?family=Alatsi&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Parisienne&display=swap" rel="stylesheet">
   
-  
     <style>
       body {
-        background-image: url('https://zapodaj.net/e010c174fe1cf.jpg.html');
+        background-image: url('http://cdn.mcauto-images-production.sendgrid.net/e32786ca039ff722/52f7a7fe-5f34-4320-b461-92d0505b5824/1920x1802.jpg');
         background-size: cover;
       }
   
@@ -27,7 +27,6 @@ const welcome = (email) => {
         flex-direction: column;
         justify-content: center;
         align-items: center;
-  
       }
   
       section {
@@ -39,7 +38,6 @@ const welcome = (email) => {
         justify-content: center;
         align-items: center;
         margin: 5px;
-  
       }
   
       header {
@@ -67,9 +65,6 @@ const welcome = (email) => {
         text-transform: uppercase;
         font-size: 36px;
         border-radius: 20px 20px 20px 20px;
-  
-  
-  
       }
   
       .image {
@@ -79,7 +74,6 @@ const welcome = (email) => {
         justify-content: center;
         align-items: center;
         font-size: 100px;
-        ;
         background-color: rgb(220, 220, 220, 0.2);
         width: 200px;
         height: 150px;
@@ -141,18 +135,17 @@ const welcome = (email) => {
             <div class="image"><i class="fas fa-globe-africa"></i></div>
             <div class="square"><span>use other website <br> in one place</span></div>
       </section>
-  
-  
     </main>
   
-    <footer></footer>
+  
   </body>
   
   </html>`;
   return { subject, text, html };
 };
 
-const reset = (email, url) => {
+const reset = (email) => {
+  let url = `http://localhost:12345/api/reset/:${email}`;
   let subject;
   let text;
   let html;
@@ -160,7 +153,7 @@ const reset = (email, url) => {
   text = 'Reset email';
   html = `
   <html lang="en">
-  
+
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -169,7 +162,7 @@ const reset = (email, url) => {
       body {
         background-color: rgb(218, 215, 215)
       }
-  
+
       header {
         font-size: 16px;
         border-color: rgb(230, 224, 224);
@@ -182,7 +175,7 @@ const reset = (email, url) => {
         margin-bottom: 10px;
         border-radius: 20px 20px 20px 20px;
       }
-  
+
       .text {
         padding: 15px;
         display: flex;
@@ -191,9 +184,9 @@ const reset = (email, url) => {
         justify-content: center;
         font-size: 20px;
         line-height: 30px;
-  
+
       }
-  
+
       .button {
         display: flex;
         color: white;
@@ -212,17 +205,17 @@ const reset = (email, url) => {
         justify-content: center;
         text-decoration: none;
       }
-  
+
       a {
         text-decoration: none;
         color: White;
       }
-  
+
       a:hover {
-  
+
         text-shadow: 3px 1px #1c11b5;
       }
-  
+
       main {
         display: flex;
         flex-direction: column;
@@ -235,7 +228,7 @@ const reset = (email, url) => {
       }
     </style>
   </head>
-  
+
   <body>
     <header>
       <h1>Hello !</h1>
@@ -247,14 +240,14 @@ const reset = (email, url) => {
           Please click on Reguest button and change your password.
         </span>
       </div>
-  
+
       <button class="button"><a href="${url}">Reset my
           password</a></button>
-  
+
     </main>
     <footer></footer>
   </body>
-  
+
   </html>`;
   return { subject, text, html };
 };

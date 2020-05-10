@@ -13,14 +13,14 @@
     header {
       font-size: 16px;
       border-color: rgb(230, 224, 224);
-      margin-left: auto;
-      margin-right: auto;
+      margin: auto;
       text-align: center;
       width: 500px;
       height: 50px;
       background-color: white;
       margin-bottom: 10px;
       border-radius: 20px 20px 20px 20px;
+
     }
 
     .text {
@@ -63,12 +63,20 @@
       text-shadow: 3px 1px #1c11b5;
     }
 
+
     main {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    section {
       display: flex;
       flex-direction: column;
       background-color: #ffff;
-      margin-left: auto;
-      margin-right: auto;
+      align-items: center;
+      justify-content: center;
       width: 500px;
       height: 200px;
       border-radius: 20px 20px 20px 20px;
@@ -77,20 +85,21 @@
 </head>
 
 <body>
-  <header>
-    <h1>Hello !</h1>
-  </header>
   <main>
-    <div class="text">
-      <span>It looks like that you forgot your passwort. <br>
-        Don't worry, you can keep on keeping on.<br>
-        Please click on Reguest button and change your password.
-      </span>
-    </div>
+    <header>
+      <h1>Hello !</h1>
+    </header>
+    <section>
+      <div class="text">
+        <span>It looks like that you forgot your passwort. <br>
+          Don't worry, you can keep on keeping on.<br>
+          Please click on Reguest button and change your password.
+        </span>
+      </div>
 
-    <button class="button"><a href="http://localhost:12345/api/reset/:email">Reset my
-        password</a></button>
-
+      <button class="button"><a href="http://localhost:12345/api/reset/:email">Reset my
+          password</a></button>
+    </section>
   </main>
   <footer></footer>
 </body>

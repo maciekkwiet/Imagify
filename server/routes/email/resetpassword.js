@@ -2,20 +2,24 @@ const express = require('express');
 const router = express.Router();
 const { User } = require('../../model/user');
 const bcrypt = require('bcrypt');
-const { sendWelcomeEmail } = require('./welcome');
+const { sendWelcomeEmail } = require('./email');
 
+const reset = require('./emailitems');
 
 router.post('/reset/:email', async (req, res) => {
+ 
+
   const { email } = req.params;
   // res.send(email);
   let user = await User.findOne({ email });
 
   if (!user) return res.status(400).json({ error: 'Invalid email' });
   else {
-
-      // await sendWelcomeEmail(user.email,subject,text,html,url);
+    const items = reset.reset(user.email);
+    await sendWelcomeEmail(user.email, items.subject, items.text, items.html);
+    // console.log('test');
   }
-  console.log(user.password);
+  // console.log(user.password);
   res.send(user);
 });
 

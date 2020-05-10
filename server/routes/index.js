@@ -13,7 +13,7 @@ router.use('/register', register);
 router.use('/login', login);
 router.use('/me', auth, me);
 router.use('/favourities', auth, favourities);
-router.use('/resetpassword',resetpassword);
+router.use('/resetpassword', resetpassword);
 
 router.use(error);
 

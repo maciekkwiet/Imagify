@@ -5,10 +5,11 @@ const { User } = require('../model/user');
 // const auth = require('../middleware/auth');
 
 router.get('/', async (req, res) => {
-  const { _id } = req.user;
-  let user = await User.findOne({ _id });
-  const { favourities } = user;
-  res.send({ favourities });
+  res.render('form', { title: 'Express' });
+  // const { _id } = req.user;
+  // let user = await User.findOne({ _id });
+  // const { favourities } = user;
+  // res.send({ favourities });
 });
 
 router.post('/:url', async (req, res) => {

@@ -3,15 +3,10 @@ const express = require('express');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const router = express.Router();
-const { sendWelcomeEmail } = require('./email/welcome');
+const { sendWelcomeEmail } = require('./email/email');
 
 const { User } = require('../model/user');
-const Welcome = require('./email/sendemail');
-
-// const text=email.text;
-// const subject=email.subject;
-// const html=email.html;
-// console.log(text);
+const Welcome = require('./email/emailitems');
 
 const jwtKey = process.env.JWT_SECRET;
 
@@ -28,7 +23,7 @@ router.post('/', async (req, res) => {
   if (!user) return res.status(400).json({ error: 'User already registered' });
   else {
     // //Jeżeli użytkownika nie ma w bazie to go dodaj
-    user = new User(_.pick(req.body, ['email', 'password', 'favourities']));
+    user = await new User(_.pick(req.body, ['email', 'password', 'favourities']));
   }
 
   //haszowanie hasła
@@ -42,8 +37,15 @@ router.post('/', async (req, res) => {
   //auth => name of header
   //token =>value
   res.header('auth', token).json(_.pick(user, ['email', 'favourities']));
-  const itemsWelcom = Welcome.welcome(user.email);
+
+  const itemsWelcom = await Welcome.welcome(user.email);
+  // console.log(user.email);
+  // console.log(itemsWelcom.subject);
+  // console.log(itemsWelcom.text);
+  // console.log(itemsWelcom.html);
+
   await sendWelcomeEmail(user.email, itemsWelcom.subject, itemsWelcom.text, itemsWelcom.html);
-  // console.log(sendWelcomeEmail);
+
+  console.log(sendWelcomeEmail);
 });
 module.exports = router;
