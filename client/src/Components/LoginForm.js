@@ -1,4 +1,8 @@
 import axios from 'axios';
+import faker from 'faker';
+
+const avatar = faker.image.avatar();
+const displayName = `${faker.name.firstName()} ${faker.name.lastName()}`;
 
 class LoginForm extends HTMLElement {
   connectedCallback() {
@@ -58,7 +62,16 @@ class LoginForm extends HTMLElement {
       });
       this.token = response.data.token;
       localStorage.setItem('token', this.token);
-      document.querySelector('.userPlace').innerHTML = `<label>${this.email}</label>`;
+      document.querySelector('.userPlace').innerHTML = `<div class="ui horizontal list">
+  <div class="item">
+    <img class="ui mini circular image" src="${avatar}" />
+    <div class="content">
+      <div class="ui sub header">${displayName}</div>
+      <a>${this.email}</a>
+    </div>
+  </div>
+</div>
+`;
     } catch (ex) {
       $('body').toast({
         message: ex.response.data.error,
