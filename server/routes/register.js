@@ -4,7 +4,6 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const router = express.Router();
 const { sendWelcomeEmail } = require('./email/email');
-
 const { User } = require('../model/user');
 const Welcome = require('./email/emailitems');
 
@@ -46,6 +45,6 @@ router.post('/', async (req, res) => {
 
   await sendWelcomeEmail(user.email, itemsWelcom.subject, itemsWelcom.text, itemsWelcom.html);
 
-  console.log(sendWelcomeEmail);
+  // console.log(sendWelcomeEmail);
 });
 module.exports = router;

@@ -136,8 +136,6 @@ const welcome = (email) => {
             <div class="square"><span>use other website <br> in one place</span></div>
       </section>
     </main>
-  
-  
   </body>
   
   </html>`;
@@ -145,7 +143,7 @@ const welcome = (email) => {
 };
 
 const reset = (email) => {
-  let url = `http://localhost:12345/api/reset/:${email}`;
+  let url = `http://localhost:12345/passwordcreate`;
   let subject;
   let text;
   let html;
@@ -171,7 +169,6 @@ const reset = (email) => {
         text-align: center;
         width: 500px;
         height: 50px;
-        background-color: white;
         margin-bottom: 10px;
         border-radius: 20px 20px 20px 20px;
       }
@@ -184,7 +181,6 @@ const reset = (email) => {
         justify-content: center;
         font-size: 20px;
         line-height: 30px;
-
       }
 
       .button {

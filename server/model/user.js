@@ -7,11 +7,6 @@ const User = mongoose.model(
     email: {
       type: String,
       require: true,
-<<<<<<< HEAD
-      // unique: true,
-=======
-      unique: true,
->>>>>>> 7f1175e1987a8761d201c49dc357515d27b7151e
     },
 
     password: {
