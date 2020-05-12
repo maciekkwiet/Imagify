@@ -13,7 +13,6 @@ const User = mongoose.model(
     password: {
       type: String,
       require: true,
-      unique: true,
     },
 
     favourities: {
@@ -24,7 +23,6 @@ const User = mongoose.model(
 );
 
 function validate(user) {
-  console.log(user);
   const schema = {
     password: Joi.string().required(),
     email: Joi.string().required().email(),

@@ -10,7 +10,7 @@ const jwtKey = process.env.JWT_SECRET;
 router.post('/', async (req, res) => {
   //sprawdzenie czy nie ma błędu w przesłanych danych od użytkownika
   const { error } = User.validate(req.body);
-  if (error) return res.status(400).json(error.details[0].message);
+  if (error) return res.status(400).json({ error: error.details[0].message });
 
   //tworzymy użytkownika jako obiekt, który zwraca Promisa i sprawdzamy czy email juz jest w DB
 

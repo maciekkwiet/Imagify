@@ -5,7 +5,7 @@ const express = require('express');
 const app = express();
 
 const router = require('./routes');
-const me = require('./routes/me');
+
 const error = require('./middleware/error');
 
 const port = process.env.PORT || 12345;
@@ -18,7 +18,5 @@ mongoose
 
 app.use(express.json());
 app.use('/api', router); //na endpoint api dzieje się to co jest w router
-router.use('/me', me);
 app.use(error);
-
 app.listen(port, () => console.log(`Listening on port ${port}`));
