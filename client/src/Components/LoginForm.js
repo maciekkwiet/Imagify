@@ -50,29 +50,36 @@ class LoginForm extends HTMLElement {
 
   async handleFormSubmit() {
     this.email = document.querySelector('#e-mail').value;
-    this.password = document.querySelector('#password').value;
-    try {
-      const response = await axios.post('api/login', {
-        email: `${this.email}`,
-        password: `${this.password}`,
-      });
-      this.token = response.data.token;
-      localStorage.setItem('token', this.token);
-      document.querySelector('.userPlace').innerHTML = `<label>${this.email}</label>`;
-    } catch (ex) {
-      $('body').toast({
-        message: ex.response.data.error,
-      });
-      console.error(ex);
+    //this.password = document.querySelector('#password').value;
+    this.password = $('.ui.form').form('get value', 'password');
+    //console.log(this.password);
+
+    const isCorrect = $('.ui.form').form('is valid');
+
+    if (isCorrect[0]) {
+      try {
+        const response = await axios.post('api/login', {
+          email: `${this.email}`,
+          password: `${this.password[0]}`,
+        });
+        this.token = response.data.token;
+        localStorage.setItem('token', this.token);
+        document.querySelector('.userPlace').innerHTML = `<label>${this.email}</label>`;
+      } catch (ex) {
+        $('body').toast({
+          message: ex.response.data.error,
+        });
+        console.error(ex);
+      }
     }
   }
 
   renderForm() {
     this.innerHTML = `  
       <div class="ui form loginStyle">
-        <div class="field">
-          <label>Username</label>
-          <div class="ui left icon input">
+          <div class="field">
+            <label>Username</label>
+            <div class="ui left icon input">
               <input class="email" type="email" placeholder="e-mail" name="email" id="e-mail">
               <i class="user icon"></i>
             </div>
@@ -85,8 +92,8 @@ class LoginForm extends HTMLElement {
             </div>
           </div>
           <div class = "ui grid relaxed formButtonsStyle" >
-            <div class="ui blue submit   button pickLogin formButton" >Login</div>
-            <div class="ui red submit  button pickClose formButton" >Close</div>
+              <div class="ui blue submit   button pickLogin formButton" >Login</div>
+              <div class="ui red submit  button pickClose formButton" >Close</div>
           </div>
           <div class ="ui error message"></div>
         </div>
