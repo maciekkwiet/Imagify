@@ -1,4 +1,5 @@
 import axios from 'axios';
+import $ from 'jquery';
 
 class RegistrationForm extends HTMLElement {
   connectedCallback() {
@@ -12,23 +13,20 @@ class RegistrationForm extends HTMLElement {
   }
 
   async handleRegisterForm() {
-    this.email = document.querySelector('#email').value;
-    this.password = document.querySelector('#password').value;
-    this.confirmPassword = document.querySelector('#confirmPassword').value;
+    this.email = $('.ui.form').form('get value', 'email');
+    this.password = $('.ui.form').form('get value', 'password');
 
     const isCorrect = $('.ui.form').form('is valid');
 
     if (isCorrect[0]) {
       try {
         const response = await axios.post('/api/register', {
-          email: `${this.email}`,
-          password: `${this.password}`,
+          email: `${this.email[0]}`,
+          password: `${this.password[0]}`,
         });
-        console.log(response);
 
         this.token = response.headers.auth;
         localStorage.setItem('token', this.token);
-        console.log(response);
         document.querySelector('.userPlace').innerHTML = `<label>${this.email}</label>`;
       } catch (ex) {
         $('body').toast({
@@ -88,7 +86,7 @@ class RegistrationForm extends HTMLElement {
         <div class="field">
           <label>Username</label>
           <div class="ui left icon input">
-            <input type="email" id="email">
+            <input class="email" type="email" name="email">
             <i class="user icon"></i>
           </div>
         </div>

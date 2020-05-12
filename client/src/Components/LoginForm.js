@@ -1,4 +1,5 @@
 import axios from 'axios';
+import $ from 'jquery';
 
 class LoginForm extends HTMLElement {
   connectedCallback() {
@@ -49,22 +50,20 @@ class LoginForm extends HTMLElement {
   }
 
   async handleFormSubmit() {
-    this.email = document.querySelector('#e-mail').value;
-    //this.password = document.querySelector('#password').value;
+    this.email = $('.ui.form').form('get value', 'email');
     this.password = $('.ui.form').form('get value', 'password');
-    //console.log(this.password);
 
     const isCorrect = $('.ui.form').form('is valid');
 
     if (isCorrect[0]) {
       try {
         const response = await axios.post('api/login', {
-          email: `${this.email}`,
+          email: `${this.email[0]}`,
           password: `${this.password[0]}`,
         });
         this.token = response.data.token;
         localStorage.setItem('token', this.token);
-        document.querySelector('.userPlace').innerHTML = `<label>${this.email}</label>`;
+        document.querySelector('.userPlace').innerHTML = `<label>${this.email[0]}</label>`;
       } catch (ex) {
         $('body').toast({
           message: ex.response.data.error,
@@ -80,14 +79,14 @@ class LoginForm extends HTMLElement {
           <div class="field">
             <label>Username</label>
             <div class="ui left icon input">
-              <input class="email" type="email" placeholder="e-mail" name="email" id="e-mail">
+              <input class="email" type="email" name="email">
               <i class="user icon"></i>
             </div>
           </div>
           <div class="field">
             <label>Password</label>
             <div class="ui left icon input">
-              <input class="password" type="password" name="password" id="password">
+              <input type="password" id="password">
               <i class="lock icon"></i>
             </div>
           </div>
