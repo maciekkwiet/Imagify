@@ -1,4 +1,4 @@
-import $ from 'jquery';
+import store from '../Store';
 
 class Image extends HTMLElement {
   constructor() {
@@ -8,7 +8,6 @@ class Image extends HTMLElement {
 
   connectedCallback() {
     this.render(this.url);
-    this.renderModal();
     this.querySelector('img').addEventListener('click', () => this.openImage());
   }
 
@@ -17,7 +16,7 @@ class Image extends HTMLElement {
   }
 
   openImage() {
-    $(`[id="${this.url}"]`).modal({ detachable: false }).modal('show');
+    store.modal.next(this.modalContent);
   }
 
   render(url) {
@@ -26,13 +25,11 @@ class Image extends HTMLElement {
         `;
   }
 
-  renderModal() {
-    this.modal = document.createElement('div');
-    this.modal.innerHTML = `
-    <div class="ui basic modal image-modal" id="${this.url}">
+  get modalContent() {
+    return `
+    <div class="ui basic modal" id="image-modal">
           <img class="image" src="${this.url}" alt="Some image">
     </div>`;
-    this.appendChild(this.modal);
   }
 }
 export default Image;

@@ -1,4 +1,5 @@
 import axios from 'axios';
+import $ from 'jquery';
 
 class RegistrationForm extends HTMLElement {
   connectedCallback() {

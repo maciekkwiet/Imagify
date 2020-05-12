@@ -1,4 +1,5 @@
 import axios from 'axios';
+import $ from 'jquery';
 
 class LoginForm extends HTMLElement {
   connectedCallback() {
@@ -88,7 +89,7 @@ class LoginForm extends HTMLElement {
             <div class="ui blue submit   button pickLogin formButton" >Login</div>
             <div class="ui red submit  button pickClose formButton" >Close</div>
           </div>
-          <div class ="ui error message"></div>
+          <button class ="ui error message"></button>
         </div>
       </div>`;
   }
