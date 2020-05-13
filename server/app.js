@@ -21,17 +21,23 @@ mongoose
 app.use(express.static(__dirname + '/public/resetpassword')); //connect with CSS and clear JS
 
 
+
+
+
 app.get('/passwordreset', (req, res) => {
   const fileName = path.join(__dirname, 'public/resetpassword/resetpassword.html');
   // res.sendFile(__dirname + '/public/resetpasswort/resetpasswort.html');
   res.sendFile(fileName);
 });
 
+
+
+
 const reset = require('./routes/email/emailitems');
-// const { token } = require('./routes/email/resetpassword');
 const token = reset.reset.token;
 
-app.get('/passwordcreate/' + token, (req, res) => {
+
+app.get('/passwordcreate:' + token, (req, res) => {
   console.log(token);
   const fileName = path.join(__dirname, 'public/resetpassword/createpassword.html');
   res.sendFile(fileName);

@@ -19,7 +19,7 @@ const User = mongoose.model(
       required: false,
     },
 
-    reseTtoken: {
+    resetToken: {
       type: String,
       require: false,
     },
