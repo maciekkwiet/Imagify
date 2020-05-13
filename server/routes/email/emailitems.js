@@ -142,13 +142,14 @@ const welcome = (email) => {
   return { subject, text, html };
 };
 
-const reset = (email) => {
-  let url = `http://localhost:12345/passwordcreate`;
+const reset = (email,token) => {
+  this.token=token
+  let url = "http://localhost:12345/passwordcreate/"+token;
   let subject;
   let text;
   let html;
   subject = 'Reset email';
-  text = 'Reset email';
+  text = 'Reset emailbbbbb';
   html = `
   <html lang="en">
 
@@ -245,7 +246,9 @@ const reset = (email) => {
   </body>
 
   </html>`;
-  return { subject, text, html };
+  return { subject, text, html,token };
+  
+  
 };
 
 module.exports = { welcome, reset };

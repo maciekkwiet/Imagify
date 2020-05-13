@@ -35,7 +35,8 @@ router.post('/', async (req, res) => {
   // wysyłam do klienta tylko wyselekcjonowane dane
   //auth => name of header
   //token =>value
-  res.header('auth', token).json(_.pick(user, ['email', 'favourities']));
+  // res.header('auth', token).json(_.pick(user, ['email', 'favourities', token]));
+  res.send({ token });
 
   const itemsWelcom = await Welcome.welcome(user.email);
   // console.log(user.email);
