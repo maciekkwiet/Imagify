@@ -28,18 +28,9 @@ class ImageService {
     });
   }
 
-  // async handleFormSubmit() {
-  //   try {
-  //     const response = await axios.post('api/login', {
-  //       email: `${this.email}`,
-  //       password: `${this.password}`,
-  //     });
-  // }
-
   async getImages(searchText) {
     try {
       const response = await axios.get(`/api/images?searchText=${searchText}`, {
-        //searchText: `${searchText}`,
         services: ['UNSPLASH', 'PIXABAY', 'PEXELS'],
       });
       console.log(response);
