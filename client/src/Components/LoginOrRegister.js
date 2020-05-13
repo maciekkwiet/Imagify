@@ -21,8 +21,6 @@ class LoginOrRegister extends HTMLElement {
   render() {
     this.innerHTML = `
         ${this.isLoginOpen ? '<app-loginForm></app-loginForm>' : '<app-registrationform></app-registrationform>'}
-        <br/>
-        <br/>
     `;
     this.switchLabel.innerHTML = this.isLoginOpen
       ? `Don't have account yet? Click here to sign up.`

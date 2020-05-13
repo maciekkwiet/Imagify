@@ -103,9 +103,9 @@ class RegistrationForm extends HTMLElement {
             <i class="lock icon"></i>
           </div>
         </div>
-        <div class = "ui grid relaxed formButtonsStyle" >
-          <div class="ui blue submit button pickRegister formButton">Sign up</div>
-          <div class="ui red submit button pickCloseRegister formButton">Close</div>
+        <div class="fields">
+          <div class="ui red submit button">Close</div>
+          <div class="ui blue submit button">Sign up</div>
         </div>
         <div class ="ui error message"></div>
       </div>`;

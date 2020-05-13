@@ -85,9 +85,9 @@ class LoginForm extends HTMLElement {
               <i class="lock icon"></i>
             </div>
           </div>
-          <div class = "ui grid relaxed formButtonsStyle" >
-            <div class="ui blue submit   button pickLogin formButton" >Login</div>
-            <div class="ui red submit  button pickClose formButton" >Close</div>
+            <div class="fields">
+              <div class="ui red submit  button pickClose formButton" >Close</div>
+              <div class="ui blue submit   button pickLogin formButton" >Login</div>
           </div>
           <button class ="ui error message"></button>
         </div>
