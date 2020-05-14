@@ -16,7 +16,8 @@ class Image extends HTMLElement {
   }
 
   openImage() {
-    store.modal.next(this.modalContent);
+    const content = this.modalContent;
+    store.modal.next({ type: 'OPEN', content });
   }
 
   render(url) {

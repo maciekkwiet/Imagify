@@ -1,13 +1,19 @@
 import axios from 'axios';
 import $ from 'jquery';
 
+import store from '../Store';
+
 class LoginForm extends HTMLElement {
   connectedCallback() {
     this.token = '';
-    this.email;
-    this.password;
+    this.email = '';
+    this.password = '';
     this.render();
     this.rules();
+  }
+
+  closeModal() {
+    store.modal.next({ type: 'CLOSE' });
   }
 
   rules() {
@@ -46,7 +52,8 @@ class LoginForm extends HTMLElement {
 
   render() {
     this.renderForm();
-    this.submitButton = this.querySelector('.pickLogin').addEventListener('click', this.handleFormSubmit);
+    this.querySelector('#submit').addEventListener('click', this.handleFormSubmit);
+    this.querySelector('#close').addEventListener('click', this.closeModal);
   }
 
   async handleFormSubmit() {
@@ -70,7 +77,7 @@ class LoginForm extends HTMLElement {
 
   renderForm() {
     this.innerHTML = `  
-      <div class="ui form loginStyle">
+      <div class="ui form">
         <div class="field">
           <label>Username</label>
           <div class="ui left icon input">
@@ -86,8 +93,8 @@ class LoginForm extends HTMLElement {
             </div>
           </div>
             <div class="fields">
-              <div class="ui red submit  button pickClose formButton" >Close</div>
-              <div class="ui blue submit   button pickLogin formButton" >Login</div>
+              <div id="close" class="ui red button">Close</div>
+              <div id="submit" class="ui blue submit button">Login</div>
           </div>
           <button class ="ui error message"></button>
         </div>

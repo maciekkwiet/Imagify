@@ -7,8 +7,10 @@ class LoginButton extends HTMLElement {
   }
 
   openModal() {
-    store.modal.next(this.modalContent);
+    const content = this.modalContent;
+    store.modal.next({ type: 'OPEN', content });
   }
+
   toggleDisplay() {
     this.isLoginOpen = !this.isLoginOpen;
     this.render();
@@ -24,7 +26,7 @@ class LoginButton extends HTMLElement {
 
   get modalContent() {
     return `
-    <div class="ui modal">
+    <div class="ui tiny modal">
       <app-loginorregister class="content"></<app-loginorregister>
     </div>`;
   }

@@ -13,7 +13,6 @@ class LoginOrRegister extends HTMLElement {
   }
 
   switchDisplay() {
-    console.log(this);
     this.isLoginOpen = !this.isLoginOpen;
     this.render();
   }
