@@ -15,16 +15,16 @@ class ApiPicker extends HTMLElement {
     this.innerHTML = `
 <div class="ui form">
   <div class="inline fields">
-    <div class="ui checkbox">
-      <input type="checkbox" id="Pexels" />
+    <div class="ui checked checkbox">
+      <input type="checkbox" id="Pexels" checked="">
       <label>Pexels</label>
     </div>
-    <div class="ui checkbox">
-      <input type="checkbox" id="Pixabay" />
+    <div class="ui checked checkbox">
+      <input type="checkbox" id="Pixabay" checked="">
       <label>Pixabay</label>
     </div>
-    <div class="ui checkbox">
-      <input type="checkbox" id="Unsplash" />
+    <div class="ui checked checkbox">
+      <input type="checkbox" id="Unsplash" checked="">
       <label>Unsplash</label>
     </div>
   </div>

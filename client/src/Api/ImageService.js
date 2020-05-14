@@ -4,24 +4,60 @@ import axios from 'axios';
 
 class ImageService {
   constructor() {
-    this.isUnspalshChecked = false;
-    this.isPixabayChecked = false;
-    this.isPexelsChecked = false;
+    this.isUnspalshChecked = true;
+    this.isPixabayChecked = true;
+    this.isPexelsChecked = true;
     this.checkUnsplashSubscription = store.checkUnsplash.pipe(map((e) => e.toElement.checked)).subscribe((checked) => {
       if (checked) {
         this.isUnspalshChecked = true;
-      } else this.isUnspalshChecked = false;
+        if (this.isPixabayChecked || this.isPexelsChecked) {
+          this.oppositeDisabled();
+        }
+      } else {
+        this.isUnspalshChecked = false;
+        if ((this.isPixabayChecked && !this.isPexelsChecked) || (!this.isPixabayChecked && this.isPexelsChecked)) {
+          this.disabled();
+        }
+      }
     });
     this.checkPixabaySubscription = store.checkPixabay.pipe(map((e) => e.toElement.checked)).subscribe((checked) => {
       if (checked) {
         this.isPixabayChecked = true;
-      } else this.isPixabayChecked = false;
+        if (this.isPexelsChecked || this.isUnspalshChecked) {
+          this.oppositeDisabled();
+        }
+      } else {
+        this.isPixabayChecked = false;
+        if ((this.isUnspalshChecked && !this.isPexelsChecked) || (!this.isUnspalshChecked && this.isPexelsChecked)) {
+          this.disabled();
+        }
+      }
     });
     this.checkPexelsSubscription = store.checkPexels.pipe(map((e) => e.toElement.checked)).subscribe((checked) => {
       if (checked) {
         this.isPexelsChecked = true;
-      } else this.isPexelsChecked = false;
+        if (this.isPixabayChecked || this.isUnspalshChecked) {
+          this.oppositeDisabled();
+        }
+      } else {
+        this.isPexelsChecked = false;
+        if ((this.isPixabayChecked && !this.isUnspalshChecked) || (!this.isPixabayChecked && this.isUnspalshChecked)) {
+          this.disabled();
+        }
+      }
     });
+  }
+
+  disabled() {
+    this.isUnspalshChecked ? document.querySelector('#Unsplash').setAttribute('disabled', 'disabled') : '';
+    this.isPexelsChecked ? document.querySelector('#Pexels').setAttribute('disabled', 'disabled') : '';
+    this.isPixabayChecked ? document.querySelector('#Pixabay').setAttribute('disabled', 'disabled') : '';
+  }
+
+  oppositeDisabled() {
+    this.isUnspalshChecked ? document.querySelector('#Unsplash').removeAttribute('disabled') : '';
+    this.isPexelsChecked ? document.querySelector('#Pexels').removeAttribute('disabled') : '';
+    this.isPixabayChecked ? document.querySelector('#Pixabay').removeAttribute('disabled') : '';
   }
 
   async getImages(searchText) {
