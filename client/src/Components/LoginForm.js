@@ -52,8 +52,8 @@ class LoginForm extends HTMLElement {
 
   render() {
     this.renderForm();
-    this.querySelector('#submit').addEventListener('click', this.handleFormSubmit);
-    this.querySelector('#close').addEventListener('click', this.closeModal);
+    this.querySelector('#submit').addEventListener('click', () => this.handleFormSubmit());
+    this.querySelector('#close').addEventListener('click', () => this.closeModal());
   }
 
   async handleFormSubmit() {
@@ -64,14 +64,16 @@ class LoginForm extends HTMLElement {
         email: `${this.email}`,
         password: `${this.password}`,
       });
+      console.log(response);
       this.token = response.data.token;
       localStorage.setItem('token', this.token);
       document.querySelector('.userPlace').innerHTML = `<label>${this.email}</label>`;
+      this.closeModal();
     } catch (ex) {
+      console.error(ex);
       $('body').toast({
         message: ex.response.data.error,
       });
-      console.error(ex);
     }
   }
 
@@ -97,8 +99,7 @@ class LoginForm extends HTMLElement {
               <div id="submit" class="ui blue submit button">Login</div>
           </div>
           <button class ="ui error message"></button>
-        </div>
-      </div>`;
+        </div>`;
   }
 }
 
