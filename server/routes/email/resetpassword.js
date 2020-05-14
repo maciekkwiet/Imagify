@@ -32,7 +32,7 @@ router.post('/create', async (req, res) => {
 
     if (_id) {
       const salt = await bcrypt.genSalt(10);
-      const password = await bcrypt.hash(req.query.newpassword, salt);
+      const password = await bcrypt.hash(req.query.password, salt);
       // user.finOne({resetToken: resetToken,resetTokenExpiration:{$gt: Date.now()}});
       await User.findOneAndUpdate({ _id: req.user._id }, { $set: { password } }, { new: true }, function (err, doc) {
         if (err) {
@@ -44,8 +44,7 @@ router.post('/create', async (req, res) => {
 
       await user.save();
     }
-  } 
-  catch (ex) {
+  } catch (ex) {
     res.status(400).json({ error: 'Invalid token' });
   }
 });
