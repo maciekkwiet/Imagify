@@ -52,33 +52,33 @@ class ImageService {
   }
 
   disabled() {
-    this.isUnspalshChecked ? document.querySelector('#Unsplash').setAttribute('disabled', 'disabled') : '';
-    this.isPexelsChecked ? document.querySelector('#Pexels').setAttribute('disabled', 'disabled') : '';
-    this.isPixabayChecked ? document.querySelector('#Pixabay').setAttribute('disabled', 'disabled') : '';
+    this.isUnspalshChecked ? document.querySelector('#Unsplash').setAttribute('disabled', 'disabled') : null;
+    this.isPexelsChecked ? document.querySelector('#Pexels').setAttribute('disabled', 'disabled') : null;
+    this.isPixabayChecked ? document.querySelector('#Pixabay').setAttribute('disabled', 'disabled') : null;
   }
 
   oppositeDisabled() {
-    this.isUnspalshChecked ? document.querySelector('#Unsplash').removeAttribute('disabled') : '';
-    this.isPexelsChecked ? document.querySelector('#Pexels').removeAttribute('disabled') : '';
-    this.isPixabayChecked ? document.querySelector('#Pixabay').removeAttribute('disabled') : '';
+    this.isUnspalshChecked ? document.querySelector('#Unsplash').removeAttribute('disabled') : null;
+    this.isPexelsChecked ? document.querySelector('#Pexels').removeAttribute('disabled') : null;
+    this.isPixabayChecked ? document.querySelector('#Pixabay').removeAttribute('disabled') : null;
   }
 
   async getImages(searchText) {
     const services = [];
 
-    this.isUnspalshChecked ? services.push('UNSPLASH') : '';
-    this.isPixabayChecked ? services.push('PIXABAY') : '';
-    this.isPexelsChecked ? services.push('PEXELS') : '';
+    this.isUnspalshChecked ? services.push('UNSPLASH') : null;
+    this.isPixabayChecked ? services.push('PIXABAY') : null;
+    this.isPexelsChecked ? services.push('PEXELS') : null;
 
     try {
       const { data } = await axios.get(`/api/images?searchText=${searchText}`, {
         services: services,
       });
       const allImages = [];
-
-      services.includes('PEXELS') ? allImages.push(...data.pexels.photos.map((image) => image.src.medium)) : '';
-      services.includes('PIXABAY') ? allImages.push(...data.pixabay.hits.map((image) => image.webformatURL)) : '';
-      services.includes('UNSPLASH') ? allImages.push(...data.unsplash.results.map((image) => image.urls.small)) : '';
+      console.log(data);
+      services.includes('PEXELS') ? allImages.push(...data.pexels.photos.map((image) => image.src.medium)) : null;
+      services.includes('PIXABAY') ? allImages.push(...data.pixabay.hits.map((image) => image.webformatURL)) : null;
+      services.includes('UNSPLASH') ? allImages.push(...data.unsplash.results.map((image) => image.urls.small)) : null;
 
       const uniqueImages = [...new Set(allImages)];
 
