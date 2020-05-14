@@ -1,13 +1,9 @@
 import { map, debounceTime } from 'rxjs/operators';
-import { UNSPLASH_CLIENT_ID } from '../../secrets';
-import { PIXABAY_KEY } from '../../secrets';
-import { PEXELS_KEY } from '../../secrets';
 import store from '../Store.js';
 import axios from 'axios';
 
 class ImageService {
   constructor() {
-    this.allImages = [];
     this.isUnspalshChecked = false;
     this.isPixabayChecked = false;
     this.isPexelsChecked = false;
@@ -29,40 +25,29 @@ class ImageService {
   }
 
   async getImages(searchText) {
+    const services = [];
+
+    this.isUnspalshChecked ? services.push('UNSPLASH') : '';
+    this.isPixabayChecked ? services.push('PIXABAY') : '';
+    this.isPexelsChecked ? services.push('PEXELS') : '';
+
     try {
-      const response = await axios.get(`/api/images?searchText=${searchText}`, {
-        services: ['UNSPLASH', 'PIXABAY', 'PEXELS'],
+      const { data } = await axios.get(`/api/images?searchText=${searchText}`, {
+        services: services,
       });
-      console.log(response);
+      const allImages = [];
+
+      services.includes('PEXELS') ? allImages.push(...data.pexels.photos.map((image) => image.src.medium)) : '';
+      services.includes('PIXABAY') ? allImages.push(...data.pixabay.hits.map((image) => image.webformatURL)) : '';
+      services.includes('UNSPLASH') ? allImages.push(...data.unsplash.results.map((image) => image.urls.small)) : '';
+
+      const uniqueImages = [...new Set(allImages)];
+
+      return this.shuffleImages(uniqueImages);
     } catch (ex) {
       console.error(ex);
     }
   }
-
-  // async getImages(searchText) {
-  //   if (this.isUnspalshChecked) {
-  //     const response = await fetch(
-  //       `https://api.unsplash.com/search/photos?page=1&query=${searchText}&client_id=${UNSPLASH_CLIENT_ID}`,
-  //     );
-  //     const { results } = await response.json();
-  //     this.allImages.push(...results.map((image) => image.urls.small));
-  //   }
-  //   if (this.isPixabayChecked) {
-  //     const response = await fetch(`https://pixabay.com/api/?key=${PIXABAY_KEY}&q=${searchText}&image_type=photo`);
-  //     const { hits } = await response.json();
-  //     this.allImages.push(...hits.map((image) => image.webformatURL));
-  //   }
-  //   if (this.isPexelsChecked) {
-  //     const response = await fetch(`https://api.pexels.com/v1/search?query=${searchText}&per_page=80&page=1`, {
-  //       headers: {
-  //         Authorization: PEXELS_KEY,
-  //       },
-  //     });
-  //     const { photos } = await response.json();
-  //     this.allImages.push(...photos.map((image) => image.src.medium));
-  //   }
-  //   return this.shuffleImages(this.allImages);
-  // }
 
   shuffleImages(array) {
     for (let i = array.length - 1; i > 0; i--) {
