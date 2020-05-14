@@ -9,6 +9,7 @@ class ApiPicker extends HTMLElement {
     store.checkPexels = fromEvent(this.pexels, 'click');
     store.checkUnsplash = fromEvent(this.unsplash, 'click');
     store.checkPixabay = fromEvent(this.pixabay, 'click');
+
     this.inputs = this.querySelectorAll('.checkbox').forEach((node) =>
       node.addEventListener('click', (e) => this.handleChange(e)),
     );

@@ -75,14 +75,12 @@ class ImageService {
         services: services,
       });
       const allImages = [];
-      console.log(data);
+
       services.includes('PEXELS') ? allImages.push(...data.pexels.photos.map((image) => image.src.medium)) : null;
       services.includes('PIXABAY') ? allImages.push(...data.pixabay.hits.map((image) => image.webformatURL)) : null;
       services.includes('UNSPLASH') ? allImages.push(...data.unsplash.results.map((image) => image.urls.small)) : null;
 
-      const uniqueImages = [...new Set(allImages)];
-
-      return this.shuffleImages(uniqueImages);
+      return this.shuffleImages(allImages);
     } catch (ex) {
       console.error(ex);
     }
