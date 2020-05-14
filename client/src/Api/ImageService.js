@@ -1,4 +1,4 @@
-import { map, debounceTime } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import store from '../Store.js';
 import axios from 'axios';
 
@@ -7,6 +7,7 @@ class ImageService {
     this.isUnspalshChecked = true;
     this.isPixabayChecked = true;
     this.isPexelsChecked = true;
+
     this.checkUnsplashSubscription = store.checkUnsplash.pipe(map((e) => e.toElement.checked)).subscribe((checked) => {
       if (checked) {
         this.isUnspalshChecked = true;
@@ -20,6 +21,7 @@ class ImageService {
         }
       }
     });
+
     this.checkPixabaySubscription = store.checkPixabay.pipe(map((e) => e.toElement.checked)).subscribe((checked) => {
       if (checked) {
         this.isPixabayChecked = true;
@@ -33,6 +35,7 @@ class ImageService {
         }
       }
     });
+
     this.checkPexelsSubscription = store.checkPexels.pipe(map((e) => e.toElement.checked)).subscribe((checked) => {
       if (checked) {
         this.isPexelsChecked = true;
