@@ -15,8 +15,20 @@ class ApiPicker extends HTMLElement {
     );
   }
   handleChange(e) {
-    console.log(e.target.id);
-    console.dir(e.target);
+    console.log(e.target.id); // który serwis
+    console.dir(e.target.checked); // czy zaznaczony
+  }
+
+  disabled() {
+    this.isUnspalshChecked ? this.querySelector('#Unsplash').setAttribute('disabled', 'disabled') : null;
+    this.isPexelsChecked ? this.querySelector('#Pexels').setAttribute('disabled', 'disabled') : null;
+    this.isPixabayChecked ? this.querySelector('#Pixabay').setAttribute('disabled', 'disabled') : null;
+  }
+
+  oppositeDisabled() {
+    this.isUnspalshChecked ? this.querySelector('#Unsplash').removeAttribute('disabled') : null;
+    this.isPexelsChecked ? this.querySelector('#Pexels').removeAttribute('disabled') : null;
+    this.isPixabayChecked ? this.querySelector('#Pixabay').removeAttribute('disabled') : null;
   }
 
   render() {
