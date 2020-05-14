@@ -23,7 +23,9 @@ router.post('/reset', async (req, res) => {
 });
 
 router.post('/create', async (req, res) => {
-  const { resetToken } = req.query;
+  const { resetToken, password } = req.query;
+  console.log(resetToken);
+  console.log(password);
   if (!resetToken) return res.status(401).json({ error: 'No token' });
 
   try {
@@ -34,7 +36,7 @@ router.post('/create', async (req, res) => {
       const salt = await bcrypt.genSalt(10);
       const password = await bcrypt.hash(req.query.password, salt);
       // user.finOne({resetToken: resetToken,resetTokenExpiration:{$gt: Date.now()}});
-      await User.findOneAndUpdate({ _id: req.user._id }, { $set: { password } }, { new: true }, function (err, doc) {
+      await User.findOneAndUpdate({ _id: user._id }, { $set: { password } }, { new: true }, function (err, doc) {
         if (err) {
           console.log('Something wrong when updating data!');
         }
