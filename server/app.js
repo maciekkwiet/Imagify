@@ -3,6 +3,7 @@ require('express-async-errors');
 const mongoose = require('mongoose');
 const express = require('express');
 const app = express();
+const fileupload = require('express-fileupload');
 
 const router = require('./routes');
 
@@ -16,7 +17,13 @@ mongoose
   .then(() => console.log('Connecting with Data Base is ok'))
   .catch(() => console.error('Error with Data Base'));
 
+app.use(fileupload({useTempFiles :true}));
 app.use(express.json());
 app.use('/api', router); //na endpoint api dzieje się to co jest w router
 app.use(error);
 app.listen(port, () => console.log(`Listening on port ${port}`));
+
+// app.post('/upload-avatar', function (req, res, next) {
+//   console.log(req.files);
+//   res.send({ success: true, message: 'File uploaded!' });
+// });

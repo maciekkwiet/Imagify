@@ -15,7 +15,7 @@ router.use('/login', login);
 router.use('/images', images);
 router.use('/me', auth, me);
 router.use('/favourities', auth, favourities);
-router.use('/avatar', avatar);
+router.use('/upload-avatar',auth,avatar);
 
 router.use(error);
 
