@@ -35,5 +35,10 @@
     "jquery": "^3.5.0",
     "postcss-loader": "^3.0.0",
     "rxjs": "^6.5.5"
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {}
+    }
   }
 }
