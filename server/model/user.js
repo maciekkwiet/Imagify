@@ -6,8 +6,8 @@ const User = mongoose.model(
   new mongoose.Schema({
     email: {
       type: String,
-      require: false,
-      // unique: true,
+      require: true,
+      unique: true,
     },
 
     password: {
@@ -20,17 +20,6 @@ const User = mongoose.model(
       type: [String],
       required: false,
     },
-
-    facebookToken: {
-      type: String,
-      required: false,
-    },
-
-    facebookTokenRefresh: {
-      type: String,
-      required: false,
-    },
-
     facebookProfile: {
       type: Object,
       required: false,
@@ -39,7 +28,6 @@ const User = mongoose.model(
 );
 
 function validate(user) {
-  console.log(user);
   const schema = {
     password: Joi.string().required(),
     email: Joi.string().required().email(),

@@ -1,12 +1,14 @@
 /*eslint-disable */
 
 const path = require('path');
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: ['babel-polyfill', './src/index.js'],
   devServer: {
     port: 8080,
+    proxy: { '/api': 'http://localhost:12345' },
     disableHostCheck: true,
     contentBase: path.join(__dirname, 'public'),
   },
@@ -17,21 +19,25 @@ module.exports = {
   watch: true,
   mode: 'development',
   devtool: 'source-map',
-  // plugins: [
-  //   new HtmlWebpackPlugin({
-  //     // template: './public/index.html',
-  //   }),
-  // ],
+  plugins: [
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      jQuery: 'jquery',
+      'window.$': 'jquery',
+      'window.jQuery': 'jquery',
+    }),
+  ],
   resolve: {
     extensions: ['.js'],
   },
   module: {
     rules: [
       {
-        test: /\.scss$/,
+        test: [/\.scss$/, /\.css$/],
         use: [
           'style-loader', //3. Inject styles into DOM
           'css-loader', //2. Turns css into commonjs
+          'postcss-loader',
           'sass-loader', //1. Turns sass into css
         ],
       },

@@ -17,18 +17,23 @@
     "eslint": "^6.8.0",
     "file-loader": "^6.0.0",
     "html-webpack-plugin": "^4.2.0",
-    "node-sass": "^4.13.1",
+    "node-sass": "^4.14.1",
     "prettier": "^2.0.4",
     "sass-loader": "^8.0.2",
     "style-loader": "^1.1.4",
     "webpack": "^4.42.1",
     "webpack-cli": "^3.3.11",
-    "webpack-dev-server": "^3.10.3"
+    "webpack-dev-server": "^3.11.0"
   },
   "keywords": [],
   "description": "",
   "dependencies": {
+    "autoprefixer": "^9.7.6",
+    "axios": "^0.19.2",
     "babel-polyfill": "^6.26.0",
+    "fomantic-ui-css": "^2.8.4",
+    "jquery": "^3.5.0",
+    "postcss-loader": "^3.0.0",
     "rxjs": "^6.5.5"
   }
 }

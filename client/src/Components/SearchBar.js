@@ -1,23 +1,17 @@
+import { fromEvent } from 'rxjs';
+import store from '../Store';
 class SearchBar extends HTMLElement {
-  constructor() {
-    super();
+  connectedCallback() {
     this.render();
-
     this.input = this.querySelector('input');
-    this.icon = this.querySelector('i');
-    this.icon.addEventListener('click', () => this.handleSubmit());
-  }
-
-  handleSubmit() {
-    const event = new CustomEvent('searching-images', { detail: this.input.value });
-    this.dispatchEvent(event);
+    store.searchTextInput = fromEvent(this.input, 'input');
   }
 
   render() {
     this.innerHTML = `
-    <div class="ui big icon input">
+    <div class="ui big icon input four wide column searchBarMain">
         <input type="text" placeholder="Search big...">
-        <i class="search icon link"></i>
+        <i class="search icon"></i>
     </div>`;
   }
 }
