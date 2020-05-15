@@ -1,34 +1,27 @@
-import { fromEvent } from 'rxjs';
 import store from '../Store';
 class ApiPicker extends HTMLElement {
   connectedCallback() {
     this.render();
-    this.pexels = this.querySelector('#Pexels');
-    this.unsplash = this.querySelector('#Unsplash');
-    this.pixabay = this.querySelector('#Pixabay');
-    store.checkPexels = fromEvent(this.pexels, 'click');
-    store.checkUnsplash = fromEvent(this.unsplash, 'click');
-    store.checkPixabay = fromEvent(this.pixabay, 'click');
-
+    store.services = ['Unsplash', 'Pixabay', 'Pexels'];
     this.inputs = this.querySelectorAll('.checkbox').forEach((node) =>
       node.addEventListener('click', (e) => this.handleChange(e)),
     );
   }
   handleChange(e) {
-    console.log(e.target.id); // który serwis
-    console.dir(e.target.checked); // czy zaznaczony
+    e.target.checked ? store.services.push(e.target.id) : store.services.splice(store.services.indexOf(e.target.id), 1);
+    store.services.length === 1 ? this.disabled() : this.oppositeDisabled();
   }
 
   disabled() {
-    this.isUnspalshChecked ? this.querySelector('#Unsplash').setAttribute('disabled', 'disabled') : null;
-    this.isPexelsChecked ? this.querySelector('#Pexels').setAttribute('disabled', 'disabled') : null;
-    this.isPixabayChecked ? this.querySelector('#Pixabay').setAttribute('disabled', 'disabled') : null;
+    store.services.includes('Unsplash') ? this.querySelector('#Unsplash').setAttribute('disabled', 'disabled') : null;
+    store.services.includes('Pexels') ? this.querySelector('#Pexels').setAttribute('disabled', 'disabled') : null;
+    store.services.includes('Pixabay') ? this.querySelector('#Pixabay').setAttribute('disabled', 'disabled') : null;
   }
 
   oppositeDisabled() {
-    this.isUnspalshChecked ? this.querySelector('#Unsplash').removeAttribute('disabled') : null;
-    this.isPexelsChecked ? this.querySelector('#Pexels').removeAttribute('disabled') : null;
-    this.isPixabayChecked ? this.querySelector('#Pixabay').removeAttribute('disabled') : null;
+    store.services.includes('Unsplash') ? this.querySelector('#Unsplash').removeAttribute('disabled') : null;
+    store.services.includes('Pexels') ? this.querySelector('#Pexels').removeAttribute('disabled') : null;
+    store.services.includes('Pixabay') ? this.querySelector('#Pixabay').removeAttribute('disabled') : null;
   }
 
   render() {
