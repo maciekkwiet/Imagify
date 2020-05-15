@@ -11,7 +11,7 @@ class Avatar extends HTMLElement {
       this.renderAvatarModal();
     });
     // let dupa = document.querySelector('.ui.modal');
-    //console.log(this.getAttribute(dupa));
+    //console.log(this.getAttribute(dupa));npm
   }
   render() {
     this.avatarButton.innerHTML = `
