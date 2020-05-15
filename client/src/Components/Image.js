@@ -16,9 +16,9 @@ class Image extends HTMLElement {
   }
 
   openImage() {
-    console.log(`#${this.url}`);
     $(`[id="${this.url}"]`).modal('show');
   }
+
   render(url) {
     this.innerHTML = `
         <div class="app-image">

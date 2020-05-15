@@ -24,7 +24,6 @@ class ImageList extends HTMLElement {
       .subscribe((text) => {
         this.refreshImages(text);
       });
-    this.forcedSearchTextSubscription = store.forcedSearchText.subscribe((e) => this.refreshImages(e.target.value));
   }
 
   async refreshImages(searchText = '') {
@@ -45,8 +44,6 @@ class ImageList extends HTMLElement {
   }
   disconnectedCallback() {
     this.searchTextInputSubscription.unsubscribe();
-    this.forcedSearchTextSubscription.unsubscribe();
   }
 }
-
 export default ImageList;

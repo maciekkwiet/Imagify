@@ -1,14 +1,14 @@
-
 class Avatar extends HTMLElement {
   connectedCallback() {
     this.CLAUDINARY_URL = `https://api.cloudinary.com/v1_1/dek44ccwf/upload`;
-    this.CLAUDINARY_UPLOAD_PRESET = `jxnapgs5`
+    this.CLAUDINARY_UPLOAD_PRESET = `jxnapgs5`;
     this.avatarButton = document.createElement('app-avatarButton');
+    this.avatar = document.createElement('app-avatar');
     this.render();
     this.chooseBox = document.querySelector('.choose-box');
     this.chooseBox.appendChild(this.avatarButton);
     this.userButton = document.querySelector('.avatarButton').addEventListener('click', () => {
-      this.avatarModalRender();
+      this.renderAvatarModal();
     });
     // let dupa = document.querySelector('.ui.modal');
     //console.log(this.getAttribute(dupa));
@@ -20,7 +20,7 @@ class Avatar extends HTMLElement {
   </button>
     `;
   }
-  avatarModalRender() {
+  renderAvatarModal() {
     this.innerHTML = `
     <div class="ui modal">
     <i class="close icon"></i>
@@ -40,35 +40,22 @@ class Avatar extends HTMLElement {
   `;
     $('.ui.modal').modal('show');
     this.input = document.querySelector('input[type = "file"]');
-    const attachButton = document
-      .querySelector('.attachButton')
-      .addEventListener('click', () => console.log(document.getElementById('.inputFile')));
+    const attachButton = document.querySelector('.attachButton').addEventListener('click', () => {
+      console.log(document.getElementById('.inputFile'));
+      this.chooseBox.removeChild(this.avatarButton);
+
+      this.renderAvatar();
+    });
     const addButton = document.querySelector('.addButton').addEventListener('click', () => {
-    constimage = input.files[0]
-     } );
+      const image = this.input.files[0];
+    });
   }
-
-async uploadImage() {
-  const image = input.files[0];
-  const formData = new FormData();
-  formData.append('file', image);
-  formData.append('upload_preset', CLAUDINARY_UPLOAD_PRESET);
-
-
-  response = await axios({
-    url: CLAUDINARY_URL,
-    method: `POST`,
-    headers: {
-      `Content-Type`: 'application/x-www-form-urlencoded'
-    },
-    data: formData
-  }).then((res)=> {
-console.log(res);
-  }).catch((err)=>{
-    console.log(err)
-  });
-
-}
+  renderAvatar() {
+    this.avatar.innerHTML = `
+    <img src="https://cdn.pixabay.com/photo/2017/10/05/21/30/kakturs-2821095_1280.jpg" class = "avatar">
+    `;
+    this.chooseBox.appendChild(this.avatar);
+  }
 }
 
 export default Avatar;
