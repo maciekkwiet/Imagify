@@ -24,6 +24,8 @@ app.use(express.static(__dirname + '/public/resetpassword')); //connect with CSS
 
 
 
+
+
 app.get('/passwordreset', (req, res) => {
   const fileName = path.join(__dirname, 'public/resetpassword/resetpassword.html');
   // res.sendFile(__dirname + '/public/resetpasswort/resetpasswort.html');

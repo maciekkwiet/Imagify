@@ -31,22 +31,23 @@ router.post('/create', async (req, res) => {
   try {
     const user = jwt.verify(resetToken, jwtKey);
     const { _id } = user;
+    console.log('ID' + _id);
 
     if (_id) {
       const salt = await bcrypt.genSalt(10);
       const password = await bcrypt.hash(req.query.password, salt);
-      // user.finOne({resetToken: resetToken,resetTokenExpiration:{$gt: Date.now()}});
+      // user.finOne({ resetToken: resetToken, resetTokenExpiration: { $gt: Date.now() } });
       await User.findOneAndUpdate({ _id: user._id }, { $set: { password } }, { new: true }, function (err, doc) {
         if (err) {
           console.log('Something wrong when updating data!');
         }
         console.log(doc);
-        res.json(doc);
+        return res.json(doc);
       });
-
-      await user.save();
+      console.log(user);
     }
   } catch (ex) {
+    console.log(ex);
     res.status(400).json({ error: 'Invalid token' });
   }
 });
