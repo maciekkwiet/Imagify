@@ -9,6 +9,7 @@ import ModalWindow from './Components/ModalWindow.js';
 import './style.scss';
 import ApiPicker from './Components/ApiPicker.js';
 import Image from './Components/Image.js';
+import Avatar from './Components/Avatar.js';
 
 const setup = () => {
   customElements.define('app-searchbar', SearchBar);
@@ -18,6 +19,7 @@ const setup = () => {
   customElements.define('app-loginform', LoginForm);
   customElements.define('app-registrationform', RegistrationForm);
   customElements.define('app-modalwindow', ModalWindow);
+  customElements.define('app-avatar', Avatar);
 };
 
 window.addEventListener('load', setup);
