@@ -16,7 +16,7 @@ class ApiPicker extends HTMLElement {
 <div class="ui form">
   <div class="inline fields">
     <div class="ui checkbox">
-      <input type="checkbox" id="Pexels" />
+      <input type="checkbox" id="Pexels"/>
       <label>Pexels</label>
     </div>
     <div class="ui checkbox">
@@ -24,7 +24,7 @@ class ApiPicker extends HTMLElement {
       <label>Pixabay</label>
     </div>
     <div class="ui checkbox">
-      <input type="checkbox" id="Unsplash" />
+      <input type="checkbox" id="Unsplash" checked />
       <label>Unsplash</label>
     </div>
   </div>
