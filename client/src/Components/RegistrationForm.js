@@ -4,7 +4,6 @@ import $ from 'jquery';
 class RegistrationForm extends HTMLElement {
   connectedCallback() {
     this.render();
-    this.token = '';
     this.email;
     this.password;
     this.confirmPassword;
@@ -25,8 +24,8 @@ class RegistrationForm extends HTMLElement {
           password: `${this.password[0]}`,
         });
 
-        this.token = response.headers.auth;
-        localStorage.setItem('token', this.token);
+        const token = response.headers.auth;
+        localStorage.setItem('token', token);
         document.querySelector('.userPlace').innerHTML = `<label>${this.email}</label>`;
       } catch (ex) {
         $('body').toast({

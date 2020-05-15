@@ -3,7 +3,6 @@ import $ from 'jquery';
 
 class LoginForm extends HTMLElement {
   connectedCallback() {
-    this.token = '';
     this.email;
     this.password;
     this.render();
@@ -61,8 +60,8 @@ class LoginForm extends HTMLElement {
           email: `${this.email[0]}`,
           password: `${this.password[0]}`,
         });
-        this.token = response.data.token;
-        localStorage.setItem('token', this.token);
+        const token = response.data.token;
+        localStorage.setItem('token', token);
         document.querySelector('.userPlace').innerHTML = `<label>${this.email[0]}</label>`;
       } catch (ex) {
         $('body').toast({
