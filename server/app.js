@@ -8,7 +8,6 @@ const cookieParser = require('cookie-parser');
 
 const initializeFacebookStrategy = require('./config/passport-facebook');
 const router = require('./routes');
-const error = require('./middleware/error');
 
 const app = express();
 
@@ -25,8 +24,8 @@ initializeFacebookStrategy(passport);
 
 app.use(express.json());
 app.use(cookieParser());
+
 app.use('/api', router); //na endpoint api dzieje się to co jest w router
-app.use(error);
 
 app.get('/', function (req, res) {
   res.send('Dziala');
