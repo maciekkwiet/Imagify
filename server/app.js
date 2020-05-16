@@ -4,8 +4,13 @@ require('express-async-errors');
 const path = require('path');
 const mongoose = require('mongoose');
 const express = require('express');
+<<<<<<< HEAD
 const passport = require('passport');
 const cookieParser = require('cookie-parser');
+=======
+const app = express();
+const fileupload = require('express-fileupload');
+>>>>>>> f8bbab2c79df3713e2797b7138e498db6ce065e8
 
 const initializeFacebookStrategy = require('./config/passport-facebook');
 const router = require('./routes');
@@ -19,12 +24,16 @@ mongoose
   .then(() => console.log('Connecting with Data Base is ok'))
   .catch(() => console.error('Error with Data Base'));
 
+<<<<<<< HEAD
 app.use(passport.initialize()); // inicjalizacja passporta
 initializeFacebookStrategy(passport);
 
 const publicPath = path.join(__dirname, '../', '/client', '/public');
 
 app.use(express.static(publicPath));
+=======
+app.use(fileupload({useTempFiles :true}));
+>>>>>>> f8bbab2c79df3713e2797b7138e498db6ce065e8
 app.use(express.json());
 app.use(cookieParser());
 
@@ -36,3 +45,8 @@ app.get('/', function (req, res) {
 });
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
+
+// app.post('/upload-avatar', function (req, res, next) {
+//   console.log(req.files);
+//   res.send({ success: true, message: 'File uploaded!' });
+// });
