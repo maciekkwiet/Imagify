@@ -11,8 +11,8 @@ cloudinary.config({
   api_secret: api_secret,
 });
 
-  router.post('/', async (req, res) => {
-    try{
+router.post('/', async (req, res) => {
+  try {
     const file = req.files.photo;
     // console.log(req.user.token);
     // console.log(file);
@@ -22,11 +22,9 @@ cloudinary.config({
     req.user.avatar = result.url;
     const { avatar } = await req.user.save();
     res.json({ avatar });
-    }
-    catch {
-      res.json({ text: 'Something is wrong with avatar' });
-    }
-  });
-
+  } catch {
+    res.json({ text: 'Something is wrong with avatar' });
+  }
+});
 
 module.exports = router;
