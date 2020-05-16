@@ -1,4 +1,4 @@
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 
 class Store {
   constructor() {
@@ -6,6 +6,7 @@ class Store {
     this.checkPexels = new Observable();
     this.checkUnsplash = new Observable();
     this.checkPixabay = new Observable();
+    this.modal = new Subject();
   }
 }
 

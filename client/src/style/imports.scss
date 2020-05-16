@@ -1,5 +1,9 @@
-@import "main";
-@import "modal";
+@import 'partials/variables';
 
-
-
+@import 'main';
+@import 'ImageList';
+@import 'Image';
+@import 'Modal';
+@import 'LoginOrRegister';
+@import 'LoginForm';
+@import 'RegistrationForm';

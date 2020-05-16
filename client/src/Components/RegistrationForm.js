@@ -4,11 +4,16 @@ import $ from 'jquery';
 class RegistrationForm extends HTMLElement {
   connectedCallback() {
     this.render();
+    this.querySelector('#close').addEventListener('click', this.closeModal);
+    this.querySelector('#submit').addEventListener('click', this.handleRegisterForm);
     this.email;
     this.password;
     this.confirmPassword;
-    this.submitButton = this.querySelector('.pickRegister').addEventListener('click', this.handleRegisterForm);
     this.rules();
+  }
+
+  closeModal() {
+    store.modal.next({ type: 'CLOSE' });
   }
 
   async handleRegisterForm() {
@@ -103,9 +108,9 @@ class RegistrationForm extends HTMLElement {
             <i class="lock icon"></i>
           </div>
         </div>
-        <div class = "ui grid relaxed formButtonsStyle" >
-          <div class="ui blue submit button pickRegister formButton">Sign up</div>
-          <div class="ui red submit button pickCloseRegister formButton">Close</div>
+        <div class="fields">
+          <div id="close" class="ui red button">Close</div>
+          <div id="submit" class="ui green submit button">Sign up</div>
         </div>
         <div class ="ui error message"></div>
       </div>`;

@@ -12,11 +12,16 @@ const User = mongoose.model(
 
     password: {
       type: String,
-      require: true,
+      require: false,
+      // unique: true,
     },
 
     favourities: {
       type: [String],
+      required: false,
+    },
+    facebookProfile: {
+      type: Object,
       required: false,
     },
   }),
