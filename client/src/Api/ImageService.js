@@ -1,6 +1,8 @@
 import store from '../Store.js';
 import axios from 'axios';
 
+import $ from 'jquery';
+
 class ImageService {
   async getImages(searchText) {
     try {
