@@ -33,12 +33,10 @@ router.post('/', async (req, res) => {
   // wysyłam do klienta tylko wyselekcjonowane dane
   //auth => name of header
   //token =>value
-<<<<<<< HEAD
+
   res.header('auth', token).send(_.pick(user, ['email', 'favourities']));
-=======
-  res.header('auth', token).json(_.pick(user, ['email', 'favourities', 'avatar']));
   res.send( token);
->>>>>>> f8bbab2c79df3713e2797b7138e498db6ce065e8
+
 });
 
 module.exports = router;

@@ -20,16 +20,14 @@ const User = mongoose.model(
       type: [String],
       required: false,
     },
-<<<<<<< HEAD
     facebookProfile: {
       type: Object,
       required: false,
-=======
+    },
 
     avatar: {
       type: String,
-      require: false,
->>>>>>> f8bbab2c79df3713e2797b7138e498db6ce065e8
+
     },
   }),
 );
