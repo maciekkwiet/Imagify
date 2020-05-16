@@ -10,17 +10,20 @@ cloudinary.config({
   api_key: api_key,
   api_secret: api_secret,
 });
-
-router.post('/', async (req, res) => {
-  const file = req.files.photo;
-  // console.log(req.user.token);
-  // console.log(file);
-  const result = await cloudinary.uploader.upload(file.tempFilePath);
-  // console.log(result);
-  // console.log('Result', result.url);
-  req.user.avatar = result.url;
-  const { avatar } = await req.user.save();
-  res.json({ avatar });
-});
+try {
+  router.post('/', async (req, res) => {
+    const file = req.files.photo;
+    // console.log(req.user.token);
+    // console.log(file);
+    const result = await cloudinary.uploader.upload(file.tempFilePath);
+    // console.log(result);
+    // console.log('Result', result.url);
+    req.user.avatar = result.url;
+    const { avatar } = await req.user.save();
+    res.json({ avatar });
+  });
+} catch {
+  res.json({ text: 'Something is wrong with avatar' });
+}
 
 module.exports = router;
