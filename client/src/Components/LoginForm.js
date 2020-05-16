@@ -96,7 +96,13 @@ class LoginForm extends HTMLElement {
           </div>
             <div class="fields">
               <div id="close" class="ui red button">Close</div>
-              <div id="submit" class="ui blue submit button">Login</div>
+              <div id="submit" class="ui green submit button">Login</div>
+          </div>
+          <div class="fields">
+            <a href="/api/facebook"><button class="ui facebook button">
+              <i class="facebook icon"></i>
+              Sign in with Facebook
+            </button></a>
           </div>
           <button class ="ui error message"></button>
         </div>`;

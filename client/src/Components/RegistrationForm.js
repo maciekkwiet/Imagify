@@ -111,7 +111,7 @@ class RegistrationForm extends HTMLElement {
         </div>
         <div class="fields">
           <div id="close" class="ui red button">Close</div>
-          <div id="submit" class="ui blue submit button">Sign up</div>
+          <div id="submit" class="ui green submit button">Sign up</div>
         </div>
         <div class ="ui error message"></div>
       </div>`;
