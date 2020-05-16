@@ -98,7 +98,7 @@ class RegistrationForm extends HTMLElement {
         <div class="field">
           <label>Password</label>
           <div class="ui left icon input">
-            <input type="password" id="password">
+            <input type="password" name="password" id="password">
             <i class="lock icon"></i>
           </div>
         </div>
