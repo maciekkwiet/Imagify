@@ -14,9 +14,9 @@ module.exports = {
   },
   output: {
     filename: 'bundle.min.js',
-    path: path.resolve(__dirname, 'public'),
+    publicPath: 'dist/',
+    path: path.resolve(__dirname, 'public/dist'),
   },
-  watch: true,
   mode: 'development',
   devtool: 'source-map',
   plugins: [

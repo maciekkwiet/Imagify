@@ -12,12 +12,22 @@ const User = mongoose.model(
 
     password: {
       type: String,
-      require: true,
+      require: false,
+      // unique: true,
     },
 
     favourities: {
       type: [String],
       required: false,
+    },
+    facebookProfile: {
+      type: Object,
+      required: false,
+    },
+
+    avatar: {
+      type: String,
+
     },
   }),
 );
@@ -26,6 +36,7 @@ function validate(user) {
   const schema = {
     password: Joi.string().required(),
     email: Joi.string().required().email(),
+    avatar: Joi.string(),
   };
 
   return Joi.validate(user, schema);
