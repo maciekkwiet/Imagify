@@ -1,5 +1,6 @@
 import axios from 'axios';
 import $ from 'jquery';
+import store from '../Store';
 
 class LoginForm extends HTMLElement {
   connectedCallback() {
@@ -59,7 +60,7 @@ class LoginForm extends HTMLElement {
 
     const isCorrect = $('.ui.form').form('is valid');
 
-    if (isCorrect[0]) {
+    if (isCorrect[1]) {
       try {
         const response = await axios.post('api/login', {
           email: `${this.email[0]}`,
