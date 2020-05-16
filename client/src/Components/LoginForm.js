@@ -63,8 +63,8 @@ class LoginForm extends HTMLElement {
     if (isCorrect[0] && isCorrect[1]) {
       try {
         const response = await axios.post('api/login', {
-          email: `${this.email[0]}`,
-          password: `${this.password[0]}`,
+          email: `${this.email}`,
+          password: `${this.password}`,
         });
         const token = response.data.token;
         localStorage.setItem('token', token);
@@ -91,7 +91,7 @@ class LoginForm extends HTMLElement {
           <div class="field">
             <label>Password</label>
             <div class="ui left icon input">
-              <input type="password" id="password">
+              <input type="password" id="password" name="password">
               <i class="lock icon"></i>
             </div>
           </div>

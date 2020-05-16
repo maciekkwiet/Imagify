@@ -26,8 +26,8 @@ class RegistrationForm extends HTMLElement {
     if (isCorrect[0] && isCorrect[1]) {
       try {
         const response = await axios.post('/api/register', {
-          email: `${this.email[0]}`,
-          password: `${this.password[0]}`,
+          email: `${this.email}`,
+          password: `${this.password}`,
         });
 
         const token = response.headers.auth;
