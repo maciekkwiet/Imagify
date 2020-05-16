@@ -1,4 +1,4 @@
-import { map, debounceTime } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { UNSPLASH_CLIENT_ID } from '../../secrets';
 import { PIXABAY_KEY } from '../../secrets';
 import { PEXELS_KEY } from '../../secrets';
@@ -7,7 +7,7 @@ import store from '../Store.js';
 class ImageService {
   constructor() {
     this.allImages = [];
-    this.isUnspalshChecked = false;
+    this.isUnspalshChecked = true;
     this.isPixabayChecked = false;
     this.isPexelsChecked = false;
     this.checkUnsplashSubscription = store.checkUnsplash.pipe(map((e) => e.toElement.checked)).subscribe((checked) => {
