@@ -16,6 +16,9 @@ class ImageService {
 
       return this.shuffleImages(allImages);
     } catch (ex) {
+      $('body').toast({
+        message: 'Something went wrong, try again later',
+      });
       console.error(ex);
     }
   }
