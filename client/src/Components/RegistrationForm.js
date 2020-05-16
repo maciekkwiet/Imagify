@@ -23,7 +23,7 @@ class RegistrationForm extends HTMLElement {
 
     const isCorrect = $('.ui.form').form('is valid');
 
-    if (isCorrect[0]) {
+    if (isCorrect[0] && isCorrect[1]) {
       try {
         const response = await axios.post('/api/register', {
           email: `${this.email[0]}`,

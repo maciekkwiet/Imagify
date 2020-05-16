@@ -60,7 +60,7 @@ class LoginForm extends HTMLElement {
 
     const isCorrect = $('.ui.form').form('is valid');
 
-    if (isCorrect[1]) {
+    if (isCorrect[0] && isCorrect[1]) {
       try {
         const response = await axios.post('api/login', {
           email: `${this.email[0]}`,
