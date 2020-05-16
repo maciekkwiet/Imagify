@@ -13,6 +13,7 @@ import Avatar from './Components/Avatar.js';
 import Modal from './Components/Modal.js';
 import LoginButton from './Components/LoginButton.js';
 import LoginOrRegister from './Components/LoginOrRegister.js';
+import SettingsButton from './Components/SettingsButton';
 
 const setup = () => {
   customElements.define('app-searchbar', SearchBar);
@@ -22,9 +23,11 @@ const setup = () => {
   customElements.define('app-loginform', LoginForm);
   customElements.define('app-registrationform', RegistrationForm);
   customElements.define('app-avatar', Avatar);
+  //customElements.define('app-avatarplace', Avatar);
   customElements.define('app-modal', Modal);
   customElements.define('app-loginbutton', LoginButton);
   customElements.define('app-loginorregister', LoginOrRegister);
+  customElements.define('app-settingsbutton', SettingsButton);
 };
 
 window.addEventListener('load', setup);
