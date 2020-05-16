@@ -4,13 +4,16 @@ require('express-async-errors');
 const path = require('path');
 const mongoose = require('mongoose');
 const express = require('express');
+
 const passport = require('passport');
 const cookieParser = require('cookie-parser');
+
+const app = express();
+const fileupload = require('express-fileupload');
 
 const initializeFacebookStrategy = require('./config/passport-facebook');
 const router = require('./routes');
 
-const app = express();
 const port = process.env.PORT || 12345;
 
 const dbKey = process.env.DB_KEY;
@@ -25,6 +28,8 @@ initializeFacebookStrategy(passport);
 const publicPath = path.join(__dirname, '../', '/client', '/public');
 
 app.use(express.static(publicPath));
+
+app.use(fileupload({useTempFiles :true}));
 app.use(express.json());
 app.use(cookieParser());
 
@@ -36,3 +41,8 @@ app.get('/', function (req, res) {
 });
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
+
+// app.post('/upload-avatar', function (req, res, next) {
+//   console.log(req.files);
+//   res.send({ success: true, message: 'File uploaded!' });
+// });

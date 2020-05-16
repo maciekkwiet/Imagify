@@ -20,7 +20,7 @@ router.post('/', async (req, res) => {
   if (user) return res.status(400).json({ error: 'User already registered' });
   else {
     // //Jeżeli użytkownika nie ma w bazie to go dodaj
-    user = new User(_.pick(req.body, ['email', 'password', 'favourities']));
+    user = new User(_.pick(req.body, ['email', 'password', 'favourities', 'avatar']));
   }
 
   //haszowanie hasła
@@ -33,7 +33,10 @@ router.post('/', async (req, res) => {
   // wysyłam do klienta tylko wyselekcjonowane dane
   //auth => name of header
   //token =>value
+
   res.header('auth', token).send(_.pick(user, ['email', 'favourities']));
+  res.send( token);
+
 });
 
 module.exports = router;
