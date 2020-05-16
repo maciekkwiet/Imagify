@@ -3,7 +3,7 @@ class ApiPicker extends HTMLElement {
   connectedCallback() {
     this.render();
     store.services = ['Unsplash', 'Pixabay', 'Pexels'];
-    this.inputs = this.querySelectorAll('.checkbox').forEach((node) =>
+    this.inputs = this.querySelectorAll('input').forEach((node) =>
       node.addEventListener('click', (e) => this.handleChange(e)),
     );
   }
@@ -13,7 +13,7 @@ class ApiPicker extends HTMLElement {
   }
 
   disabled() {
-    this.querySelector(`#${store.services[0]}`).setAttribute('disabled', 'disabled');
+    this.querySelector(`#${store.services[0]}`).setAttribute('disabled', true);
   }
 
   oppositeDisabled() {
