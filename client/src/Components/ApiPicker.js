@@ -13,15 +13,11 @@ class ApiPicker extends HTMLElement {
   }
 
   disabled() {
-    store.services.includes('Unsplash') ? this.querySelector('#Unsplash').setAttribute('disabled', 'disabled') : null;
-    store.services.includes('Pexels') ? this.querySelector('#Pexels').setAttribute('disabled', 'disabled') : null;
-    store.services.includes('Pixabay') ? this.querySelector('#Pixabay').setAttribute('disabled', 'disabled') : null;
+    this.querySelector(`#${store.services[0]}`).setAttribute('disabled', 'disabled');
   }
 
   oppositeDisabled() {
-    store.services.includes('Unsplash') ? this.querySelector('#Unsplash').removeAttribute('disabled') : null;
-    store.services.includes('Pexels') ? this.querySelector('#Pexels').removeAttribute('disabled') : null;
-    store.services.includes('Pixabay') ? this.querySelector('#Pixabay').removeAttribute('disabled') : null;
+    this.querySelector(`#${store.services[0]}`).removeAttribute('disabled');
   }
 
   render() {
