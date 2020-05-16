@@ -10,8 +10,9 @@ cloudinary.config({
   api_key: api_key,
   api_secret: api_secret,
 });
-try {
+
   router.post('/', async (req, res) => {
+    try{
     const file = req.files.photo;
     // console.log(req.user.token);
     // console.log(file);
@@ -21,9 +22,11 @@ try {
     req.user.avatar = result.url;
     const { avatar } = await req.user.save();
     res.json({ avatar });
+    }
+    catch {
+      res.json({ text: 'Something is wrong with avatar' });
+    }
   });
-} catch {
-  res.json({ text: 'Something is wrong with avatar' });
-}
+
 
 module.exports = router;
