@@ -34,9 +34,8 @@ router.post('/', async (req, res) => {
   //auth => name of header
   //token =>value
 
-  res.header('auth', token).send(_.pick(user, ['email', 'favourities']));
-  res.send( token);
-
+  // res.header('auth', token).send(_.pick(user, ['email', 'favourities', 'token']));
+  res.send(token);
 });
 
 module.exports = router;

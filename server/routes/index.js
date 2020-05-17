@@ -8,6 +8,7 @@ const images = require('./images');
 const favourities = require('./favourities');
 const auth = require('../middleware/auth');
 const error = require('../middleware/error');
+const category= require('./category')
 
 const avatar = require('./avatar');
 
@@ -18,6 +19,7 @@ router.use('/images', images);
 router.use('/me', auth, me);
 router.use('/favourities', auth, favourities);
 router.use('/upload-avatar', auth, avatar);
+router.use('/category', auth,category)
 
 router.use(error);
 

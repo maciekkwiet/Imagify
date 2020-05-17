@@ -27,7 +27,6 @@ const User = mongoose.model(
 
     avatar: {
       type: String,
-
     },
   }),
 );

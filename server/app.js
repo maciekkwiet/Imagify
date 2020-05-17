@@ -17,9 +17,10 @@ const router = require('./routes');
 const port = process.env.PORT || 12345;
 
 const dbKey = process.env.DB_KEY;
+
 mongoose
   .connect(dbKey, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => console.log('Connecting with Data Base is ok'))
+  .then(() => console.log('Connecting with Data Base User is ok'))
   .catch(() => console.error('Error with Data Base'));
 
 app.use(passport.initialize()); // inicjalizacja passporta
@@ -29,7 +30,7 @@ const publicPath = path.join(__dirname, '../', '/client', '/public');
 
 app.use(express.static(publicPath));
 
-app.use(fileupload({useTempFiles :true}));
+app.use(fileupload({ useTempFiles: true }));
 app.use(express.json());
 app.use(cookieParser());
 
@@ -42,7 +43,11 @@ app.get('/', function (req, res) {
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
 
-// app.post('/upload-avatar', function (req, res, next) {
-//   console.log(req.files);
-//   res.send({ success: true, message: 'File uploaded!' });
-// });
+// const Category = require('./model/category')
+// const main = async () =>
+// {
+//   const folder = await Category.findById({_id:'5ec14ddd131c2333249b1bba'})
+//   console.log(folder);
+// }
+
+// main();
