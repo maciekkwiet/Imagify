@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Joi = require('joi');
 
 const User = mongoose.model(
-  'users',
+  'User',
   new mongoose.Schema({
     email: {
       type: String,
@@ -14,7 +14,7 @@ const User = mongoose.model(
       require: true,
     },
 
-    favouritiescc: {
+    favourities: {
       type: [String],
       required: false,
     },
@@ -28,8 +28,6 @@ const User = mongoose.model(
       type: String,
       require: false,
     },
-
-  
   }),
 );
 
@@ -37,8 +35,6 @@ function validate(user) {
   const schema = {
     password: Joi.string().required(),
     email: Joi.string().required().email(),
-    resetToken: Joi.string(),
-    resetTokenExpiration: Joi.string(),
   };
 
   return Joi.validate(user, schema);

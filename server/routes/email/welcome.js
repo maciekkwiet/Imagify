@@ -5,8 +5,8 @@ sgMail.setApiKey(emailKey);
 
 const sendWelcomeEmail = (email, subject, text, html) => {
   sgMail.send({
-    to: email,
-    from: 'noreply@imagyfy',
+    to: ` ${email}`,
+    from: 'klaragajaszek21@wp.pl',
     subject: `${subject}`,
     text: `${text}`,
     html: `${html}`,

@@ -23,7 +23,7 @@ router.post('/reset', async (req, res) => {
 });
 
 router.post('/create', async (req, res) => {
-  const { resetToken, password } = req.query;
+  const { resetToken } = req.query;
   // console.log(resetToken);
   // console.log(password);
   if (!resetToken) return res.status(401).json({ error: 'No token' });
