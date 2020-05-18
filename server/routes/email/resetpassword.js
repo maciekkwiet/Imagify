@@ -1,25 +1,31 @@
 const express = require('express');
-const router = express.Router();
-const { User } = require('../../model/user');
-const bcrypt = require('bcrypt');
-const { sendWelcomeEmail } = require('./email');
-const reset = require('./emailitems');
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
+
+const router = express.Router();
+
+const reset = require('./emailitems');
+const { User } = require('../../model/user');
+const { sendWelcomeEmail } = require('./email');
+
 const jwtKey = process.env.JWT_SECRET;
 
 router.post('/reset', async (req, res) => {
   const { email } = req.query;
-  let user = await User.findOne({ email });
+  const user = await User.findOne({ email });
+
   const token = jwt.sign({ _id: user._id }, jwtKey);
   res.header('auth', token).json({ email });
   user.resetToken = token;
   user.resetTokenExpiration = Date.now() + 4000000;
+
   if (!user) return res.status(400).json({ error: 'Invalid email' });
   else {
     const items = reset.reset(user.email, token);
     await sendWelcomeEmail(user.email, items.subject, items.text, items.html, token);
     user.save();
   }
+ 
 });
 
 router.post('/create', async (req, res) => {

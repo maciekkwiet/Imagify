@@ -3,7 +3,7 @@ const router = express.Router();
 const cloudinary = require('cloudinary').v2;
 
 const cloudinarySecret = process.env.CLOUDINARY_SECRET;
-const cloudinaryKey = process.env.CLAUDINARY_KEY;
+const cloudinaryKey = process.env.CLOUDINARY_KEY;
 const cloudinaryName = process.env.CLOUDINARY_NAME;
 
 console.log(cloudinarySecret, cloudinaryKey, cloudinaryName);

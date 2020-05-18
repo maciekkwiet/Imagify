@@ -24,11 +24,10 @@ app.get('/passwordreset', (req, res) => {
   res.sendFile(fileName);
 });
 
-const reset = require('./routes/email/emailitems');
-const token = reset.reset.token;
+// const reset = require('./routes/email/emailitems');
+// const token = reset.reset.token;
 
-app.get('/passwordcreate:' + token, (req, res) => {
-  console.log(token);
+app.get('/passwordcreate:', (req, res) => {
   const fileName = path.join(__dirname, 'public/resetpassword/createpassword.html');
   res.sendFile(fileName);
 });
