@@ -8,7 +8,7 @@ const reset = require('./emailitems');
 const { User } = require('../../model/user');
 const { sendWelcomeEmail } = require('./email');
 
-const jwtKey = process.env.JWT_SECRET;
+const jwtKey = process.env.JWT_SECRET2;
 
 router.post('/reset', async (req, res) => {
   const { email } = req.query;

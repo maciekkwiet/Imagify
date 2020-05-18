@@ -6,12 +6,12 @@ const cloudinarySecret = process.env.CLOUDINARY_SECRET;
 const cloudinaryKey = process.env.CLOUDINARY_KEY;
 const cloudinaryName = process.env.CLOUDINARY_NAME;
 
-console.log(cloudinarySecret, cloudinaryKey, cloudinaryName);
+
 
 cloudinary.config({
-  cloud_name: 'cloudinaryName',
-  api_key: 'cloudinaryKey',
-  api_secret: 'cloudinarySecret',
+  cloud_name: cloudinaryName,
+  api_key: cloudinaryKey,
+  api_secret: cloudinarySecret,
 });
 
 router.post('/', async (req, res) => {
