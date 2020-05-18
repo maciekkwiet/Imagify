@@ -1,3 +1,4 @@
+import $ from 'jquery';
 import axios from 'axios';
 
 class Avatar extends HTMLElement {
@@ -14,31 +15,32 @@ class Avatar extends HTMLElement {
     const attachButton = document.querySelector('.attachButton').addEventListener('click', () => {
       console.log(localStorage.getItem('token'));
       this.uploadAvatar();
-
-      console.log('dupa2');
       console.log(this.file);
     });
     console.log(document.querySelector('.attachButton'));
-
-    console.log('dupa3');
   }
   async uploadAvatar() {
     this.token = localStorage.getItem('token');
     this.file = this.input.files[0];
+    var formData = new FormData();
+    formData.append('photo', this.file);
+
+    console.log('token', this.token);
     let config = {
       headers: {
-        token: this.token,
+        'x-auth': this.token,
+        'Content-Type': 'multipart/form-data',
       },
     };
 
-    let data = {
-      file: this.file,
-    };
-
+    // let data = {
+    //   file: this.file,
+    // };
+    //console.log(data);
     //axios.post(URL, data, config).then(...)
 
     try {
-      const response = await axios.post('api/upload-avatar', data);
+      const response = await axios.post('api/upload-avatar', formData, config);
       console.log(response);
 
       //this.closeModal();

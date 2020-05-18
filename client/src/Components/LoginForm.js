@@ -57,6 +57,7 @@ class LoginForm extends HTMLElement {
   async handleFormSubmit() {
     this.email = $('.ui.form').form('get value', 'email');
     this.password = $('.ui.form').form('get value', 'password');
+    console.log(this.email);
 
     const isCorrect = $('.ui.form').form('is valid');
 
@@ -68,7 +69,7 @@ class LoginForm extends HTMLElement {
         });
         const token = response.data.token;
         localStorage.setItem('token', token);
-        document.querySelector('.userPlace').innerHTML = `<label>${this.email[0]}</label>`;
+        document.querySelector('.userPlace').innerHTML = `<label>${this.email}</label>`;
       } catch (ex) {
         $('body').toast({
           message: ex.response.data.error,
