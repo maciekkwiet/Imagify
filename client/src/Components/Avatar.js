@@ -1,46 +1,28 @@
 import $ from 'jquery';
 import axios from 'axios';
 
+import { toBase64 } from '../utils';
+
 class Avatar extends HTMLElement {
   connectedCallback() {
     this.avatarPlace = document.createElement('app-avatarplace');
     this.avatar = document.createElement('app-avatar');
-    console.log('dupsko');
     this.renderAvatarPlace();
     this.renderUploadWindow();
 
     this.chooseBox = document.querySelector('.choose-box');
     this.chooseBox.appendChild(this.avatarPlace);
     this.input = document.querySelector('input[type = "file"]');
-    const attachButton = document.querySelector('.attachButton').addEventListener('click', () => {
-      console.log(localStorage.getItem('token'));
+    document.querySelector('.attachButton').addEventListener('click', () => {
       this.uploadAvatar();
-      console.log(this.file);
     });
     console.log(document.querySelector('.attachButton'));
   }
   async uploadAvatar() {
-    this.token = localStorage.getItem('token');
-    this.file = this.input.files[0];
-    var formData = new FormData();
-    formData.append('photo', this.file);
-
-    console.log('token', this.token);
-    let config = {
-      headers: {
-        'x-auth': this.token,
-        'Content-Type': 'multipart/form-data',
-      },
-    };
-
-    // let data = {
-    //   file: this.file,
-    // };
-    //console.log(data);
-    //axios.post(URL, data, config).then(...)
-
+    const token = localStorage.getItem('token');
+    const photo = await toBase64(this.input.files[0]);
     try {
-      const response = await axios.post('api/upload-avatar', formData, config);
+      const response = await axios.post('api/upload-avatar', { photo }, { headers: { 'x-auth': token } });
       console.log(response);
 
       //this.closeModal();
@@ -53,17 +35,16 @@ class Avatar extends HTMLElement {
   }
   renderUploadWindow() {
     this.innerHTML = `
-    
-    <i class="close icon"></i>
-    <div class="actions">
-    <div class="ui button inputFile">
-    <input type="file"/>
-      <div class="ui positive right labeled icon button attachButton">
-       Attach avatar
-        <i class="checkmark icon"></i>
+      <i class="close icon"></i>
+      <div class="actions">
+        <div class="ui button inputFile">
+          <input type="file"/>
+          <div class="ui positive right labeled icon button attachButton">
+            Attach avatar
+            <i class="checkmark icon"></i>
+          </div>
       </div>
-  </div>
-  `;
+    `;
   }
   renderAvatarPlace() {
     this.avatarPlace.innerHTML = `
