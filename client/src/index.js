@@ -9,12 +9,14 @@ import Image from './Components/Image.js';
 import LoginForm from './Components/LoginForm.js';
 import RegistrationForm from './Components/RegistrationForm.js';
 import ModalWindow from './Components/ModalWindow.js';
+import Favourites from './Components/Favourites.js';
 
 const setup = () => {
   customElements.define('app-searchbar', SearchBar);
   customElements.define('app-apipicker', ApiPicker);
   customElements.define('app-imagelist', ImageList);
   customElements.define('app-image', Image);
+  customElements.define('app-favourites', Favourites);
   customElements.define('app-loginform', LoginForm);
   customElements.define('app-registrationform', RegistrationForm);
   customElements.define('app-modalwindow', ModalWindow);

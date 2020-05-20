@@ -1,5 +1,6 @@
 import $ from 'jquery';
-import axios from 'axios';
+//import Favourites from './Favourites'
+
 
 class Image extends HTMLElement {
 
@@ -10,10 +11,10 @@ class Image extends HTMLElement {
   }
 
   connectedCallback() {
+    this.favourites = document.createElement ('app-favourites');
     this.render(this.url);
     this.addEventListener('click', () => this.openImage());
-    this.button = this.querySelector("favourites");
-    this.addEventListener('click', () => this.favourites());
+   
       /*const button = document.querySelector('favourites'); //catch button
       const form = document.querySelector('heart');
       async function handleResetSubmit(event) {
@@ -27,12 +28,6 @@ class Image extends HTMLElement {
     }
   
   
-  
-  async favourites () {
-    const response = await axios.post (`/api/favourities/${this.url}`, { favourites: `${this.favourites}`,
-  })
-}
-  
   createImage(url) {
     return `<img class="Image-url" src="${url}"/>`;
   }
@@ -41,18 +36,18 @@ class Image extends HTMLElement {
     $(`[id="${this.url}"]`).modal('show');
   }
 
-  createfavourites () {
-    $(`[id="${this.url}]`)
-  }
+  
 
   render(url) {
     this.innerHTML = `
         <div class="app-image">
         ${this.createImage(url)}
+     
         </div>
         ${this.renderModal()} 
-        ${this.createfavourites()}
+
         `;
+        this.appendChild(this.favourites);
   }
 
   renderModal() {
