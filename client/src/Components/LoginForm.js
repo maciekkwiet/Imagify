@@ -1,8 +1,4 @@
 import axios from 'axios';
-import faker from 'faker';
-
-const avatar = faker.image.avatar();
-const displayName = `${faker.name.firstName()} ${faker.name.lastName()}`;
 import $ from 'jquery';
 import store from '../Store';
 
