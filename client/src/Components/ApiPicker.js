@@ -7,6 +7,7 @@ class ApiPicker extends HTMLElement {
       node.addEventListener('click', (e) => this.handleChange(e)),
     );
   }
+
   handleChange(e) {
     e.target.checked ? store.services.push(e.target.id) : store.services.splice(store.services.indexOf(e.target.id), 1);
     store.services.length === 1 ? this.disabled() : this.oppositeDisabled();
@@ -25,16 +26,16 @@ class ApiPicker extends HTMLElement {
 <div class="ui form">
   <div class="inline fields">
     <div class="ui checked checkbox">
-      <input type="checkbox" id="Pexels" checked="">
-      <label>Pexels</label>
+      <input type="checkbox" id="Pexels" checked=""/>
+      <label for="Pexels">Pexels</label>
     </div>
     <div class="ui checked checkbox">
-      <input type="checkbox" id="Pixabay" checked="">
-      <label>Pixabay</label>
+      <input type="checkbox" id="Pixabay" checked=""/>
+      <label for="Pixabay">Pixabay</label>
     </div>
     <div class="ui checked checkbox">
-      <input type="checkbox" id="Unsplash" checked="">
-      <label>Unsplash</label>
+      <input type="checkbox" id="Unsplash" checked=""/>
+      <label for="Unsplash">Unsplash</label>
     </div>
   </div>
 </div>
