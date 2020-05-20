@@ -7,6 +7,7 @@
     <script src="./bundle.min.js" defer></script>
     <link href="https://fonts.googleapis.com/css2?family=Alatsi&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Parisienne&display=swap" rel="stylesheet" />
+    <link rel=stylesheet href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"/>
   </head>
 
   <body>
@@ -24,6 +25,14 @@
         <app-apipicker></app-apipicker>
       </div>
       <app-imagelist class="ui container center aligned"></app-imagelist>
+     <favourites>
+     <input type="checkbox" id="sub">
+     <label for="sub">
+          <heart><i class="fas fa-heart"></i></heart>
+          <check><i class="fas fa-check-circle"></i></check>
+          <span>Favourite</span>
+        </label>
+    </favourites>
     </div>
     <div class="wrapper"></div>
   </body>
