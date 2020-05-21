@@ -3,23 +3,40 @@ const express = require('express');
 
 const router = express.Router();
 
-router.post('/', async (req, res) => {
-  //1.Zidentyfikować usera, którego instancja została stworzona w auth
-  //2. Stwrzyc instancję modelu category, powiazaną z zidentyfikowanym użytkownikiem
-  //3. Zapisac do bazy danych
+router.post('/create', async (req, res) => {
   const currentUser = req.user;
   const { _id } = currentUser;
-
-  const folder = new Category({
-    // name: req.body.name,
-    // images: req.body.images,
-    ...req.body,
-    user: _id,
-  });
-
+  console.log(_id);
+  const searchName = await Category.findOne({ user: _id });
+  console.log('name' + searchName);
+  if (searchName.name != req.body.name || searchName.name === null) {
+    const folder = new Category({
+      // name: req.body.name,
+      // images: req.body.images,
+      ...req.body,
+      user: _id,
+    });
     await folder.save();
-    res.status(200).send(folder);
+    res.status(200).json({ folder });
+  } else {
+    res.json({ text: 'This folder already exist' });
+  }
+});
 
+router.post('/:url', async (req, res) => {
+  const { url } = req.params;
+  // console.log('url' + url);
+  const { _id } = req.user;
+  // console.log('id' + _id);
+  let folder = await Category.findOne({ user: _id });
+  // console.log('folder' + folder);
+  if (folder && !folder.images.includes(url)) {
+    folder.images.push(url);
+    folder.save();
+    res.json({ folder: folder });
+  } else {
+    res.json({ error: 'You can not add the photos to this folder' });
+  }
 });
 
 module.exports = router;
