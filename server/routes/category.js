@@ -17,15 +17,9 @@ router.post('/', async (req, res) => {
     user: _id,
   });
 
-  try {
     await folder.save();
-    console.log(folder.save());
     res.status(200).send(folder);
-    console.log(folder);
-    console.log(currentUser._id);
-  } catch (e) {
-    res.status(400).send(e);
-  }
+
 });
 
 module.exports = router;

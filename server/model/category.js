@@ -1,11 +1,13 @@
 const mongoose = require('mongoose');
+const Joi = require('joi');
 
 const Category = mongoose.model(
   'Category',
   new mongoose.Schema({
     name: {
-      type: { String, default: 'New folder' },
+      type: { String },
       require: false,
+      maxlength: 10,
     },
 
     images: {
@@ -20,4 +22,15 @@ const Category = mongoose.model(
   }),
 );
 
+function validate(category) {
+  const schema = {
+    name: Joi.string(),
+    maxlength: 10,
+    imagies: Joi.string(),
+  };
+
+  return Joi.validate(category, schema);
+}
+
+Category.validate = validate;
 exports.Category = Category;

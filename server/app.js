@@ -30,7 +30,6 @@ const publicPath = path.join(__dirname, '../', '/client', '/public');
 
 app.use(express.static(publicPath));
 
-app.use(fileupload({ useTempFiles: true }));
 app.use(express.json());
 app.use(cookieParser());
 
@@ -43,11 +42,3 @@ app.get('/', function (req, res) {
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
 
-// const Category = require('./model/category')
-// const main = async () =>
-// {
-//   const folder = await Category.findById({_id:'5ec14ddd131c2333249b1bba'})
-//   console.log(folder);
-// }
-
-// main();
