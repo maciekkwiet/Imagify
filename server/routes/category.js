@@ -9,7 +9,7 @@ router.post('/create', async (req, res) => {
   console.log(_id);
   const searchName = await Category.findOne({ user: _id });
   console.log('name' + searchName);
-  if (searchName.name != req.body.name || searchName.name === null) {
+  if (searchName === null || searchName.name != req.body.name) {
     const folder = new Category({
       // name: req.body.name,
       // images: req.body.images,
