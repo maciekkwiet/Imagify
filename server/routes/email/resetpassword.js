@@ -17,6 +17,8 @@ router.post('/reset', async (req, res) => {
   const token = jwt.sign({ _id: user._id }, jwtKey);
   res.header('auth', token).json({ email });
   user.resetToken = token;
+
+  //ZMIENIĆ!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   user.resetTokenExpiration = Date.now() + 4000000;
 
   if (!user) return res.status(400).json({ error: 'Invalid email' });
@@ -25,17 +27,16 @@ router.post('/reset', async (req, res) => {
     await sendWelcomeEmail(user.email, items.subject, items.text, items.html, token);
     user.save();
   }
- 
 });
 
 router.post('/create', async (req, res) => {
-  const { resetToken } = req.query;
-  // console.log(resetToken);
+  const { ResetToken } = req.query;
+  console.log(ResetToken);
   // console.log(password);
-  if (!resetToken) return res.status(401).json({ error: 'No token' });
+  if (!ResetToken) return res.status(401).json({ error: 'No token' });
 
   try {
-    const user = jwt.verify(resetToken, jwtKey);
+    const user = jwt.verify(ResetToken, jwtKey);
     const { _id } = user;
     console.log('ID' + _id);
 
