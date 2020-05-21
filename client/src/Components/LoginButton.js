@@ -1,8 +1,10 @@
 import store from '../Store';
+import HandleUserInfoToken from './HandleUserInfoToken';
 
 class LoginButton extends HTMLElement {
   connectedCallback() {
     this.render();
+    HandleUserInfoToken(this);
     this.querySelector('div').addEventListener('click', () => this.openModal());
   }
 
