@@ -1,8 +1,4 @@
 import axios from 'axios';
-import faker from 'faker';
-import store from '../Store';
-import $ from 'jquery';
-import { switchAll } from 'rxjs/operators';
 
 class UserInfo extends HTMLElement {
   async connectedCallback() {
@@ -20,8 +16,7 @@ class UserInfo extends HTMLElement {
     return response.data.user.email;
   }
   render() {
-    const userPlace = document.querySelector('.userPlace');
-    userPlace.innerHTML = `
+    this.innerHTML = `
     <div>${this.email}</div>
     `;
   }
