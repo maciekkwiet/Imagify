@@ -1,5 +1,4 @@
 import axios from 'axios';
-import HandleUserInfoToken from './HandleUserInfoToken';
 
 class UserInfo extends HTMLElement {
   async connectedCallback() {
@@ -7,7 +6,6 @@ class UserInfo extends HTMLElement {
     this.getEmail();
     this.email = await this.getEmail();
     this.render();
-    HandleUserInfoToken(this);
   }
   async getEmail() {
     const response = await axios.get('/api/me', {
@@ -19,7 +17,7 @@ class UserInfo extends HTMLElement {
   }
   render() {
     this.innerHTML = `
-    <div id="user-info">${this.email}</div>
+    <div>${this.email}</div>
     `;
   }
 }
