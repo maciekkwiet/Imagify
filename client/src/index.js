@@ -23,7 +23,6 @@ const setup = () => {
   customElements.define('app-loginform', LoginForm);
   customElements.define('app-registrationform', RegistrationForm);
   customElements.define('app-avatar', Avatar);
-  //customElements.define('app-avatarplace', Avatar);
   customElements.define('app-modal', Modal);
   customElements.define('app-loginbutton', LoginButton);
   customElements.define('app-loginorregister', LoginOrRegister);

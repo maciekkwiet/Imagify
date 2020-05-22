@@ -1,31 +1,23 @@
 import $ from 'jquery';
 import axios from 'axios';
-
 import { toBase64 } from '../utils';
 
 class Avatar extends HTMLElement {
   connectedCallback() {
-    this.avatarPlace = document.createElement('app-avatarplace');
-    this.avatar = document.createElement('app-avatar');
-    this.renderAvatarPlace();
-    this.renderUploadWindow();
-
-    this.chooseBox = document.querySelector('.choose-box');
-    this.chooseBox.appendChild(this.avatarPlace);
+    this.renderUploadContent();
+    this.avatarPlace = document.querySelector('.userIcon');
     this.input = document.querySelector('input[type = "file"]');
     document.querySelector('.attachButton').addEventListener('click', () => {
       this.uploadAvatar();
     });
-    console.log(document.querySelector('.attachButton'));
   }
   async uploadAvatar() {
     const token = localStorage.getItem('token');
     const photo = await toBase64(this.input.files[0]);
     try {
       const response = await axios.post('api/upload-avatar', { photo }, { headers: { 'x-auth': token } });
-      console.log(response);
-
-      //this.closeModal();
+      this.uploadedImage = response.data.avatar;
+      this.renderAvatarImage();
     } catch (ex) {
       console.error(ex);
       $('body').toast({
@@ -33,9 +25,10 @@ class Avatar extends HTMLElement {
       });
     }
   }
-  renderUploadWindow() {
+  renderUploadContent() {
     this.innerHTML = `
-      <i class="close icon"></i>
+<div class="ui tiny modal">
+<i class="close icon"></i>
       <div class="actions">
         <div class="ui button inputFile">
           <input type="file"/>
@@ -44,13 +37,17 @@ class Avatar extends HTMLElement {
             <i class="checkmark icon"></i>
           </div>
       </div>
+  </div>
+  </div>
+      </div>
     `;
   }
-  renderAvatarPlace() {
+  renderAvatarImage() {
     this.avatarPlace.innerHTML = `
-    <img src="https://cdn.pixabay.com/photo/2017/10/05/21/30/kakturs-2821095_1280.jpg" class = "avatar">
+    <img src=${this.uploadedImage} class = "avatar">
     `;
   }
 }
+
 
 export default Avatar;

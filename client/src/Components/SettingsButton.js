@@ -1,34 +1,49 @@
 import store from '../Store';
+import $ from 'jquery';
 
 class SettingsButton extends HTMLElement {
   connectedCallback() {
-    console.log('dupa');
     this.render();
-    this.querySelector('div').addEventListener('click', () => this.openModal());
+    this.querySelector('#wrenchIcon').addEventListener('click', () => {
+    this.openDropDown();
+    });
+    this.querySelector('#setAvatar').addEventListener('click', () => {
+    this.openAvatarModal();
+    });
   }
-
-  openModal() {
-    const content = this.modalContent;
-    store.modal.next({ type: 'OPEN', content });
+  
+  openDropDown() {
+    $(' .ui.dropdown')
+  .dropdown('refresh'
+  )
+   }
+    refreshDropDown() {
+    $(' .ui.dropdown')
+  .dropdown('refresh'
+  )
+;
   }
-
-  //   toggleDisplay() {
-  //     this.isLoginOpen = !this.isLoginOpen;
-  //     this.render();
-  //   }
-
   render() {
     this.innerHTML = `
-    <div class="ui  button settingsButton">
-    <i class="tools icon"></i>
+    <div class="ui icon top left pointing dropdown button">
+     <i class="wrench icon" id = "wrenchIcon"></i>
+     <div class="menu">
+      <div class="item" id = "favourites">favourites</div>
+      <div class="item" id = "setAvatar">set avatar</div>
+      <div class="item" id = "changePassword">change password</div>
+      <div class="item" id = "logOut">log out</div>
+     </div>
     </div>`;
   }
-
-  get modalContent() {
+  openAvatarModal() {
+    const content = this.avatarModalContent;
+    store.modal.next({ type: 'OPEN', content });
+  }
+  get avatarModalContent() {
     return `
-    <div class="ui tiny modal">
       <app-avatar class="content"></<app-avatar>
-    </div>`;
+    `;
   }
+  
 }
 export default SettingsButton;
