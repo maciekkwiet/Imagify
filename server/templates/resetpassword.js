@@ -27,22 +27,21 @@ router.post('/reset', async (req, res) => {
 
 router.post('/create', async (req, res) => {
   const { resetToken } = req.params;
-  console.log(resetToken);
   if (!resetToken) return res.status(401).json({ error: 'No token' });
+  const test = User.findOne({ resetToken: resetToken, resetTokenExpiration: { $gt: Date.now() } });
 
-  try {
+  if (test) {
     const user = jwt.verify(resetToken, jwtKey);
     const { _id } = user;
 
     if (_id) {
       const salt = await bcrypt.genSalt(10);
       const password = await bcrypt.hash(req.query.password, salt);
-      // user.finOne({ resetToken: resetToken, resetTokenExpiration: { $gt: Date.now() } });
       await User.findOneAndUpdate({ _id: user._id }, { $set: { password } }, { new: true });
       return res.json({ user });
     }
-  } catch (ex) {
-    res.status(400).json({ error: 'Invalid token' });
   }
+
+  res.status(400).json({ error: 'Invalid token' });
 });
 module.exports = router;
