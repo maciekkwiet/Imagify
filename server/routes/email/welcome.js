@@ -11,9 +11,5 @@ const sendWelcomeEmail = (email, subject, text, html) => {
     text: `${text}`,
     html: `${html}`,
   });
-  // console.log('sendWelcom email' + email);
-  // console.log('sendWelcom email' + subject);
-  // console.log('sendWelcom email' + text);
-  // console.log('sendWelcom email' + html);
 };
 module.exports = { sendWelcomeEmail };
