@@ -9,7 +9,6 @@ const passport = require('passport');
 const cookieParser = require('cookie-parser');
 
 const app = express();
-const fileupload = require('express-fileupload');
 
 const initializeFacebookStrategy = require('./config/passport-facebook');
 const router = require('./routes');
@@ -20,7 +19,7 @@ const dbKey = process.env.DB_KEY;
 
 mongoose
   .connect(dbKey, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => console.log('Connecting with Data Base User is ok'))
+  .then(() => console.log('Connecting with Data Base is ok'))
   .catch(() => console.error('Error with Data Base'));
 
 app.use(passport.initialize()); // inicjalizacja passporta
@@ -41,4 +40,3 @@ app.get('/', function (req, res) {
 });
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
-
