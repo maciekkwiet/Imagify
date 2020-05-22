@@ -1,13 +1,10 @@
 const express = require('express');
 const router = express.Router();
-
 const { User } = require('../model/user');
 
 router.get('/', async (req, res) => {
-
   const { favourities } = req.user;
   res.send({ favourities });
-
 });
 
 router.post('/:url', async (req, res) => {
@@ -23,18 +20,10 @@ router.post('/:url', async (req, res) => {
 
 router.delete('/:url', async (req, res) => {
   const { url } = req.params;
-
-  const { _id } = req.user;
-  let user = await User.findOne({ _id });
-  const newarray = favourities.filter((el) => el !== url);
-  req.user.save();
-  res.json({ favourities: newarray });
-
   let { favourities } = req.user;
   favourities = favourities.filter((el) => el !== url);
   await User.findOneAndUpdate({ _id: req.user._id }, { $set: { favourities } }, { new: true });
   res.json({ favourities });
-
 });
 
 module.exports = router;
