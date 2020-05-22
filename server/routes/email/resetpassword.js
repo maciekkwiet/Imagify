@@ -13,13 +13,12 @@ const jwtKey = process.env.JWT_SECRET2;
 router.post('/reset', async (req, res) => {
   const { email } = req.query;
   const user = await User.findOne({ email });
+  const tokenLifeTime = 2 * 60 * 60 * 1000;
 
   const token = jwt.sign({ _id: user._id }, jwtKey);
   res.header('auth', token).json({ email });
   user.resetToken = token;
-
-  //ZMIENIĆ!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  user.resetTokenExpiration = Date.now() + 4000000;
+  user.resetTokenExpiration = Date.now() + tokenLifeTime;
 
   if (!user) return res.status(400).json({ error: 'Invalid email' });
   else {
@@ -31,26 +30,20 @@ router.post('/reset', async (req, res) => {
 
 router.post('/create', async (req, res) => {
   const { ResetToken } = req.query;
-  console.log(ResetToken);
-  // console.log(password);
   if (!ResetToken) return res.status(401).json({ error: 'No token' });
+  const testAccount = User.findOne({ resetToken: ResetToken, resetTokenExpiration: { $gt: Date.now() } });
 
-  try {
+  if (testAccount) {
     const user = jwt.verify(ResetToken, jwtKey);
     const { _id } = user;
-    console.log('ID' + _id);
 
     if (_id) {
       const salt = await bcrypt.genSalt(10);
       const password = await bcrypt.hash(req.query.password, salt);
-      // user.finOne({ resetToken: resetToken, resetTokenExpiration: { $gt: Date.now() } });
       await User.findOneAndUpdate({ _id: user._id }, { $set: { password } }, { new: true });
-      // console.log(doc);
       return res.json({ user });
     }
-  } catch (ex) {
-    console.log(ex);
-    res.status(400).json({ error: 'Invalid token' });
   }
+  res.status(400).json({ error: 'Invalid token' });
 });
 module.exports = router;
