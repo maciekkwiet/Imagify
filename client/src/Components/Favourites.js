@@ -4,7 +4,7 @@
 class Favourites extends HTMLElement {
     connectedCallback() {
 this.render ();
-this.button = this.querySelector("favourites");
+this.button = this.querySelector("app-favourites");
 //this.addEventListener('click', () => this.favourites());
     }
 render () {

@@ -1,4 +1,4 @@
-favourites {
+app-favourites {
   
   input 
 {
@@ -7,22 +7,21 @@ favourites {
   visibility: hidden;
 }
 label {
-  width: 50px;
-  height: 50px;
+  width: 35px;
+  height: 35px;
   border: 2px solid #FFf;
   border-radius: 50px;
   background: linear-gradient(to right, #5b86f5, #36f5dc);
   position:absolute;
-  left: 20%;
-  top: 20%;
+ 
   transform: translate(-50%, -50%);
-  font-size: 25px;
+  font-size: 15px;
   overflow: hidden;
   transition: 0.6s all;
 }
 label:hover{
   cursor:pointer;
-  width: 170px;
+  width: 100px;
 }
 span {
   left: 25%;
@@ -63,7 +62,7 @@ input:checked + label {
   border: 2px solid #fff;
   box-shadow: 0px 0px 10px white;
   transition: 0.3s all;
-  width: 50px;
+  width: 35px;
 }
 input:checked + label span{
   display: none;
@@ -77,7 +76,7 @@ input:checked + label sync{
   animation-name: syncing;
   animation-iteration-count: 1;
   animation-delay:  0.2s;
-  animation-duration: 2s;
+  animation-duration: 1.5s;
 }
 
 
@@ -88,7 +87,7 @@ input:checked + label check{
   animation-delay: .6s;
   animation-duration: 1s;
   animation-fill-mode: forwards;
-  font-size: 50px;
+  font-size: 31px;
   transform: translate(-100%,-100%)
   }
  
@@ -211,30 +210,13 @@ body {
         img {
            height: auto;
             }
-            :hover {background: black ;
-            }
+           
       }  
   
       @import url(https://fonts.googleapis.com/css?family=Raleway);
 
-
-img img-overlay {
-  background: rgba(0,0,0,0.7);
-  position: absolute;
-  height: 99%;
-  width: 100%;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  opacity: 0;
-  -webkit-transition: all 0.4s ease-in-out 0s;
-  -moz-transition: all 0.4s ease-in-out 0s;
-  transition: all 0.4s ease-in-out 0s;
-}
-
-img:hover img-overlay{
-  opacity: 1;
+img:nth-child() {
+  top: 20%
 }
 
 
