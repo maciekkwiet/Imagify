@@ -6,6 +6,7 @@ class Store {
     this.services = new Observable();
     this.modal = new Subject();
     this.token = new Observable();
+    this.user = new Observable();
   }
 }
 
