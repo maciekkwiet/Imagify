@@ -16,23 +16,19 @@ mongoose
   .then(() => console.log('Connecting with Data Base is ok'))
   .catch(() => console.error('Error with Data Base'));
 
-app.use(express.static(__dirname + '/public/resetpassword')); //connect with CSS and clear JS
+app.use(express.static(__dirname + '/public/resetpassword'));
 
 app.get('/passwordreset', (req, res) => {
   const fileName = path.join(__dirname, 'public/resetpassword/resetpassword.html');
-  // res.sendFile(__dirname + '/public/resetpasswort/resetpasswort.html');
   res.sendFile(fileName);
 });
 
-// const reset = require('./routes/email/emailitems');
-// const token = reset.reset.token;
-
-app.get('/passwordcreate:resetToken', (req, res) => {
+app.get('/passwordcreate/:resetToken', (req, res) => {
   const fileName = path.join(__dirname, 'public/resetpassword/createpassword.html');
   res.sendFile(fileName);
 });
 
 app.use(express.json());
-app.use('/api', router); //na endpoint api dzieje się to co jest w router
+app.use('/api', router);
 app.use(error);
 app.listen(port, () => console.log(`Listening on port ${port}`));

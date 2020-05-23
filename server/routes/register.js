@@ -22,7 +22,7 @@ router.post('/', async (req, res) => {
   await user.save();
   const token = jwt.sign({ _id: user._id }, jwtKey);
 
-  res.header('auth', token).json(_.pick(user, ['email', 'favourities', token]));
+  res.header('x-auth', token).json(_.pick(user, ['email', 'favourities', token]));
 
   const itemsWelcom = await Welcome.welcome(user.email);
   await sendWelcomeEmail(user.email, itemsWelcom.subject, itemsWelcom.text, itemsWelcom.html);

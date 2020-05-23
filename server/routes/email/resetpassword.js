@@ -8,7 +8,7 @@ const reset = require('./emailitems');
 const { User } = require('../../model/user');
 const { sendWelcomeEmail } = require('./email');
 
-const jwtKey = process.env.JWT_SECRET2;
+const jwtKey = process.env.JWT_RESET_SECRET;
 
 router.post('/reset', async (req, res) => {
   const { email } = req.query;
@@ -29,12 +29,12 @@ router.post('/reset', async (req, res) => {
 });
 
 router.post('/create', async (req, res) => {
-  const { ResetToken } = req.query;
-  if (!ResetToken) return res.status(401).json({ error: 'No token' });
-  const testAccount = User.findOne({ resetToken: ResetToken, resetTokenExpiration: { $gt: Date.now() } });
+  const { resetToken: resetToken } = req.query;
+  if (!resetToken) return res.status(401).json({ error: 'No token' });
+  const accountValidity = User.findOne({ resetToken: resetToken, resetTokenExpiration: { $gt: Date.now() } });
 
-  if (testAccount) {
-    const user = jwt.verify(ResetToken, jwtKey);
+  if (accountValidity) {
+    const user = jwt.verify(resetToken, jwtKey);
     const { _id } = user;
 
     if (_id) {

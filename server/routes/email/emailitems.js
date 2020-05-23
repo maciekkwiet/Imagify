@@ -144,7 +144,7 @@ const welcome = (email) => {
 
 const reset = (email, token) => {
   this.token = token;
-  let url = 'http://localhost:12345/passwordcreate:' + token;
+  let url = 'http://localhost:12345/passwordcreate/:' + token;
   let subject;
   let text;
   let html;
