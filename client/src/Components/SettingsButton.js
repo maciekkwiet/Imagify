@@ -5,24 +5,17 @@ class SettingsButton extends HTMLElement {
   connectedCallback() {
     this.render();
     this.querySelector('#wrenchIcon').addEventListener('click', () => {
-    this.openDropDown();
+      this.openDropDown();
     });
     this.querySelector('#setAvatar').addEventListener('click', () => {
-    this.openAvatarModal();
+      this.openAvatarModal();
     });
   }
-  
+
   openDropDown() {
-    $(' .ui.dropdown')
-  .dropdown('refresh'
-  )
-   }
-    refreshDropDown() {
-    $(' .ui.dropdown')
-  .dropdown('refresh'
-  )
-;
+    $(' .ui.dropdown').dropdown('refresh');
   }
+
   render() {
     this.innerHTML = `
     <div class="ui icon top left pointing dropdown button">
@@ -44,6 +37,5 @@ class SettingsButton extends HTMLElement {
       <app-avatar class="content"></<app-avatar>
     `;
   }
-  
 }
 export default SettingsButton;

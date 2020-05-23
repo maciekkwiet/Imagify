@@ -8,7 +8,6 @@ import ApiPicker from './Components/ApiPicker.js';
 import Image from './Components/Image.js';
 import LoginForm from './Components/LoginForm.js';
 import RegistrationForm from './Components/RegistrationForm.js';
-import './style/imports.scss';
 import Avatar from './Components/Avatar.js';
 import Modal from './Components/Modal.js';
 import LoginButton from './Components/LoginButton.js';

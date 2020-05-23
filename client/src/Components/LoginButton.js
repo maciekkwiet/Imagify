@@ -2,8 +2,6 @@ import store from '../Store';
 
 class LoginButton extends HTMLElement {
   connectedCallback() {
-    console.log('dupa');
-
     this.render();
     this.querySelector('div').addEventListener('click', () => this.openModal());
   }

@@ -4,9 +4,9 @@ import { toBase64 } from '../utils';
 
 class Avatar extends HTMLElement {
   connectedCallback() {
-    this.renderUploadContent();
+    this.render();
     this.avatarPlace = document.querySelector('.userIcon');
-    this.input = document.querySelector('input[type = "file"]');
+    this.input = this.querySelector('input[type = "file"]');
     document.querySelector('.attachButton').addEventListener('click', () => {
       this.uploadAvatar();
     });
@@ -25,21 +25,21 @@ class Avatar extends HTMLElement {
       });
     }
   }
-  renderUploadContent() {
+  render() {
     this.innerHTML = `
 <div class="ui tiny modal">
-<i class="close icon"></i>
-      <div class="actions">
-        <div class="ui button inputFile">
-          <input type="file"/>
-          <div class="ui positive right labeled icon button attachButton">
-            Attach avatar
-            <i class="checkmark icon"></i>
-          </div>
+  <i class="close icon"></i>
+  <div class="actions">
+    <div class="ui button inputFile">
+      <input type="file"/>
+      <div class="ui positive right labeled icon button attachButton">
+        Attach avatar
+        <i class="checkmark icon"></i>
       </div>
+    </div>
   </div>
-  </div>
-      </div>
+</div>
+     
     `;
   }
   renderAvatarImage() {
@@ -48,6 +48,5 @@ class Avatar extends HTMLElement {
     `;
   }
 }
-
 
 export default Avatar;
