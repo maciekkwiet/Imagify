@@ -20,7 +20,7 @@ class LoginButton extends HTMLElement {
     this.innerHTML = `
     <div class="ui big button beginButton">
       <i class="user icon"></i>
-      Login or Sign Up
+      <h3> Login or Sign Up </h3> 
     </div>`;
   }
 

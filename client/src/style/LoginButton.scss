@@ -1,0 +1,12 @@
+@import 'partials/mixins';
+
+app-loginbutton {
+  @media screen and (max-width: 767px) {
+    .beginButton {
+      max-width: 50%;
+      h3 {
+        display: none;
+      }
+    }
+  }
+}
