@@ -8,9 +8,11 @@ import ApiPicker from './Components/ApiPicker.js';
 import Image from './Components/Image.js';
 import LoginForm from './Components/LoginForm.js';
 import RegistrationForm from './Components/RegistrationForm.js';
+import Avatar from './Components/Avatar.js';
 import Modal from './Components/Modal.js';
 import LoginButton from './Components/LoginButton.js';
 import LoginOrRegister from './Components/LoginOrRegister.js';
+import SettingsButton from './Components/SettingsButton';
 
 const setup = () => {
   customElements.define('app-searchbar', SearchBar);
@@ -19,9 +21,11 @@ const setup = () => {
   customElements.define('app-image', Image);
   customElements.define('app-loginform', LoginForm);
   customElements.define('app-registrationform', RegistrationForm);
+  customElements.define('app-avatar', Avatar);
   customElements.define('app-modal', Modal);
   customElements.define('app-loginbutton', LoginButton);
   customElements.define('app-loginorregister', LoginOrRegister);
+  customElements.define('app-settingsbutton', SettingsButton);
 };
 
 window.addEventListener('load', setup);

@@ -15,7 +15,6 @@ class LoginButton extends HTMLElement {
     this.isLoginOpen = !this.isLoginOpen;
     this.render();
   }
-
   render() {
     this.innerHTML = `
     <div class="ui big button beginButton">
