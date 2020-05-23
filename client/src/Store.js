@@ -5,6 +5,7 @@ class Store {
     this.searchTextInput = new Observable();
     this.services = new Observable();
     this.modal = new Subject();
+    this.token = new Observable();
   }
 }
 

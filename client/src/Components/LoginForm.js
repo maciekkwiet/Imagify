@@ -69,7 +69,7 @@ class LoginForm extends HTMLElement {
         });
         const token = response.data.token;
         localStorage.setItem('token', token);
-        document.querySelector('.userPlace').innerHTML = `<label>${this.email}</label>`;
+        document.querySelector('app-token').innerHTML = `<app-token></app-token>`;
       } catch (ex) {
         $('body').toast({
           message: ex.response.data.error,

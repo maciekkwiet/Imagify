@@ -13,6 +13,7 @@ import Modal from './Components/Modal.js';
 import LoginButton from './Components/LoginButton.js';
 import LoginOrRegister from './Components/LoginOrRegister.js';
 import SettingsButton from './Components/SettingsButton';
+import Token from './Components/Token';
 
 const setup = () => {
   customElements.define('app-searchbar', SearchBar);
@@ -26,6 +27,7 @@ const setup = () => {
   customElements.define('app-loginbutton', LoginButton);
   customElements.define('app-loginorregister', LoginOrRegister);
   customElements.define('app-settingsbutton', SettingsButton);
+  customElements.define('app-token', Token);
 };
 
 window.addEventListener('load', setup);

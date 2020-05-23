@@ -10,6 +10,14 @@ class SettingsButton extends HTMLElement {
     this.querySelector('#setAvatar').addEventListener('click', () => {
       this.openAvatarModal();
     });
+    this.querySelector('#logOut').addEventListener('click', () => {
+      this.logOut();
+    });
+  }
+
+  logOut() {
+    localStorage.removeItem('token');
+    document.querySelector('app-token').innerHTML = `<app-token></app-token>`;
   }
 
   openDropDown() {
