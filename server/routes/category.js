@@ -6,9 +6,9 @@ const router = express.Router();
 router.post('/create', async (req, res) => {
   const currentUser = req.user;
   const { _id } = currentUser;
-  const searchName = await Category.findOne({ user: _id });
+  const category = await Category.findOne({ user: _id });
 
-  if (searchName === null || searchName.name != req.body.name) {
+  if (category === null || category.name != req.body.name) {
     const folder = new Category({
       ...req.body,
       user: _id,
@@ -20,17 +20,20 @@ router.post('/create', async (req, res) => {
   }
 });
 
-router.post('/:url', async (req, res) => {
-  const { url } = req.params;
+router.post('/add', async (req, res) => {
+  const { url } = req.body;
   const { _id } = req.user;
   const { name } = req.body;
-  let folder = await Category.findOne({ user: _id, name });
-  if (folder && !folder.images.includes(url)) {
+  const folder = await Category.findOne({ user: _id, name });
+
+  if (!folder) {
+    res.json({ error: "This folder doesn't exist" });
+  } else if (folder && folder.images.includes(url)) {
+    res.json({ error: 'This photo already exist in this folder' });
+  } else {
     folder.images.push(url);
     folder.save();
     res.json({ folder: folder });
-  } else {
-    res.json({ error: 'You can not add the photos to this folder' });
   }
 });
 
