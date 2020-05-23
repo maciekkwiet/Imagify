@@ -10,7 +10,6 @@ class Image extends HTMLElement {
     this.render(this.url);
     this.image = this.querySelector('#image');
     this.image.addEventListener('click', () => {
-      console.log('kliknąłem na fotke');
       this.openImage();
     });
 
