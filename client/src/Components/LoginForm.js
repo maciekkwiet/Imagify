@@ -1,6 +1,7 @@
 import axios from 'axios';
 import $ from 'jquery';
 import store from '../Store';
+import Token from './TokenSubject';
 
 class LoginForm extends HTMLElement {
   connectedCallback() {
@@ -68,8 +69,9 @@ class LoginForm extends HTMLElement {
         });
         const token = response.data.token;
         localStorage.setItem('token', token);
-        document.querySelector('.userPlace').innerHTML = `<app-userinfo></app-userinfo>
-`;
+        Token.sendToken();
+        Token.receiveToken();
+        this.closeModal();
       } catch (ex) {
         $('body').toast({
           message: ex.response.data.error,
