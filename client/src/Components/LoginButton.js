@@ -18,8 +18,8 @@ class LoginButton extends HTMLElement {
 
   render() {
     this.innerHTML = `
-    <div class="ui big button beginButton">
-      <i class="user icon"></i>
+    <div class="ui centered grid big button beginButton">
+      <i class="ui column user icon"></i>
       <h3> Login or Sign Up </h3> 
     </div>`;
   }
