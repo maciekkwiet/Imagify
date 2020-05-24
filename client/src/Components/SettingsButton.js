@@ -17,6 +17,7 @@ class SettingsButton extends HTMLElement {
 
   logOut() {
     localStorage.removeItem('token');
+    store.token.next();
   }
 
   openDropDown() {

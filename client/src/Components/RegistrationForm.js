@@ -32,8 +32,8 @@ class RegistrationForm extends HTMLElement {
 
         const token = response.headers.auth;
         localStorage.setItem('token', token);
-        //document.querySelector('.userPlace').innerHTML = `<label>${this.email}</label>`;
-        document.querySelector('app-token').innerHTML = `<app-token></app-token>`;
+        store.token.next(token);
+        this.closeModal();
       } catch (ex) {
         $('body').toast({
           message: ex.response.data.error,
