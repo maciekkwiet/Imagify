@@ -10,27 +10,32 @@ class Favourites extends HTMLElement {
       this.handleClick();
     });
   }
+
   render() {
     this.innerHTML = `   
-  <input type="checkbox" ${this.isChecked ? 'checked' : ''}>
-  <label for="sub">
-       <heart><i class="fas fa-heart"></i></heart>
-       <check><i class="fas fa-check-circle"></i></check>
-       <span>Favourite</span>
-     </label>
+      <input type="checkbox" ${this.isChecked ? 'checked' : ''}>
+      <label for="sub">
+        <heart><i class="fas fa-heart"></i></heart>
+        <check><i class="fas fa-check-circle"></i></check>
+        <span>Favourite</span>
+      </label>
   `;
   }
+
   async handleClick() {
-    console.log('dupa');
+    console.log('XX');
     const token = localStorage.getItem('token');
     if (!this.isChecked) {
+      console.log('if');
       this.addToFavourites(token);
-      this.isChecked = !this.isChecked;
+      this.isChecked = true;
     } else {
-      (await this.deleteFromFavourites(token)) && (this.isChecked = !this.isChecked);
+      console.log('else');
+      (await this.deleteFromFavourites(token)) && (this.isChecked = false);
     }
     this.render();
   }
+
   async addToFavourites(token) {
     try {
       const response = await axios.post(
@@ -52,6 +57,24 @@ class Favourites extends HTMLElement {
       return false;
     }
   }
-  deleteFromFavourites(token) {}
+
+  async deleteFromFavourites(token) {
+    console.log(token);
+    console.log('delete');
+    try {
+      const response = await axios.delete(
+        `api/favourities/`,
+
+        { headers: { 'x-auth': token }, data: { url: this.url } },
+      );
+      console.log(response);
+      return true;
+    } catch (ex) {
+      $('body').toast({
+        message: ex.response.data.error,
+      });
+      return false;
+    }
+  }
 }
 export default Favourites;
