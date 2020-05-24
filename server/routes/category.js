@@ -2,7 +2,7 @@ const { Category } = require('../model/category');
 const express = require('express');
 
 const router = express.Router();
-
+// create folder
 router.post('/create', async (req, res) => {
   const currentUser = req.user;
   const { _id } = currentUser;
@@ -19,8 +19,8 @@ router.post('/create', async (req, res) => {
     res.json({ text: 'This folder already exist' });
   }
 });
-
-router.post('/', async (req, res) => {
+// add image
+router.post('/image', async (req, res) => {
   const { url } = req.body;
   const { _id } = req.user;
   const { name } = req.body;
@@ -36,7 +36,29 @@ router.post('/', async (req, res) => {
     res.json({ folder: folder });
   }
 });
+//delete image
+router.delete('/image', async (req, res) => {
+  const { url } = req.body;
+  const { _id } = req.user;
+  const { name } = req.body;
+  const folder = await Category.findOne({ user: _id, name });
 
+  if (!folder) {
+    res.json({ error: "This folder doesn't exist" });
+  } else if (folder) {
+    let { images } = folder;
+    console.log('1' + images);
+    images = images.filter((image) => image !== url);
+    console.log('2' + images);
+    console.log('3' + images);
+    console.log(folder.name);
+    await Category.findOneAndUpdate({ name: folder.name }, { $set: { images: images } }, { new: true });
+    console.log('3' + images);
+    res.json({ folder });
+    console.log('4' + images);
+  }
+});
+//delete folder
 router.delete('/', async (req, res) => {
   const { _id } = req.user;
   const { name } = req.body;
