@@ -30,10 +30,10 @@ class UserInfo extends HTMLElement {
 
   render(token) {
     if (!token) {
-      this.innerHTML = `<app-loginbutton class="toAction column five wide Images userPlace choose-box"></app-loginbutton>`;
+      this.innerHTML = `<app-loginbutton></app-loginbutton>`;
     } else {
       this.innerHTML = `
-    <div class="toAction column five wide Images userPlace choose-box">
+    <div>
         <app-settingsbutton></app-settingsbutton>
         <label>${store.user.email}</label>
     </div>`;
