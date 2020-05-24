@@ -16,11 +16,10 @@ class UserInfo extends HTMLElement {
     try {
       const response = await axios.get('/api/me', {
         headers: {
-          'x-auth': `${token}`,
+          'x-auth': token,
         },
       });
       store.user = response.data.user;
-      console.log(store.user);
     } catch (ex) {
       console.error(ex);
       this.render();
