@@ -17,7 +17,6 @@ class SettingsButton extends HTMLElement {
 
   logOut() {
     localStorage.removeItem('token');
-    document.querySelector('app-token').innerHTML = `<app-token></app-token>`;
   }
 
   openDropDown() {
