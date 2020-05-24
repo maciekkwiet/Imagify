@@ -1,0 +1,101 @@
+app-favourites {
+  
+    input 
+  {
+    width: 0;
+    height: 0;
+    visibility: hidden;
+  }
+  label {
+    width: 35px;
+    height: 35px;
+    border: 2px solid #FFf;
+    border-radius: 50px;
+    background: linear-gradient(to right, #5b86f5, #36f5dc);
+    position:absolute;
+   
+    transform: translate(-50%, -50%);
+    font-size: 15px;
+    overflow: hidden;
+    transition: 0.6s all;
+  }
+  label:hover{
+    cursor:pointer;
+    width: 100px;
+  }
+  span {
+    left: 25%;
+    top: 25%;
+    transition: 0.6 all;
+    position: relative;
+    opacity: 0;
+  }
+  .fas {
+    transform: translate(50%, 50%);
+    color: rgba(255,0,0,.9);
+    transition: 0.6s all;
+  }
+  .fa, .fab, .fal, .far, .fas {
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    line-height: 1;
+  }
+  label:hover > span {
+    opacity: 1;
+    color: #fff;
+    position: absolute;
+  }
+  sync, check {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    opacity: 0;
+  }
+  
+  input:checked + label {
+    background: linear-gradient(to right, #5b86f5, #36f5dc);
+    border: 2px solid #fff;
+    box-shadow: 0px 0px 10px white;
+    transition: 0.3s all;
+    width: 35px;
+  }
+  input:checked + label span{
+    display: none;
+  }
+  
+  input:checked + label heart {
+    opacity: 0;
+    transition: 0.4s all;
+  }
+  input:checked + label sync{
+    animation-name: syncing;
+    animation-iteration-count: 1;
+    animation-delay:  0.2s;
+    animation-duration: 1.5s;
+  }
+  
+  
+  
+  input:checked + label check{
+    animation-name: checking;
+    animation-iteration-count: 1;
+    animation-delay: .6s;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    font-size: 31px;
+    transform: translate(-100%,-100%)
+    }
+   
+    @keyframes checking {
+      from {opacity: 1;}
+      to {opacity: .5;}
+    }
+    input:active + label {
+      height: 0;
+    }
+  }
