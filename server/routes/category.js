@@ -20,7 +20,7 @@ router.post('/create', async (req, res) => {
   }
 });
 
-router.post('/add', async (req, res) => {
+router.post('/', async (req, res) => {
   const { url } = req.body;
   const { _id } = req.user;
   const { name } = req.body;
@@ -34,6 +34,19 @@ router.post('/add', async (req, res) => {
     folder.images.push(url);
     folder.save();
     res.json({ folder: folder });
+  }
+});
+
+router.delete('/', async (req, res) => {
+  const { _id } = req.user;
+  const { name } = req.body;
+  const folder = await Category.findOne({ user: _id, name });
+
+  if (!folder) {
+    res.json({ error: "This folder doesn't exist" });
+  } else if (folder) {
+    await Category.findOneAndDelete({ user: _id, name });
+    res.json({ text: 'This folder was deleted' });
   }
 });
 
