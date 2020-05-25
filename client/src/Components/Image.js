@@ -4,6 +4,7 @@ class Image extends HTMLElement {
   constructor() {
     super();
     this.url = this.getAttribute('src');
+    this.removeAttribute('src');
   }
   connectedCallback() {
     this.favourites = document.createElement('app-favourites');

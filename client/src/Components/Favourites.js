@@ -23,14 +23,11 @@ class Favourites extends HTMLElement {
   }
 
   async handleClick() {
-    console.log('XX');
     const token = localStorage.getItem('token');
     if (!this.isChecked) {
-      console.log('if');
       this.addToFavourites(token);
       this.isChecked = true;
     } else {
-      console.log('else');
       (await this.deleteFromFavourites(token)) && (this.isChecked = false);
     }
     this.render();
