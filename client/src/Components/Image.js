@@ -22,7 +22,7 @@ class Image extends HTMLElement {
         method: 'POST'
       }); //go to backend
       console.log(url)*/
-  }
+
   createImage(url) {
     return `<img class="Image-url" src="${url}"/>`;
   }
