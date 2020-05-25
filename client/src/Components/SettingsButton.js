@@ -21,7 +21,7 @@ class SettingsButton extends HTMLElement {
   }
 
   openDropDown() {
-    $(' .ui.dropdown').dropdown('refresh');
+    $('.ui.dropdown').dropdown('refresh');
   }
 
   render() {
