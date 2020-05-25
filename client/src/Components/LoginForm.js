@@ -57,7 +57,6 @@ class LoginForm extends HTMLElement {
   async handleFormSubmit() {
     this.email = $('.ui.form').form('get value', 'email');
     this.password = $('.ui.form').form('get value', 'password');
-    console.log(this.email);
 
     const isCorrect = $('.ui.form').form('is valid');
 
