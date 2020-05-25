@@ -5,8 +5,8 @@ import store from '../Store';
 class RegistrationForm extends HTMLElement {
   connectedCallback() {
     this.render();
-    this.querySelector('#close').addEventListener('click', this.closeModal);
-    this.querySelector('#submit').addEventListener('click', this.handleRegisterForm);
+    this.querySelector('#close').addEventListener('click', () => this.closeModal());
+    this.querySelector('#submit').addEventListener('click', () => this.handleRegisterForm());
     this.email;
     this.password;
     this.confirmPassword;
@@ -32,7 +32,8 @@ class RegistrationForm extends HTMLElement {
 
         const token = response.headers.auth;
         localStorage.setItem('token', token);
-        document.querySelector('.userPlace').innerHTML = `<label>${this.email}</label>`;
+        store.token.next(token);
+        this.closeModal();
       } catch (ex) {
         $('body').toast({
           message: ex.response.data.error,
