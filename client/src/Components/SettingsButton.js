@@ -10,10 +10,18 @@ class SettingsButton extends HTMLElement {
     this.querySelector('#setAvatar').addEventListener('click', () => {
       this.openAvatarModal();
     });
+    this.querySelector('#logOut').addEventListener('click', () => {
+      this.logOut();
+    });
+  }
+
+  logOut() {
+    localStorage.removeItem('token');
+    store.token.next(null);
   }
 
   openDropDown() {
-    $(' .ui.dropdown').dropdown('refresh');
+    $('.ui.dropdown').dropdown('refresh');
   }
 
   render() {
