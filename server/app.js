@@ -19,6 +19,20 @@ mongoose
   .then(() => console.log('Connecting with Data Base is ok'))
   .catch(() => console.error('Error with Data Base'));
 
+app.use(express.static(__dirname + '/public/resetpassword'));
+
+app.get('/passwordreset', (req, res) => {
+  const fileName = path.join(__dirname, 'public/resetpassword/resetpassword.html');
+  res.sendFile(fileName);
+});
+
+app.get('/passwordcreate/:resetToken', (req, res) => {
+  const fileName = path.join(__dirname, 'public/resetpassword/createpassword.html');
+  res.sendFile(fileName);
+});
+
+app.use('/api', router);
+// app.use(error);
 app.use(passport.initialize()); // inicjalizacja passporta
 initializeFacebookStrategy(passport);
 

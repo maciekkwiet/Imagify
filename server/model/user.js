@@ -7,7 +7,6 @@ const User = mongoose.model(
     email: {
       type: String,
       require: true,
-      unique: true,
     },
 
     password: {
@@ -20,6 +19,15 @@ const User = mongoose.model(
       type: [String],
       required: false,
     },
+
+    resetToken: {
+      type: String,
+      require: false,
+    },
+
+    resetTokenExpiration: {
+      type: String,
+      require: false},
     facebookProfile: {
       type: Object,
       required: false,
