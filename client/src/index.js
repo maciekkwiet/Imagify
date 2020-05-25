@@ -8,8 +8,13 @@ import ApiPicker from './Components/ApiPicker.js';
 import Image from './Components/Image.js';
 import LoginForm from './Components/LoginForm.js';
 import RegistrationForm from './Components/RegistrationForm.js';
-import ModalWindow from './Components/ModalWindow.js';
 import Favourites from './Components/Favourites.js';
+import Avatar from './Components/Avatar.js';
+import Modal from './Components/Modal.js';
+import LoginButton from './Components/LoginButton.js';
+import LoginOrRegister from './Components/LoginOrRegister.js';
+import SettingsButton from './Components/SettingsButton';
+import UserInfo from './Components/UserInfo';
 
 const setup = () => {
   customElements.define('app-searchbar', SearchBar);
@@ -19,7 +24,12 @@ const setup = () => {
   customElements.define('app-favourites', Favourites);
   customElements.define('app-loginform', LoginForm);
   customElements.define('app-registrationform', RegistrationForm);
-  customElements.define('app-modalwindow', ModalWindow);
+  customElements.define('app-avatar', Avatar);
+  customElements.define('app-modal', Modal);
+  customElements.define('app-loginbutton', LoginButton);
+  customElements.define('app-loginorregister', LoginOrRegister);
+  customElements.define('app-settingsbutton', SettingsButton);
+  customElements.define('app-userinfo', UserInfo);
 };
 
 window.addEventListener('load', setup);

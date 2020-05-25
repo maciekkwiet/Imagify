@@ -1,37 +1,45 @@
 import axios from 'axios';
+import $ from 'jquery';
+import store from '../Store';
 
 class RegistrationForm extends HTMLElement {
   connectedCallback() {
     this.render();
-    this.token = '';
+    this.querySelector('#close').addEventListener('click', () => this.closeModal());
+    this.querySelector('#submit').addEventListener('click', () => this.handleRegisterForm());
     this.email;
     this.password;
     this.confirmPassword;
-    this.submitButton = this.querySelector('.pickRegister').addEventListener('click', this.handleRegisterForm);
     this.rules();
   }
 
+  closeModal() {
+    store.modal.next({ type: 'CLOSE' });
+  }
+
   async handleRegisterForm() {
-    this.email = document.querySelector('#email').value;
-    this.password = document.querySelector('#password').value;
-    this.confirmPassword = document.querySelector('#confirmPassword').value;
+    this.email = $('.ui.form').form('get value', 'email');
+    this.password = $('.ui.form').form('get value', 'password');
 
-    try {
-      const response = await axios.post('/api/register', {
-        email: `${this.email}`,
-        password: `${this.password}`,
-      });
-      console.log(response);
+    const isCorrect = $('.ui.form').form('is valid');
 
-      this.token = response.headers.auth;
-      localStorage.setItem('token', this.token);
-      console.log(response);
-      document.querySelector('.userPlace').innerHTML = `<label>${this.email}</label>`;
-    } catch (ex) {
-      $('body').toast({
-        message: ex.response.data.error,
-      });
-      console.error(ex);
+    if (isCorrect[0] && isCorrect[1]) {
+      try {
+        const response = await axios.post('/api/register', {
+          email: `${this.email}`,
+          password: `${this.password}`,
+        });
+
+        const token = response.headers.auth;
+        localStorage.setItem('token', token);
+        store.token.next(token);
+        this.closeModal();
+      } catch (ex) {
+        $('body').toast({
+          message: ex.response.data.error,
+        });
+        console.error(ex);
+      }
     }
   }
 
@@ -84,14 +92,14 @@ class RegistrationForm extends HTMLElement {
         <div class="field">
           <label>Username</label>
           <div class="ui left icon input">
-            <input type="email" id="email">
+            <input class="email" type="email" name="email">
             <i class="user icon"></i>
           </div>
         </div>
         <div class="field">
           <label>Password</label>
           <div class="ui left icon input">
-            <input type="password" id="password">
+            <input type="password" name="password" id="password">
             <i class="lock icon"></i>
           </div>
         </div>
@@ -102,9 +110,9 @@ class RegistrationForm extends HTMLElement {
             <i class="lock icon"></i>
           </div>
         </div>
-        <div class = "ui grid relaxed formButtonsStyle" >
-          <div class="ui blue submit button pickRegister formButton">Sign up</div>
-          <div class="ui red submit button pickCloseRegister formButton">Close</div>
+        <div class="fields">
+          <div id="close" class="ui red button">Close</div>
+          <div id="submit" class="ui green submit button">Sign up</div>
         </div>
         <div class ="ui error message"></div>
       </div>`;

@@ -1,15 +1,14 @@
-
 .bar {
-background-color:rgba(255,255,255, 0.9) !important ;
-padding: 10px;
-margin-top: 0vh;
-flex-direction: column;
-border-radius: 25px;
-padding-bottom: 50px;
-justify-content: center;
-align-items: center;
-text-align: center;
-margin-bottom: 7vh;
+  background-color: rgba(255, 255, 255, 0.9) !important ;
+  padding: 10px;
+  margin-top: 0vh;
+  flex-direction: column;
+  border-radius: 25px;
+  padding-bottom: 50px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 7vh;
 }
 $pp-purple: #861A54;
 $pp-blue: #054F7D;
@@ -17,7 +16,7 @@ $pp-ltblue: #00A7CF;
 $sp-yellow: #EFE348;
 body {
   align-items: center;
-  background-image: linear-gradient(to right, $pp-blue,$pp-ltblue,$sp-yellow,$pp-purple,$pp-blue);
+  background-image: linear-gradient(to right, $pp-blue, $pp-ltblue, $sp-yellow, $pp-purple, $pp-blue);
   background-size: 600%;
   background-position: 0 0;
   background-attachment: fixed;
@@ -27,17 +26,29 @@ body {
   animation-duration: 30s;
   animation-iteration-count: infinite;
   animation-name: gradients;
-  z-index: 0 ;
+  z-index: 0;
   height: auto;
   width: 100%;
 }
 @keyframes gradients {
-    0%   {background-position: 0 0;}
-    25% {background-position: 50% 0;}
-    50% {background-position: 90% 0;}
-    60% {background-position: 60%;}
-    75% {background-position: 40%;}
-    100%  {background-position: 0 0;}
+  0% {
+    background-position: 0 0;
+  }
+  25% {
+    background-position: 50% 0;
+  }
+  50% {
+    background-position: 90% 0;
+  }
+  60% {
+    background-position: 60%;
+  }
+  75% {
+    background-position: 40%;
+  }
+  100% {
+    background-position: 0 0;
+  }
 }
 #logo {
   position: flex;
@@ -54,7 +65,7 @@ body {
   color: #fff;
   margin-left: auto;
   margin-right: auto;
-  max-width: 365px ;
+  max-width: 365px;
   height: auto;
   width: 100%;
   font-size: 100px;
@@ -99,7 +110,7 @@ body {
         img {
            height: auto;
             }
-      }  
+      }
       @import url(https://fonts.googleapis.com/css?family=Raleway);
 img:nth-child() {
   top: 20%

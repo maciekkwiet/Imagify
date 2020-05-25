@@ -1,18 +1,16 @@
-import $ from 'jquery';
+import store from '../Store';
 //import Favourites from './Favourites'
 class Image extends HTMLElement {
   constructor() {
     super();
-    this.url = this.getAttribute('src');
+    this.url = this.getAttribute('source');
     this.removeAttribute('src');
   }
   connectedCallback() {
     this.favourites = document.createElement('app-favourites');
     this.render(this.url);
-    this.image = this.querySelector('#image');
-    this.image.addEventListener('click', () => {
-      this.openImage();
-    });
+    this.querySelector('img').addEventListener('click', () => this.openImage());
+  }
 
     /*const button = document.querySelector('favourites'); //catch button
       const form = document.querySelector('heart');
@@ -29,25 +27,20 @@ class Image extends HTMLElement {
     return `<img class="Image-url" src="${url}"/>`;
   }
   openImage() {
-    $(`[id="${this.url}"]`).modal('show');
+    const content = this.modalContent;
+    store.modal.next({ type: 'OPEN', content });
   }
   render(url) {
     this.innerHTML = `
-        <div class="app-image" id="image">
         ${this.createImage(url)}
-        </div>
-        ${this.renderModal()} 
         `;
     this.appendChild(this.favourites);
   }
-  renderModal() {
-    return `<div class="ui modal" id="${this.url}">
-    <div class="header">Header</div>
-    <div class="image content">
-      <img class="image">
-      <div class="description">
-        <img src="${this.url}" alt="Some image">
-      </div>`;
+  get modalContent() {
+    return `
+    <div class="ui basic modal" id="image-modal">
+          <img class="image" src="${this.url}" alt="Some image">
+    </div>`;
   }
 }
 export default Image;

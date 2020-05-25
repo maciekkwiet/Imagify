@@ -1,0 +1,7 @@
+@import 'partials/mixins';
+
+app-loginform {
+  .fields {
+    @include alignItems();
+  }
+}

@@ -7,16 +7,29 @@ const User = mongoose.model(
     email: {
       type: String,
       require: true,
-      unique: true,
     },
 
     password: {
       type: String,
-      require: true,
+      require: false,
+      // unique: true,
     },
 
     favourities: {
       type: [String],
+      required: false,
+    },
+
+    resetToken: {
+      type: String,
+      require: false,
+    },
+
+    resetTokenExpiration: {
+      type: String,
+      require: false},
+    facebookProfile: {
+      type: Object,
       required: false,
     },
   }),
