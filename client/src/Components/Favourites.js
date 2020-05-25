@@ -42,7 +42,6 @@ class Favourites extends HTMLElement {
         },
         { headers: { 'x-auth': token } },
       );
-      console.log(response);
       return true;
     } catch (ex) {
       $('body').toast({
@@ -56,15 +55,12 @@ class Favourites extends HTMLElement {
   }
 
   async deleteFromFavourites(token) {
-    console.log(token);
-    console.log('delete');
     try {
       const response = await axios.delete(
         `api/favourities/`,
 
         { headers: { 'x-auth': token }, data: { url: this.url } },
       );
-      console.log(response);
       return true;
     } catch (ex) {
       $('body').toast({
