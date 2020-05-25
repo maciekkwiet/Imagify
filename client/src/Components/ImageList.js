@@ -15,11 +15,9 @@ class ImageList extends HTMLElement {
 
     this.searchTextInputSubscription = store.searchTextInput
       .pipe(
-        map(
-          (e) => e.target.value,
-          debounceTime(500),
-          filter((text) => text.length > 2),
-        ),
+        map((e) => e.target.value),
+        debounceTime(500),
+        filter((text) => text.length > 2),
       )
       .subscribe((text) => {
         this.refreshImages(text);
@@ -36,7 +34,7 @@ class ImageList extends HTMLElement {
   }
 
   createImage(url) {
-    return `<app-image src=${url}></app-image>`;
+    return `<app-image source=${url}></app-image>`;
   }
 
   render() {

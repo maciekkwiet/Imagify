@@ -1,13 +1,16 @@
 require('dotenv').config();
 require('express-async-errors');
+
+const path = require('path');
 const mongoose = require('mongoose');
 const express = require('express');
-const app = express();
-const path = require('path');
+const passport = require('passport');
+const cookieParser = require('cookie-parser');
 
+const initializeFacebookStrategy = require('./config/passport-facebook');
 const router = require('./routes');
-const error = require('./middleware/error');
 
+const app = express();
 const port = process.env.PORT || 12345;
 
 const dbKey = process.env.DB_KEY;
@@ -28,7 +31,22 @@ app.get('/passwordcreate/:resetToken', (req, res) => {
   res.sendFile(fileName);
 });
 
-app.use(express.json());
 app.use('/api', router);
-app.use(error);
+// app.use(error);
+app.use(passport.initialize()); // inicjalizacja passporta
+initializeFacebookStrategy(passport);
+
+const publicPath = path.join(__dirname, '../', '/client', '/public');
+
+app.use(express.static(publicPath));
+app.use(express.json({ limit: '50mb' }));
+app.use(cookieParser());
+
+app.use('/api', router); //na endpoint api dzieje się to co jest w router
+
+app.get('/', function (req, res) {
+  const indexPath = path.join(publicPath, 'index.html');
+  res.sendFile(indexPath);
+});
+
 app.listen(port, () => console.log(`Listening on port ${port}`));

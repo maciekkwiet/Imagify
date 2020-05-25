@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Imagify</title>
-    <script src="./bundle.min.js" defer></script>
+    <script src="./dist/bundle.min.js" defer></script>
     <link href="https://fonts.googleapis.com/css2?family=Alatsi&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Parisienne&display=swap" rel="stylesheet" />
   </head>
@@ -16,15 +16,16 @@
     </logo-header>
     <div class="ui container">
       <div class="bar">
-        <div class="ui grid">
-          <div class="five wide column"></div>
+        <div class="ui centered grid">
+          <app-settingsbutton class="toAction column five wide Images userPlace choose-box"></app-settingsbutton>
           <app-searchbar class="column six wide searchPlace"></app-searchbar>
-          <app-modalwindow class="toAction column five wide Images userPlace choose-box"></app-modalwindow>
+          <app-loginbutton class="toAction column five wide Images userPlace choose-box"></app-loginbutton>
         </div>
         <app-apipicker></app-apipicker>
       </div>
       <app-imagelist class="ui container center aligned"></app-imagelist>
     </div>
     <div class="wrapper"></div>
+    <app-modal></app-modal>
   </body>
 </html>

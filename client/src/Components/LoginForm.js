@@ -1,12 +1,17 @@
 import axios from 'axios';
+import $ from 'jquery';
+import store from '../Store';
 
 class LoginForm extends HTMLElement {
   connectedCallback() {
-    this.token = '';
     this.email;
     this.password;
     this.render();
     this.rules();
+  }
+
+  closeModal() {
+    store.modal.next({ type: 'CLOSE' });
   }
 
   rules() {
@@ -45,52 +50,64 @@ class LoginForm extends HTMLElement {
 
   render() {
     this.renderForm();
-    this.submitButton = this.querySelector('.pickLogin').addEventListener('click', this.handleFormSubmit);
+    this.querySelector('#submit').addEventListener('click', () => this.handleFormSubmit());
+    this.querySelector('#close').addEventListener('click', () => this.closeModal());
   }
 
   async handleFormSubmit() {
-    this.email = document.querySelector('#e-mail').value;
-    this.password = document.querySelector('#password').value;
-    try {
-      const response = await axios.post('api/login', {
-        email: `${this.email}`,
-        password: `${this.password}`,
-      });
-      this.token = response.data.token;
-      localStorage.setItem('token', this.token);
-      document.querySelector('.userPlace').innerHTML = `<label>${this.email}</label>`;
-    } catch (ex) {
-      $('body').toast({
-        message: ex.response.data.error,
-      });
-      console.error(ex);
+    this.email = $('.ui.form').form('get value', 'email');
+    this.password = $('.ui.form').form('get value', 'password');
+    console.log(this.email);
+
+    const isCorrect = $('.ui.form').form('is valid');
+
+    if (isCorrect[0] && isCorrect[1]) {
+      try {
+        const response = await axios.post('api/login', {
+          email: `${this.email}`,
+          password: `${this.password}`,
+        });
+        const token = response.data.token;
+        localStorage.setItem('token', token);
+        document.querySelector('.userPlace').innerHTML = `<label>${this.email}</label>`;
+      } catch (ex) {
+        $('body').toast({
+          message: ex.response.data.error,
+        });
+        console.error(ex);
+      }
     }
   }
 
   renderForm() {
     this.innerHTML = `  
-      <div class="ui form loginStyle">
+      <div class="ui form">
         <div class="field">
           <label>Username</label>
           <div class="ui left icon input">
-              <input class="email" type="email" placeholder="e-mail" name="email" id="e-mail">
+              <input class="email" type="email" name="email">
               <i class="user icon"></i>
             </div>
           </div>
           <div class="field">
             <label>Password</label>
             <div class="ui left icon input">
-              <input class="password" type="password" name="password" id="password">
+              <input type="password" id="password" name="password">
               <i class="lock icon"></i>
             </div>
           </div>
-          <div class = "ui grid relaxed formButtonsStyle" >
-            <div class="ui blue submit   button pickLogin formButton" >Login</div>
-            <div class="ui red submit  button pickClose formButton" >Close</div>
+            <div class="fields">
+              <div id="close" class="ui red button">Close</div>
+              <div id="submit" class="ui green submit button">Login</div>
           </div>
-          <div class ="ui error message"></div>
-        </div>
-      </div>`;
+          <div class="fields">
+            <a href="/api/facebook"><button class="ui facebook button">
+              <i class="facebook icon"></i>
+              Sign in with Facebook
+            </button></a>
+          </div>
+          <button class ="ui error message"></button>
+        </div>`;
   }
 }
 

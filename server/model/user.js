@@ -11,7 +11,8 @@ const User = mongoose.model(
 
     password: {
       type: String,
-      require: true,
+      require: false,
+      // unique: true,
     },
 
     favourities: {
@@ -26,7 +27,10 @@ const User = mongoose.model(
 
     resetTokenExpiration: {
       type: String,
-      require: false,
+      require: false},
+    facebookProfile: {
+      type: Object,
+      required: false,
     },
   }),
 );
