@@ -31,7 +31,7 @@ app.get('/passwordcreate/:resetToken', (req, res) => {
   res.sendFile(fileName);
 });
 
-app.use('/api', router);
+// app.use('/api', router);
 // app.use(error);
 app.use(passport.initialize()); // inicjalizacja passporta
 initializeFacebookStrategy(passport);
