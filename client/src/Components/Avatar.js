@@ -1,6 +1,7 @@
 import $ from 'jquery';
 import axios from 'axios';
 import { toBase64 } from '../utils';
+import store from '../Store';
 
 class Avatar extends HTMLElement {
   connectedCallback() {
@@ -18,6 +19,7 @@ class Avatar extends HTMLElement {
     try {
       const response = await axios.post('api/upload-avatar', { photo }, { headers: { 'x-auth': token } });
       this.uploadedImage = response.data.avatar;
+      store.token.next(token);
       console.log(response);
     } catch (ex) {
       console.error(ex);
