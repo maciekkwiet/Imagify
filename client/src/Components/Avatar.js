@@ -40,6 +40,7 @@ class Avatar extends HTMLElement {
   </div>
 </div>
      
+
     `;
   }
   renderAvatarImage() {
