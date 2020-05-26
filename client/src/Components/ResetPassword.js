@@ -21,6 +21,7 @@ class ResetPassword extends HTMLElement {
     const url = `http://localhost:12345/api/resetpassword/reset?` + 'email=' + this.email; //create url with param
     await fetch(url, {
       method: 'POST',
+      mode: 'no-cors',
     }); //go to backend
     console.log(url);
     // try {
