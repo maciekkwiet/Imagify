@@ -22,7 +22,7 @@ class ResetPassword extends HTMLElement {
     await fetch(url, {
       method: 'POST',
       mode: 'no-cors',
-    }); //go to backend
+    });
     console.log(url);
     // try {
     //   const response = await axios.post(
@@ -46,17 +46,37 @@ class ResetPassword extends HTMLElement {
   }
 
   render() {
+    //     this.innerHTML = `
+    // <div class="ui tiny modal">
+    //   <i class="close icon"></i>
+
+    //     <div class="form__wrapper">
+    //       <h2 class="form__h2">Change password</h2>
+    //       <form class="form__form">
+    //         <input type="text" name="email" placeholder="email" class="form__input" />
+    //         <button type="submit" class="form__button">Send</button>
+    //       </form>
+    // </div>
+    //     `;
+
     this.innerHTML = `
-<div class="ui tiny modal">
-  <i class="close icon"></i>
-  
-    <div class="form__wrapper">
-      <h2 class="form__h2">Change password</h2>
-      <form class="form__form">
-        <input type="text" name="email" placeholder="email" class="form__input" />
-        <button type="submit" class="form__button">Send</button>
-      </form>
-</div>
+    <div class="ui tiny modal" id="reset">
+    <div class="ui form">
+        <div class="field">
+          <label>Username</label>
+          <div class="ui left icon input">
+              <input class="email form__input" type="email" name="email">
+              <i class="user icon"></i>
+            </div>
+          </div>
+            <div class="fields">
+              <div id="close" class="ui red button">Close</div>
+              <div id="submit" class="ui green submit button form__button">Login</div>
+          </div>
+          <button class ="ui error message"></button>
+        </div>
+        </div>
+
     `;
   }
 }
