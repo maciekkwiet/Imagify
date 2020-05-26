@@ -30,27 +30,27 @@ class UserInfo extends HTMLElement {
   }
 
   render(token, avatar) {
-    if (!token && !avatar) {
+    if (!token) {
       this.innerHTML = `<app-loginbutton></app-loginbutton>`;
-    }
-    if (token && !this.avatar) {
-      //else {
+    } else if (token && !this.avatar) {
       this.innerHTML = `
-    <div class="userInfo">
+      <div class="userInfo">
         <div class="userIcon">
-          <i class="user icon">
-        </i></div>
-        <div><label>${store.user.email}</label></div>
+          <i class="user icon"></i>
+        </div>
+        <div>
+          <label>${store.user.email}</label>
+        </div>
         <app-settingsbutton></app-settingsbutton>
-    </div>`;
+      </div>`;
     } else {
       this.innerHTML = `
       <div class="userInfo">
-          <div class="userIcon">
+        <div class="userIcon">
           <img src=${this.avatar} class = "avatar"></img>
-          </div>
-          <div><label>${store.user.email}</label></div>
-          <app-settingsbutton></app-settingsbutton>
+        </div>
+        <div><label>${store.user.email}</label></div>
+        <app-settingsbutton></app-settingsbutton>
       </div>`;
     }
   }
