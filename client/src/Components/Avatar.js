@@ -5,8 +5,8 @@ import { toBase64 } from '../utils';
 class Avatar extends HTMLElement {
   connectedCallback() {
     this.render();
-    this.avatarPlace = document.querySelector('.userIcon');
-    console.log(this.avatarPlace);
+    //this.avatarPlace = document.querySelector('.userIcon');
+    //console.log(this.avatarPlace);
     this.input = this.querySelector('input[type = "file"]');
     document.querySelector('.attachButton').addEventListener('click', () => {
       this.uploadAvatar();
@@ -18,7 +18,6 @@ class Avatar extends HTMLElement {
     try {
       const response = await axios.post('api/upload-avatar', { photo }, { headers: { 'x-auth': token } });
       this.uploadedImage = response.data.avatar;
-      this.renderAvatarImage();
       console.log(response);
     } catch (ex) {
       console.error(ex);
@@ -45,11 +44,11 @@ class Avatar extends HTMLElement {
 
     `;
   }
-  renderAvatarImage() {
-    this.avatarPlace.innerHTML = `
-    <img src=${this.uploadedImage} class = "avatar">
-    `;
-  }
+  // renderAvatarImage() {
+  //   this.avatarPlace.innerHTML = `
+  //   <img src=${this.uploadedImage} class = "avatar">
+  //   `;
+  // }
 }
 
 export default Avatar;
