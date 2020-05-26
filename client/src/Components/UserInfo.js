@@ -17,6 +17,7 @@ class UserInfo extends HTMLElement {
             'x-auth': token,
           },
         });
+        console.log(response);
         store.user = response.data.user;
       } catch (ex) {
         console.error(ex);
@@ -31,9 +32,12 @@ class UserInfo extends HTMLElement {
       this.innerHTML = `<app-loginbutton></app-loginbutton>`;
     } else {
       this.innerHTML = `
-    <div>
+    <div class="userInfo">
+        <div class="userIcon">
+          <i class="user icon">
+        </i></div>
+        <div><label>${store.user.email}</label></div>
         <app-settingsbutton></app-settingsbutton>
-        <label>${store.user.email}</label>
     </div>`;
     }
   }

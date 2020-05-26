@@ -6,6 +6,7 @@ class Avatar extends HTMLElement {
   connectedCallback() {
     this.render();
     this.avatarPlace = document.querySelector('.userIcon');
+    console.log(this.avatarPlace);
     this.input = this.querySelector('input[type = "file"]');
     document.querySelector('.attachButton').addEventListener('click', () => {
       this.uploadAvatar();
@@ -18,6 +19,7 @@ class Avatar extends HTMLElement {
       const response = await axios.post('api/upload-avatar', { photo }, { headers: { 'x-auth': token } });
       this.uploadedImage = response.data.avatar;
       this.renderAvatarImage();
+      console.log(response);
     } catch (ex) {
       console.error(ex);
       $('body').toast({
