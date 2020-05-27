@@ -14,9 +14,6 @@ class ResetPassword extends HTMLElement {
     this.email = document.querySelector('.form__input').value; // catch email
     this.token = localStorage.getItem('token');
     event.preventDefault(); //stop refresh
-
-    console.log(this.email);
-
     const isCorrect = $('.ui.form').form('is valid');
 
     if (isCorrect[0] && isCorrect[1]) {
@@ -61,19 +58,19 @@ class ResetPassword extends HTMLElement {
   render() {
     this.innerHTML = `
     <div class="ui form">
-        <div class="field">
-          <label>Username</label>
-          <div class="ui left icon input">
-              <input class="email form__input" type="email" name="email">
-              <i class="user icon"></i>
-            </div>
-          </div>
-            <div class="fields">
-              <div id="close" class="ui red button">Close</div>
-              <div id="submit" class="ui green submit button form__button">Reset</div>
-          </div>
-          <button class ="ui error message"></button>
+      <div class="field">
+        <label>Username</label>
+        <div class="ui left icon input">
+          <input class="email form__input" type="email" name="email"></input>
+          <i class="user icon"></i>
         </div>
+      </div>
+      <div class="fields">
+        <div id="close" class="ui red button">Close</div>
+        <div id="submit" class="ui green submit button form__button">Reset</div>
+      </div>
+      <button class ="ui error message"></button>
+    </div>
     `;
   }
 }

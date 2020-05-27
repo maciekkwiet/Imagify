@@ -32,10 +32,10 @@ class SettingsButton extends HTMLElement {
     <div class="ui icon top left pointing dropdown button">
      <i class="wrench icon" id = "wrenchIcon"></i>
      <div class="menu">
-      <div class="item" id = "favourites">favourites</div>
-      <div class="item" id = "setAvatar">set avatar</div>
-      <div class="item" id = "resetPassword">reset password</div>
-      <div class="item" id = "logOut">log out</div>
+      <div class="item" id = "favourites">Favourites</div>
+      <div class="item" id = "setAvatar">Set avatar</div>
+      <div class="item" id = "resetPassword">Reset password</div>
+      <div class="item" id = "logOut">Log out</div>
      </div>
     </div>`;
   }

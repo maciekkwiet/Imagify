@@ -47,7 +47,8 @@ class LoginOrRegister extends HTMLElement {
       : this.isLoginOpen
       ? `Forgot a password? Click here to reset`
       : ``;
-    this.appendChild(this.forgotLabel);
+    this.labelPassword = this.querySelector('.labelPassword');
+    this.isLoginOpen ? (!this.isForgotten ? this.labelPassword.appendChild(this.forgotLabel) : null) : null;
   }
 }
 

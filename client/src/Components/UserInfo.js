@@ -17,10 +17,8 @@ class UserInfo extends HTMLElement {
             'x-auth': token,
           },
         });
-        console.log(response);
         store.user = response.data.user;
         this.avatar = response.data.user.avatar;
-        console.log(this.avatar);
       } catch (ex) {
         console.error(ex);
         this.render();
@@ -29,7 +27,7 @@ class UserInfo extends HTMLElement {
     this.render(token, this.avatar);
   }
 
-  render(token, avatar) {
+  render(token) {
     if (!token) {
       this.innerHTML = `<app-loginbutton></app-loginbutton>`;
     } else if (token && !this.avatar) {
@@ -49,7 +47,7 @@ class UserInfo extends HTMLElement {
         <div class="userIcon">
           <img src=${this.avatar} class = "avatar"></img>
         </div>
-        <div><label>${store.user.email}</label></div>
+        <div class="labelDiv"><label>${store.user.email}</label></div>
         <app-settingsbutton></app-settingsbutton>
       </div>`;
     }
