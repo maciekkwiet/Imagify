@@ -55,7 +55,9 @@ class SettingsButton extends HTMLElement {
   }
   get resetPasswordModalContent() {
     return `
+    <div class="ui tiny modal">
       <app-resetpassword class="content"></<app-avatar>
+    </div>
     `;
   }
 }
