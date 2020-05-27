@@ -1,5 +1,7 @@
 app-image {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
   width: auto;
   height: auto;
   img {

@@ -15,10 +15,10 @@ class Favourites extends HTMLElement {
     this.innerHTML = `   
       <input type="checkbox" ${this.isChecked ? 'checked' : ''}>
       <label for="sub">
-        <heart><i class="fas fa-heart"></i></heart>
-        <check><i class="fas fa-check-circle"></i></check>
-        <span>Favourite</span>
-      </label>
+  <heart><i class="fas fa-heart"></i></heart>
+   <check><i class="fas fa-check-circle"></i></check>
+  <span>Favourite</span> 
+</label> 
   `;
   }
 

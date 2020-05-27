@@ -1,6 +1,7 @@
 app-favourites {
   position: relative;
 
+ 
   input {
     width: 0;
     height: 0;
@@ -13,8 +14,9 @@ app-favourites {
     border-radius: 50px;
     background: linear-gradient(to right, #5b86f5, #36f5dc);
     position: absolute;
-
-    transform: translate(-50%, -150%);
+    margin-top: -12%;
+    margin-left: -47%;
+    transform: translate(0%, 0%);
     font-size: 15px;
     overflow: hidden;
     transition: 0.6s;
@@ -44,6 +46,7 @@ app-favourites {
     -moz-transition: all 0.6s;
     -webkit-transition: all 0.6s;
     -o-transition: all 0.6s;
+    display: block;
   }
   .fas {
     transform: translate(0%, 10%);
@@ -81,6 +84,7 @@ app-favourites {
     box-shadow: 0px 0px 10px white;
     transition: 0.3s all;
     width: 35px;
+   
   }
   input:checked + label span {
     display: none;
