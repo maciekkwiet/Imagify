@@ -1,19 +1,25 @@
 const express = require('express');
-const router = express.Router();
-const { User } = require('../../model/user');
-const bcrypt = require('bcrypt');
-const { sendWelcomeEmail } = require('./email');
-const reset = require('./emailitems');
 const jwt = require('jsonwebtoken');
-const jwtKey = process.env.JWT_SECRET;
+const bcrypt = require('bcrypt');
+
+const router = express.Router();
+
+const reset = require('./emailitems');
+const { User } = require('../../model/user');
+const { sendWelcomeEmail } = require('./email');
+
+const jwtKey = process.env.JWT_RESET_SECRET;
 
 router.post('/reset', async (req, res) => {
   const { email } = req.query;
-  let user = await User.findOne({ email });
+  const user = await User.findOne({ email });
+  const tokenLifeTime = 2 * 60 * 60 * 1000;
+
   const token = jwt.sign({ _id: user._id }, jwtKey);
   res.header('auth', token).json({ email });
   user.resetToken = token;
-  user.resetTokenExpiration = Date.now() + 4000000;
+  user.resetTokenExpiration = Date.now() + tokenLifeTime;
+
   if (!user) return res.status(400).json({ error: 'Invalid email' });
   else {
     const items = reset.reset(user.email, token);
@@ -23,29 +29,21 @@ router.post('/reset', async (req, res) => {
 });
 
 router.post('/create', async (req, res) => {
-  const { resetToken } = req.query;
+  const { resetToken: resetToken } = req.query;
   if (!resetToken) return res.status(401).json({ error: 'No token' });
+  const accountValidity = User.findOne({ resetToken: resetToken, resetTokenExpiration: { $gt: Date.now() } });
 
-  try {
+  if (accountValidity) {
     const user = jwt.verify(resetToken, jwtKey);
     const { _id } = user;
 
-    if (_id) {cv 
+    if (_id) {
       const salt = await bcrypt.genSalt(10);
       const password = await bcrypt.hash(req.query.password, salt);
-      // user.finOne({resetToken: resetToken,resetTokenExpiration:{$gt: Date.now()}});
-      await User.findOneAndUpdate({ _id: req.user._id }, { $set: { password } }, { new: true }, function (err, doc) {
-        if (err) {
-          console.log('Something wrong when updating data!');
-        }
-        console.log(doc);
-        res.json(doc);
-      });
-
-      await user.save();
+      await User.findOneAndUpdate({ _id: user._id }, { $set: { password } }, { new: true });
+      return res.json({ user });
     }
-  } catch (ex) {
-    res.status(400).json({ error: 'Invalid token' });
   }
+  res.status(400).json({ error: 'Invalid token' });
 });
 module.exports = router;
