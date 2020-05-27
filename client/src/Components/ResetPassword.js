@@ -1,14 +1,12 @@
-import $ from 'jquery';
-import axios from 'axios';
 import store from '../Store';
 
 class ResetPassword extends HTMLElement {
   connectedCallback() {
     this.render();
+    this.rules();
     this.querySelector('#close').addEventListener('click', () => this.closeModal());
     document.querySelector('.form__button').addEventListener('click', (event) => {
       this.handleResetSubmit(event);
-      this.closeModal();
     });
   }
 
@@ -16,18 +14,48 @@ class ResetPassword extends HTMLElement {
     this.email = document.querySelector('.form__input').value; // catch email
     this.token = localStorage.getItem('token');
     event.preventDefault(); //stop refresh
+
     console.log(this.email);
 
-    const url = `http://localhost:12345/api/resetpassword/reset?` + 'email=' + this.email; //create url with param
-    await fetch(url, {
-      method: 'POST',
-      mode: 'no-cors',
-    });
-    console.log(url);
+    const isCorrect = $('.ui.form').form('is valid');
+
+    if (isCorrect[0] && isCorrect[1]) {
+      try {
+        const url = `http://localhost:12345/api/resetpassword/reset?` + 'email=' + this.email; //create url with param
+        await fetch(url, {
+          method: 'POST',
+          mode: 'no-cors',
+        });
+        this.closeModal();
+      } catch (ex) {
+        console.error(ex);
+      }
+    }
   }
 
   closeModal() {
     store.modal.next({ type: 'CLOSE' });
+  }
+
+  rules() {
+    $('.ui.form').form({
+      on: 'blur',
+      fields: {
+        email: {
+          identifier: 'email',
+          rules: [
+            {
+              type: 'empty',
+              prompt: 'Please enter your e-mail',
+            },
+            {
+              type: 'email',
+              prompt: 'Please enter a valid e-mail',
+            },
+          ],
+        },
+      },
+    });
   }
 
   render() {
