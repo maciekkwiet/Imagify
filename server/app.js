@@ -7,13 +7,15 @@ const express = require('express');
 const passport = require('passport');
 const cookieParser = require('cookie-parser');
 
+const app = express();
+
 const initializeFacebookStrategy = require('./config/passport-facebook');
 const router = require('./routes');
 
-const app = express();
 const port = process.env.PORT || 12345;
 
 const dbKey = process.env.DB_KEY;
+
 mongoose
   .connect(dbKey, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('Connecting with Data Base is ok'))
