@@ -159,7 +159,7 @@ const reset = (email, token) => {
     <title>Reset passwort</title>
     <style>
       body {
-        background-color: rgb(218, 215, 215)
+        background-color: white;
       }
 
       header {
@@ -177,12 +177,13 @@ const reset = (email, token) => {
       .text {
         padding: 15px;
         display: flex;
-        height: 250;
         text-align: center;
         justify-content: center;
         font-size: 20px;
         line-height: 30px;
       }
+      a:link, 
+      a:visited {color: white;}
 
       .button {
         display: flex;
@@ -192,7 +193,7 @@ const reset = (email, token) => {
         margin-left: auto;
         margin-right: auto;
         background: linear-gradient(135deg, #6e8efb, #a777e3);
-        height: 50px;
+        height: 35px;
         width: 200px;
         border-radius: 8px;
         transition: box-shadow .5s ease, transform .2s ease;
@@ -203,14 +204,29 @@ const reset = (email, token) => {
         text-decoration: none;
       }
 
+      .button-text
+      {
+        
+      display: flex;
+      margin-left: auto;
+      margin-right: auto;
+      width: 400px;
+      color:black;
+      text-align: center;
+      justify-content: center;
+      text-decoration: none;
+      font-size: 15px;
+    }
+
       a {
         text-decoration: none;
-        color: White;
+        color: black;
       }
 
       a:hover {
 
         text-shadow: 3px 1px #1c11b5;
+        text-decoration: none;
       }
 
       main {
@@ -222,6 +238,7 @@ const reset = (email, token) => {
         width: 500px;
         height: 200px;
         border-radius: 20px 20px 20px 20px;
+      
       }
     </style>
   </head>
@@ -231,18 +248,15 @@ const reset = (email, token) => {
       <h1>Hello !</h1>
     </header>
     <main>
-      <div class="text">
-        <span>It looks like that you forgot your passwort. <br>
-          Don't worry, you can keep on keeping on.<br>
-          Please click on Reguest button and change your password.
-        </span>
-      </div>
+    
+      <button class="button-text">It looks like that you forgot your passwort. <br>
+      Don't worry, you can keep on keeping on.<br>
+      Please click on Reguest button and change your password</button>
 
-      <button class="button"><a href="${url}">Reset my
-          password</a></button>
+
+      <button class="button"><a href="${url}">Reset my password</a></button>
 
     </main>
-    <footer></footer>
   </body>
 
   </html>`;
