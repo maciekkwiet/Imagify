@@ -10,7 +10,7 @@ class SearchBar extends HTMLElement {
   render() {
     this.innerHTML = `
     <div class="ui big icon input four wide column searchBarMain">
-        <input type="text" placeholder="Search big...">
+        <input type="text" autocomplete="off" placeholder="Search big...">
         <i class="search icon"></i>
     </div>`;
   }
