@@ -24,7 +24,7 @@ class UserInfo extends HTMLElement {
         this.render();
       }
     }
-    this.render(token, this.avatar);
+    this.render(token);
   }
 
   render(token) {

@@ -5,13 +5,13 @@ class ResetPassword extends HTMLElement {
     this.render();
     this.rules();
     this.querySelector('#close').addEventListener('click', () => this.closeModal());
-    document.querySelector('.form__button').addEventListener('click', (event) => {
+    this.querySelector('.submit-button').addEventListener('click', (event) => {
       this.handleResetSubmit(event);
     });
   }
 
   async handleResetSubmit(event) {
-    this.email = document.querySelector('.form__input').value; // catch email
+    this.email = document.querySelector('.email-input').value; // catch email
     this.token = localStorage.getItem('token');
     event.preventDefault(); //stop refresh
     const isCorrect = $('.ui.form').form('is valid');
@@ -61,13 +61,13 @@ class ResetPassword extends HTMLElement {
       <div class="field">
         <label>Username</label>
         <div class="ui left icon input">
-          <input class="email form__input" type="email" name="email"></input>
+          <input class="email email-input" type="email" name="email"></input>
           <i class="user icon"></i>
         </div>
       </div>
       <div class="fields">
         <div id="close" class="ui red button">Close</div>
-        <div id="submit" class="ui green submit button form__button">Reset</div>
+        <div id="submit" class="ui green submit button submit-button">Reset</div>
       </div>
       <button class ="ui error message"></button>
     </div>
