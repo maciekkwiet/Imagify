@@ -21,9 +21,8 @@ router.post('/create', async (req, res) => {
 });
 // add image
 router.post('/image', async (req, res) => {
-  const { url } = req.body;
+  const { url, name } = req.body;
   const { _id } = req.user;
-  const { name } = req.body;
   const folder = await Category.findOne({ user: _id, name });
 
   if (!folder) {
@@ -38,25 +37,16 @@ router.post('/image', async (req, res) => {
 });
 //delete image
 router.delete('/image', async (req, res) => {
-  const { url } = req.body;
+  const { url, name } = req.body;
   const { _id } = req.user;
-  const { name } = req.body;
   const folder = await Category.findOne({ user: _id, name });
 
-  if (!folder) {
-    res.json({ error: "This folder doesn't exist" });
-  } else if (folder) {
-    let { images } = folder;
-    console.log('1' + images);
-    images = images.filter((image) => image !== url);
-    console.log('2' + images);
-    console.log('3' + images);
-    console.log(folder.name);
-    await Category.findOneAndUpdate({ name: folder.name }, { $set: { images: images } }, { new: true });
-    console.log('3' + images);
-    res.json({ folder });
-    console.log('4' + images);
-  }
+  if (!folder) return res.json({ error: "This folder doesn't exist" });
+
+  let { images } = folder;
+  images = images.filter((image) => image !== url);
+  const newFolder = await Category.findOneAndUpdate({ name: folder.name }, { $set: { images: images } }, { new: true });
+  res.json({ newFolder });
 });
 //delete folder
 router.delete('/', async (req, res) => {
