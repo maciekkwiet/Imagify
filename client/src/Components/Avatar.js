@@ -18,6 +18,7 @@ class Avatar extends HTMLElement {
       const response = await axios.post('api/upload-avatar', { photo }, { headers: { 'x-auth': token } });
       this.uploadedImage = response.data.avatar;
       store.token.next(token);
+      this.closeModal();
     } catch (ex) {
       console.error(ex);
       $('body').toast({
@@ -25,6 +26,11 @@ class Avatar extends HTMLElement {
       });
     }
   }
+
+  closeModal() {
+    store.modal.next({ type: 'CLOSE' });
+  }
+
   render() {
     this.innerHTML = `
 <div class="ui tiny modal">

@@ -6,7 +6,6 @@ class Store {
     this.services = new Observable();
     this.modal = new Subject();
     this.token = new Subject();
-    // this.avatar = new Subject();
     this.user = null;
   }
 }

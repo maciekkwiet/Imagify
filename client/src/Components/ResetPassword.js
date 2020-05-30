@@ -1,28 +1,24 @@
 import store from '../Store';
+import axios from 'axios';
 
 class ResetPassword extends HTMLElement {
   connectedCallback() {
     this.render();
     this.rules();
     this.querySelector('#close').addEventListener('click', () => this.closeModal());
-    this.querySelector('.submit-button').addEventListener('click', (event) => {
+    this.querySelector('#submit').addEventListener('click', (event) => {
       this.handleResetSubmit(event);
     });
   }
 
   async handleResetSubmit(event) {
     this.email = document.querySelector('.email-input').value; // catch email
-    this.token = localStorage.getItem('token');
     event.preventDefault(); //stop refresh
     const isCorrect = $('.ui.form').form('is valid');
 
     if (isCorrect[0] && isCorrect[1]) {
       try {
-        const url = `http://localhost:12345/api/resetpassword/reset?` + 'email=' + this.email; //create url with param
-        await fetch(url, {
-          method: 'POST',
-          mode: 'no-cors',
-        });
+        await axios.post(`/api/resetpassword/reset?email=${this.email}`);
         this.closeModal();
       } catch (ex) {
         console.error(ex);

@@ -6,13 +6,12 @@ const User = mongoose.model(
   new mongoose.Schema({
     email: {
       type: String,
-      require: true,
+      required: true,
     },
 
     password: {
       type: String,
-      require: false,
-      // unique: true,
+      required: false,
     },
 
     favourities: {
@@ -22,12 +21,12 @@ const User = mongoose.model(
 
     resetToken: {
       type: String,
-      require: false,
+      required: false,
     },
 
     resetTokenExpiration: {
       type: String,
-      require: false,
+      required: false,
     },
     facebookProfile: {
       type: Object,
@@ -35,7 +34,7 @@ const User = mongoose.model(
     },
     avatar: {
       type: String,
-      require: false,
+      required: false,
     },
   }),
 );
@@ -49,6 +48,5 @@ function validate(user) {
   return Joi.validate(user, schema);
 }
 
-//name in Atlas = Users
 User.validate = validate;
 exports.User = User;
