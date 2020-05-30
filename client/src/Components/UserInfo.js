@@ -17,7 +17,6 @@ class UserInfo extends HTMLElement {
             'x-auth': token,
           },
         });
-        console.log(response);
         store.user = response.data.user;
       } catch (ex) {
         console.error(ex);
