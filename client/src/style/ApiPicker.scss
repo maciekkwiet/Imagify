@@ -3,4 +3,7 @@
 app-apipicker {
   margin-top: 10px;
   @include alignItems();
+  .api {
+    margin-left: 5px;
+  }
 }
