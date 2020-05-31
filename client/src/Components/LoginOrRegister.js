@@ -1,14 +1,15 @@
 class LoginOrRegister extends HTMLElement {
   constructor() {
     super();
-    this.currentWindow;
-    this.LOGIN = true;
     this.currentWindow = 'LOGIN';
     this.loginDisplay = this.loginDisplay.bind(this);
+    this.registerDisplay = this.registerDisplay.bind(this);
     this.forgotDisplay = this.forgotDisplay.bind(this);
     this.loginLabel = document.createElement('span');
+    this.registerLabel = document.createElement('span');
     this.forgotLabel = document.createElement('span');
     this.loginLabel.addEventListener('click', this.loginDisplay);
+    this.registerLabel.addEventListener('click', this.registerDisplay);
     this.forgotLabel.addEventListener('click', this.forgotDisplay);
   }
 
@@ -22,12 +23,12 @@ class LoginOrRegister extends HTMLElement {
   }
 
   loginDisplay() {
-    this.LOGIN = !this.LOGIN;
-    if (this.LOGIN) {
-      this.currentWindow = 'LOGIN';
-    } else {
-      this.currentWindow = 'REGISTER';
-    }
+    this.currentWindow = 'LOGIN';
+    this.render();
+  }
+
+  registerDisplay() {
+    this.currentWindow = 'REGISTER';
     this.render();
   }
 
@@ -35,8 +36,8 @@ class LoginOrRegister extends HTMLElement {
     switch (this.currentWindow) {
       case 'LOGIN':
         this.innerHTML = '<app-loginForm></app-loginForm>';
-        this.appendChild(this.loginLabel);
-        this.loginLabel.innerHTML = `Don't have account yet? Click here to sign up.`;
+        this.appendChild(this.registerLabel);
+        this.registerLabel.innerHTML = `Don't have account yet? Click here to sign up.`;
         this.querySelector('.labelPassword').appendChild(this.forgotLabel);
         this.forgotLabel.innerHTML = `Forgot a password? Click here to reset`;
         break;
