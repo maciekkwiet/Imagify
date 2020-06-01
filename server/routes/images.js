@@ -22,6 +22,7 @@ router.get('/', async (req, res) => {
   const filter = 'popularity';
   const order_by = 'popular';
 
+
   const {
     value: { services },
     error,
@@ -34,7 +35,7 @@ router.get('/', async (req, res) => {
     this.apiRequests = newArrayColor.map((serviceName) => createRequest(serviceName, searchText, color, filter));
   } else if (filter == 'popularity') {
     const newArrayColor = services.filter((serviceName) => serviceName !== 'PEXELS');
-    const [UNSPLASH,PIXABAY] = newArrayColor;
+    const [UNSPLASH, PIXABAY] = newArrayColor;
     // const {UNSPLASH,PIXABAY} =[...newArrayColor]
     console.log(UNSPLASH);
 
