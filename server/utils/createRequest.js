@@ -1,15 +1,18 @@
 const axios = require('axios').default;
+const unsplashRequest = require('./unsplashRequest');
+const pixabayRequest = require('./pixabayRequest');
+const pexelsRequest = require('./pexelsRequest');
 
-const createRequest = (serviceName, searchText) => {
+const createRequest = (serviceName, searchText, variable, filter) => {
+  console.log(variable);
   switch (serviceName) {
     case 'UNSPLASH':
-      return axios.get(
-        `https://api.unsplash.com/search/photos?page=1&query=${searchText}&client_id=${process.env.UNSPLASH_CLIENT_ID}`,
-      );
+      return axios.get(unsplashRequest(searchText, variable, filter));
+
     case 'PIXABAY':
-      return axios.get(`https://pixabay.com/api/?key=${process.env.PIXABAY_KEY}&q=${searchText}&image_type=photo`);
+      return axios.get(pixabayRequest(searchText, variable,filter));
     case 'PEXELS':
-      return axios.get(`https://api.pexels.com/v1/search?query=${searchText}&per_page=80&page=1`, {
+      return axios.get(pexelsRequest(searchText, variable,filter), {
         headers: {
           Authorization: process.env.PEXELS_KEY,
         },
