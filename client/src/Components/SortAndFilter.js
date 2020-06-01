@@ -25,6 +25,9 @@ class SortAndFilter extends HTMLElement {
             </div>
             <div class="scrolling menu">
             <div class="item">
+                Any orientation
+            </div>
+            <div class="item">
                 <i class="arrows alternate horizontal icon"></i> Horizontal
             </div>
             <div class="item">
