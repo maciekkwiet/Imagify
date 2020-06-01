@@ -23,8 +23,7 @@ class ApiPicker extends HTMLElement {
 
   render() {
     this.innerHTML = `
-<div class="ui form">
-  <div class="inline fields">
+  <div class="ui form inline fields">
     <div class="ui checked checkbox api">
       <input type="checkbox" id="Pexels" checked=""/>
       <label for="Pexels">Pexels</label>
@@ -38,7 +37,6 @@ class ApiPicker extends HTMLElement {
       <label for="Unsplash">Unsplash</label>
     </div>
   </div>
-</div>
 `;
   }
 }
