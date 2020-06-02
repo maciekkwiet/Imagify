@@ -1,16 +1,26 @@
 class SortAndFilter extends HTMLElement {
-  //   constructor() {
-  //     super();
-  //     this.url = this.getAttribute('source');
-  //   }
   connectedCallback() {
     this.render();
+    this.filters = ['Any', 'Any'];
+
+    this.querySelectorAll('.orient').forEach((node) => node.addEventListener('click', (e) => this.filterOrient(e)));
+    this.querySelectorAll('.color').forEach((node) => node.addEventListener('click', (e) => this.filterColor(e)));
+  }
+
+  filterOrient(e) {
+    this.filters[0] = e.target.textContent;
+    console.log(this.filters);
+  }
+
+  filterColor(e) {
+    this.filters[1] = e.target.textContent;
+    console.log(this.filters);
   }
 
   render() {
     this.innerHTML = `
 <div class="ui grid filt">
-      <div class="ui floating dropdown labeled icon button">
+    <div class="ui floating dropdown labeled icon button">
         <i class="filter icon"></i>
         <span class="text">Filter by Orientation</span>
         <div class="menu">
@@ -24,16 +34,10 @@ class SortAndFilter extends HTMLElement {
                 Tag orientation
             </div>
             <div class="scrolling menu">
-            <div class="item">
-                Any orientation
+                <div class="item orient">Any orientation</div>
+                <div class="item orient"><i class="arrows alternate horizontal icon"></i>Horizontal</div>
+                <div class="item orient"><i class="arrows alternate vertical icon"></i>Vertical</div>
             </div>
-            <div class="item">
-                <i class="arrows alternate horizontal icon"></i> Horizontal
-            </div>
-            <div class="item">
-                <i class="arrows alternate vertical icon"></i> Vertical
-            </div>
-        </div>
         </div>
     </div>
 
@@ -51,38 +55,15 @@ class SortAndFilter extends HTMLElement {
                 Tag color
             </div>
             <div class="scrolling menu">
-            <div class="item">
-                Any color
+                <div class="item color">Any color</div>
+                <div class="item color"><div class="ui red empty circular label"></div>Red</div>
+                <div class="item color"><div class="ui black empty circular label"></div>Black</div>
+                <div class="item color"><div class="ui white empty circular label"></div>White</div>
+                <div class="item color"><div class="ui yellow empty circular label"></div>Yellow</div>
+                <div class="item color"><div class="ui orange empty circular label"></div>Orange</div>
+                <div class="item color"><div class="ui green empty circular label"></div>Green</div>
+                <div class="item color"><div class="ui blue empty circular label"></div>Blue</div>
             </div>
-            <div class="item">
-            <div class="ui red empty circular label"></div>
-            Red
-        </div>
-            <div class="item">
-                <div class="ui black empty circular label"></div>
-                Black
-            </div>
-            <div class="item">
-                <div class="ui white empty circular label"></div>
-                White
-            </div>
-            <div class="item">
-                <div class="ui yellow empty circular label"></div>
-                Yellow
-            </div>
-            <div class="item">
-                <div class="ui orange empty circular label"></div>
-                Orange
-            </div>
-            <div class="item">
-                <div class="ui green empty circular label"></div>
-                Green
-            </div>
-            <div class="item">
-            <div class="ui blue empty circular label"></div>
-            Blue
-            </div>
-         </div>
         </div>
     </div>
 </div>
