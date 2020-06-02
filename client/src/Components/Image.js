@@ -3,7 +3,7 @@ import store from '../Store';
 class Image extends HTMLElement {
   constructor() {
     super();
-    this.url = this.getAttribute('source');
+    this.url = this.getAttribute('data-big-image');
   }
 
   connectedCallback() {
