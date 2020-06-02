@@ -1,4 +1,4 @@
-class SortAndFilter extends HTMLElement {
+class Filter extends HTMLElement {
   connectedCallback() {
     this.render();
     this.filters = ['Any', 'Any'];
@@ -70,4 +70,4 @@ class SortAndFilter extends HTMLElement {
           `;
   }
 }
-export default SortAndFilter;
+export default Filter;

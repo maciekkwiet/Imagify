@@ -15,7 +15,8 @@ import LoginOrRegister from './Components/LoginOrRegister.js';
 import SettingsButton from './Components/SettingsButton';
 import UserInfo from './Components/UserInfo';
 import ResetPassword from './Components/ResetPassword';
-import SortAndFilter from './Components/SortAndFilter';
+import Filter from './Components/Filter';
+import Sort from './Components/Sort';
 
 const setup = () => {
   customElements.define('app-searchbar', SearchBar);
@@ -31,7 +32,8 @@ const setup = () => {
   customElements.define('app-settingsbutton', SettingsButton);
   customElements.define('app-userinfo', UserInfo);
   customElements.define('app-resetpassword', ResetPassword);
-  customElements.define('app-sortandfilter', SortAndFilter);
+  customElements.define('app-filter', Filter);
+  customElements.define('app-sort', Sort);
 };
 
 window.addEventListener('load', setup);
