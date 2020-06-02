@@ -6,8 +6,8 @@ class Sort extends HTMLElement {
   }
 
   sortPopularity(e) {
-    const isAscending = e.srcElement.classList.value.includes('ascending') ? 'ascending' : 'descending';
-    console.log(e.target.textContent + isAscending);
+    const ascending = e.srcElement.classList.value.includes('ascending') ? 'ascending' : 'descending';
+    console.log(e.target.textContent + ascending);
   }
 
   render() {
@@ -22,8 +22,10 @@ class Sort extends HTMLElement {
                   <div class="item sort ascending"><i class="users icon"></i>Sort by popularity    <i class="angle double up icon"></i></div>
                   <div class="item sort descendig"><i class="users icon"></i>Sort by popularity    <i class="angle double down icon"></i></div>
                   <!--
-                  <div class="item sort"><i class="arrows alternate horizontal icon"></i>Sort by width</div>
-                  <div class="item sort"><i class="arrows alternate vertical icon"></i>Sort by hight</div>
+                  <div class="item sort ascending"><i class="arrows alternate horizontal icon"></i>Sort by width   <i class="angle double up icon"></i></div>
+                  <div class="item sort descendig"><i class="arrows alternate horizontal icon"></i>Sort by width   <i class="angle double down icon"></i></div>
+                  <div class="item sort ascending"><i class="arrows alternate vertical icon"></i>Sort by hight   <i class="angle double up icon"></i></div>
+                  <div class="item sort descendig"><i class="arrows alternate vertical icon"></i>Sort by hight   <i class="angle double down icon"></i></div>
                   -->
               </div>
           </div>
