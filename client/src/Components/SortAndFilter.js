@@ -8,12 +8,12 @@ class SortAndFilter extends HTMLElement {
   }
 
   filterOrient(e) {
-    this.filters[0] = e.target.textContent;
+    this.filters[0] = e.target.textContent == 'Any orientation' ? 'Any' : e.target.textContent;
     console.log(this.filters);
   }
 
   filterColor(e) {
-    this.filters[1] = e.target.textContent;
+    this.filters[1] = e.target.textContent == 'Any color' ? 'Any' : e.target.textContent;
     console.log(this.filters);
   }
 
