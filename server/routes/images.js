@@ -10,18 +10,22 @@ const schema = Joi.object({
     .items(Joi.string().uppercase().valid('UNSPLASH', 'PIXABAY', 'PEXELS'))
     .unique()
     .default(['UNSPLASH', 'PIXABAY', 'PEXELS']),
-  color: Joi.string().valid('red', 'black', 'white', 'yellow', 'orange', 'green', 'blue'),
-  order_by: Joi.string(),
+  color: Joi.string(),
+  orderBy: Joi.string(),
+  orientation: Joi.string(),
+  filters: Joi.object(),
 });
 
 router.get('/', async (req, res) => {
   const { searchText } = req.query;
-  const { color } = req.body;
-  // const { order_by } = req.body;
-  // const { filter } = req.body;
-  const filter = 'popularity';
-  const order_by = 'popular';
-
+  const {
+    filters: { color, orientation, orderBy },
+  } = req.body;
+  let apiRequests = [];
+  let orderByUs;
+  let orderByPb;
+  let orientationUs;
+  let orientationPb;
 
   const {
     value: { services },
@@ -30,34 +34,44 @@ router.get('/', async (req, res) => {
 
   if (error) return res.status(400).json({ error: error.details[0].message });
 
-  if (filter == 'color') {
-    const newArrayColor = services.filter((serviceName) => serviceName !== 'PEXELS');
-    this.apiRequests = newArrayColor.map((serviceName) => createRequest(serviceName, searchText, color, filter));
-  } else if (filter == 'popularity') {
-    const newArrayColor = services.filter((serviceName) => serviceName !== 'PEXELS');
-    const [UNSPLASH, PIXABAY] = newArrayColor;
-    // const {UNSPLASH,PIXABAY} =[...newArrayColor]
-    console.log(UNSPLASH);
+  const newArrayColor = services.filter((serviceName) => serviceName !== 'PEXELS');
 
-    if (UNSPLASH && order_by == 'min_popularity') {
-      order_by == 'latest';
-      this.serviceName = UNSPLASH;
-    } else if (UNSPLASH && order_by == 'max_popular') {
-      order_by == 'relevant';
-      this.serviceName = UNSPLASH;
-      console.log('service ' + this.serviceName);
-    }
-    console.log('test order_by ' + order_by);
-    console.log('service2' + this.serviceName);
-    console.log('orderby' + order_by);
-    console.log('filter' + filter);
-    console.log('searchText' + searchText);
-    this.apiRequests = createRequest(this.serviceName, searchText, order_by, filter);
+  if (color) {
+    apiRequests = newArrayColor.map((serviceName) =>
+      createRequest(serviceName, searchText, color, orderByUs, orderByPb, orientationUs, orientationPb),
+    );
   }
 
-  // this.apiRequests = services.map((serviceName) => createRequest(serviceName, searchText, color));
+  if (orderBy == 'min_popularity') {
+    orderByUs = 'latest';
+    orderByPb = 'latest';
+    apiRequests = newArrayColor.map((serviceName) =>
+      createRequest(serviceName, searchText, color, orderByUs, orderByPb, orientationUs, orientationPb),
+    );
+  }
+  if (orderBy == 'max_popularity') {
+    orderByUs = 'relevant';
+    orderByPb = 'popular';
+    apiRequests = newArrayColor.map((serviceName) =>
+      createRequest(serviceName, searchText, color, orderByUs, orderByPb, orientationUs, orientationPb),
+    );
+  }
+  if (orientation == 'vertical') {
+    orientationUs = 'landscape';
+    orientationPb = 'vertical';
+    apiRequests = newArrayColor.map((serviceName) =>
+      createRequest(serviceName, searchText, color, orderByUs, orderByPb, orientationUs, orientationPb),
+    );
+  }
+  if (orientation == 'horizontal') {
+    orientationUs = 'portrait';
+    orientationPb = 'horizontal';
+    apiRequests = newArrayColor.map((serviceName) =>
+    createRequest(serviceName, searchText, color, orderByUs, orderByPb, orientationUs, orientationPb),
+    );
+  }
 
-  const responses = await Promise.all(this.apiRequests);
+  const responses = await Promise.all(apiRequests);
 
   const [unsplash, pixabay, pexels] = responses.map(({ data }) => data);
 

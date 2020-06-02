@@ -1,26 +1,18 @@
-const unsplashRequest = (searchText, variable, filter) => {
-  let baseURL = ' ';
-  console.log('baseURL1' + baseURL);
-  console.log(variable);
+const unsplashRequest = (searchText, color, orderBy, orientation) => {
+  let baseURL = '';
 
-  // if (filter === 'color') {
-  //   baseURL = `color=${variable}`;
-  //   console.log('baseURL2' + baseURL);
-  // }
-
-  switch (filter) {
-    case 'color':
-      baseURL = `color=${variable}`;
-      break;
-    case 'popularity':
-      baseURL = `order_by=${variable}`;
-      break;
-    default:
-      throw 'Invalid variable';
+  if (color) {
+    baseURL += `&color=${color}`;
   }
-  console.log('baseURL3' + baseURL);
+  if (orderBy) {
+    baseURL += `&order_by=${orderBy}`;
+  }
+  if (orientation) {
+    baseURL += `&orientation=${orientation}`;
+  }
 
-  const url = `https://api.unsplash.com/search/photos?page=1&query=${searchText}&client_id=${process.env.UNSPLASH_CLIENT_ID}&${baseURL}`;
+  const url = `https://api.unsplash.com/search/photos?page=1&query=${searchText}&client_id=${process.env.UNSPLASH_CLIENT_ID}${baseURL}`;
+  console.log(url);
   return url;
 };
 module.exports = unsplashRequest;

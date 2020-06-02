@@ -3,16 +3,15 @@ const unsplashRequest = require('./unsplashRequest');
 const pixabayRequest = require('./pixabayRequest');
 const pexelsRequest = require('./pexelsRequest');
 
-const createRequest = (serviceName, searchText, variable, filter) => {
-  console.log(variable);
+const createRequest = (serviceName, searchText, color, orderrByUs, orderByPb, orientationUS, orientationPB) => {
   switch (serviceName) {
     case 'UNSPLASH':
-      return axios.get(unsplashRequest(searchText, variable, filter));
+      return axios.get(unsplashRequest(searchText, color, orderrByUs, orientationUS));
 
     case 'PIXABAY':
-      return axios.get(pixabayRequest(searchText, variable,filter));
+      return axios.get(pixabayRequest(searchText, color, orderByPb, orientationPB));
     case 'PEXELS':
-      return axios.get(pexelsRequest(searchText, variable,filter), {
+      return axios.get(pexelsRequest(searchText), {
         headers: {
           Authorization: process.env.PEXELS_KEY,
         },

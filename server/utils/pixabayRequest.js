@@ -1,15 +1,17 @@
-const pixabayRequest = (searchText, variable) => {
-  let baseURL = ' ';
-  console.log('baseURL' + baseURL);
+const pixabayRequest = (searchText, color, orderBy, orientation) => {
+  let baseURL = '';
 
-  switch (variable) {
-    case 'color':
-      baseURL = `colors=${variable}`;
-      console.log('baseURL2' + baseURL);
+  if (color) {
+    baseURL += `&color=${color}`;
+  }
+  if (orderBy) {
+    baseURL += `&order_by=${orderBy}`;
+  }
+  if (orientation) {
+    baseURL += `&orientation=${orientation}`;
   }
 
-  console.log('baseURL3' + baseURL);
-  const url = `https://pixabay.com/api/?key=${process.env.PIXABAY_KEY}&q=${searchText}&image_type=photo&${baseURL}`;
+  const url = `https://pixabay.com/api/?key=${process.env.PIXABAY_KEY}&q=${searchText}&image_type=photo${baseURL}`;
   console.log(url);
   return url;
 };
