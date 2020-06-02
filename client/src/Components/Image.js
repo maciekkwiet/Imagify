@@ -1,5 +1,4 @@
 import store from '../Store';
-//import Favourites from './Favourites'
 class Image extends HTMLElement {
   constructor() {
     super();
@@ -11,17 +10,6 @@ class Image extends HTMLElement {
     this.render(this.url);
     this.querySelector('img').addEventListener('click', () => this.openImage());
   }
-
-    /*const button = document.querySelector('favourites'); //catch button
-      const form = document.querySelector('heart');
-      async function handleResetSubmit(event) {
-      const send = document.querySelector('favourites').value; // catch
-      event.preventDefault(); //stop refresh
-      const url = `http://..?` + 'send=' + send; //create url with param
-      await fetch(url, {
-        method: 'POST'
-      }); //go to backend
-      console.log(url)*/
 
   createImage(url) {
     return `<img class="Image-url" src="${url}"/>`;
