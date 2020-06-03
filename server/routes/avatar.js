@@ -1,8 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const cloudinary = require('cloudinary').v2;
-const api_secret = process.env.CLAUDINARY_SECRET;
-const api_key = process.env.CLAUDINARY_KEY;
+
+const api_secret = process.env.CLOUDINARY_SECRET;
+const api_key = process.env.CLOUDINARY_KEY;
 const cloud_name = process.env.CLOUDINARY_NAME;
 
 cloudinary.config({
@@ -13,16 +14,13 @@ cloudinary.config({
 
 router.post('/', async (req, res) => {
   try {
-    const file = req.files.photo;
-    // console.log(req.user.token);
-    // console.log(file);
-    const result = await cloudinary.uploader.upload(file.tempFilePath);
-    // console.log(result);
-    // console.log('Result', result.url);
+    const { photo } = req.body;
+    const result = await cloudinary.uploader.upload(photo);
     req.user.avatar = result.url;
     const { avatar } = await req.user.save();
     res.json({ avatar });
-  } catch {
+  } catch (ex) {
+    console.log(ex);
     res.json({ text: 'Something is wrong with avatar' });
   }
 });

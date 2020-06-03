@@ -1,0 +1,11 @@
+@import 'partials/mixins';
+
+app-filter {
+  @include alignItems();
+  .filt {
+    @include alignItems();
+    .dropdown {
+      margin-left: 8px;
+    }
+  }
+}

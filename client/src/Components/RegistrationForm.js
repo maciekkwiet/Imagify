@@ -5,8 +5,8 @@ import store from '../Store';
 class RegistrationForm extends HTMLElement {
   connectedCallback() {
     this.render();
-    this.querySelector('#close').addEventListener('click', this.closeModal);
-    this.querySelector('#submit').addEventListener('click', this.handleRegisterForm);
+    this.querySelector('#close').addEventListener('click', () => this.closeModal());
+    this.querySelector('#submit').addEventListener('click', () => this.handleRegisterForm());
     this.email;
     this.password;
     this.confirmPassword;
@@ -32,7 +32,8 @@ class RegistrationForm extends HTMLElement {
 
         const token = response.headers.auth;
         localStorage.setItem('token', token);
-        document.querySelector('.userPlace').innerHTML = `<label>${this.email}</label>`;
+        store.token.next(token);
+        this.closeModal();
       } catch (ex) {
         $('body').toast({
           message: ex.response.data.error,
@@ -87,34 +88,35 @@ class RegistrationForm extends HTMLElement {
 
   render() {
     this.innerHTML = `
-      <div class="ui form">
-        <div class="field">
-          <label>Username</label>
-          <div class="ui left icon input">
-            <input class="email" type="email" name="email">
-            <i class="user icon"></i>
-          </div>
-        </div>
-        <div class="field">
-          <label>Password</label>
-          <div class="ui left icon input">
-            <input type="password" id="password">
-            <i class="lock icon"></i>
-          </div>
-        </div>
-        <div class="field">
-          <label>Confirm Password</label>
-          <div class="ui left icon input">
-            <input type="password" id="confirmPassword">
-            <i class="lock icon"></i>
-          </div>
-        </div>
-        <div class="fields">
-          <div id="close" class="ui red button">Close</div>
-          <div id="submit" class="ui green submit button">Sign up</div>
-        </div>
-        <div class ="ui error message"></div>
-      </div>`;
+  <div class="ui form">
+    <div class="field">
+      <label>Username</label>
+      <div class="ui left icon input">
+        <input class="email" type="email" name="email"></input>
+        <i class="user icon"></i>
+      </div>
+    </div>
+    <div class="field">
+      <label>Password</label>
+      <div class="ui left icon input">
+        <input type="password" name="password" id="password" />
+        <i class="lock icon"></i>
+      </div>
+    </div>
+    <div class="field">
+      <label>Confirm Password</label>
+      <div class="ui left icon input">
+        <input type="password" id="confirmPassword"></input>
+        <i class="lock icon"></i>
+      </div>
+    </div>
+    <div class="fields">
+      <div id="close" class="ui red button">Close</div>
+      <div id="submit" class="ui green submit button">Sign up</div>
+    </div>
+    <div class="ui error message"></div>
+  </div>
+  `;
   }
 }
 export default RegistrationForm;
