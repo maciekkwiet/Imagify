@@ -10,9 +10,8 @@ class SearchBar extends HTMLElement {
   render() {
     this.innerHTML = `
     <div class="ui big right icon input four wide column searchBarMain">
-      <input style="display:none" type="text" name="fakeusernameremembered">
       <i class="search icon"></i>
-      <input class="input-legit" type="text" autocomplete="chrome-off" placeholder="Search big...">
+      <input class="input-legit" type="text" placeholder="Search big...">
     </div>`;
   }
 }
