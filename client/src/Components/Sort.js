@@ -3,7 +3,6 @@ import store from '../Store.js';
 class Sort extends HTMLElement {
   connectedCallback() {
     this.render();
-    store.sort = 'Any';
 
     this.querySelectorAll('.sort').forEach((node) => node.addEventListener('click', (e) => this.sortPopularity(e)));
   }

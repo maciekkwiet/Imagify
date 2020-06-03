@@ -6,6 +6,10 @@ import $ from 'jquery';
 class ImageService {
   async getImages(searchText) {
     try {
+      console.log(store.color);
+      console.log(store.orientation);
+      console.log(store.sort);
+
       const { data } = await axios.get(`/api/images?searchText=${searchText}`, {
         services: store.services,
         color: store.color,

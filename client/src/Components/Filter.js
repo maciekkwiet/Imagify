@@ -3,8 +3,6 @@ import store from '../Store.js';
 class Filter extends HTMLElement {
   connectedCallback() {
     this.render();
-    store.color = 'Any';
-    store.orientation = 'Any';
 
     this.querySelectorAll('.orient').forEach((node) => node.addEventListener('click', (e) => this.filterOrient(e)));
     this.querySelectorAll('.color').forEach((node) => node.addEventListener('click', (e) => this.filterColor(e)));
@@ -12,12 +10,10 @@ class Filter extends HTMLElement {
 
   filterOrient(e) {
     store.orientation = e.target.textContent == 'Any orientation' ? 'Any' : e.target.textContent;
-    console.log(this.filters);
   }
 
   filterColor(e) {
     store.color = e.target.textContent == 'Any color' ? 'Any' : e.target.textContent;
-    console.log(this.filters);
   }
 
   render() {
