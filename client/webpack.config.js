@@ -1,11 +1,11 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   entry: {
     app: ['babel-polyfill', './src/index.js'],
-    style: './src/style/imports.scss',
   },
 
   devServer: {
@@ -28,6 +28,10 @@ module.exports = {
       'window.$': 'jquery',
       'window.jQuery': 'jquery',
     }),
+    new MiniCssExtractPlugin({
+      filename: 'style.css',
+      entrypoints: false,
+    }),
   ],
   resolve: {
     extensions: ['.js'],
@@ -38,8 +42,9 @@ module.exports = {
         test: [/\.scss$/, /\.css$/],
         use: [
           'style-loader', //3. Inject styles into DOM
+          MiniCssExtractPlugin.loader,
           'css-loader', //2. Turns css into commonjs
-          'postcss-loader',
+          //          'postcss-loader',
           'sass-loader', //1. Turns sass into css
         ],
       },

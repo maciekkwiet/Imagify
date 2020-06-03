@@ -1,6 +1,7 @@
 import 'fomantic-ui-css/semantic';
 import 'fomantic-ui-css/semantic.css';
 
+import './style/imports.scss';
 import SearchBar from './Components/SearchBar.js';
 import ImageList from './Components/ImageList.js';
 import ApiPicker from './Components/ApiPicker.js';
