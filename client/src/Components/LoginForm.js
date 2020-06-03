@@ -85,29 +85,34 @@ class LoginForm extends HTMLElement {
         <div class="field">
           <label>Username</label>
           <div class="ui left icon input">
-              <input class="email" type="email" name="email">
-              <i class="user icon"></i>
-            </div>
+            <input class="email" type="email" name="email"></input>
+            <i class="user icon"></i>
           </div>
-          <div class="field">
+        </div>
+        <div class="field">
+          <div class="labelPassword">
             <label>Password</label>
-            <div class="ui left icon input">
-              <input type="password" id="password" name="password">
-              <i class="lock icon"></i>
-            </div>
           </div>
-            <div class="fields">
-              <div id="close" class="ui red button">Close</div>
-              <div id="submit" class="ui green submit button">Login</div>
+          <div class="ui left icon input">
+            <input type="password" id="password" name="password">
+            <i class="lock icon"></i>
           </div>
+        </div>
+        <div class="fields loginFormButtons">
+          <div id="close" class="ui red button">Close</div>
+          <div id="submit" class="ui green submit button">Login</div>
+        </div>
           <div class="fields">
-            <a href="/api/facebook"><button class="ui facebook button">
-              <i class="facebook icon"></i>
-              Sign in with Facebook
-            </button></a>
+            <a href="/api/facebook">
+              <button class="ui facebook button">
+                <i class="facebook icon"></i>
+                Sign in with Facebook
+              </button>
+            </a>
           </div>
           <button class ="ui error message"></button>
-        </div>`;
+        </div>
+      </div>`;
   }
 }
 
