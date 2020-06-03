@@ -56,18 +56,18 @@ router.get('/', async (req, res) => {
       createRequest(serviceName, searchText, color, orderByUs, orderByPb, orientationUs, orientationPb),
     );
   }
-  if (orientation == 'vertical') {
+  if (orientation == 'Vertical') {
     orientationUs = 'landscape';
     orientationPb = 'vertical';
     apiRequests = newArrayColor.map((serviceName) =>
       createRequest(serviceName, searchText, color, orderByUs, orderByPb, orientationUs, orientationPb),
     );
   }
-  if (orientation == 'horizontal') {
+  if (orientation == 'Horizontal') {
     orientationUs = 'portrait';
     orientationPb = 'horizontal';
     apiRequests = newArrayColor.map((serviceName) =>
-    createRequest(serviceName, searchText, color, orderByUs, orderByPb, orientationUs, orientationPb),
+      createRequest(serviceName, searchText, color, orderByUs, orderByPb, orientationUs, orientationPb),
     );
   }
 

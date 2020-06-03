@@ -13,7 +13,7 @@ class Sort extends HTMLElement {
     } else if (e.srcElement.classList.value.includes('descendig')) {
       store.sort = 'min_popularity';
     } else {
-      store.sort = 'Any';
+      store.sort = '';
     }
   }
 

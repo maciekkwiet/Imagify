@@ -9,11 +9,11 @@ class Filter extends HTMLElement {
   }
 
   filterOrient(e) {
-    store.orientation = e.target.textContent == 'Any orientation' ? 'Any' : e.target.textContent;
+    store.orientation = e.target.textContent == 'Any orientation' ? '' : e.target.textContent;
   }
 
   filterColor(e) {
-    store.color = e.target.textContent == 'Any color' ? 'Any' : e.target.textContent;
+    store.color = e.target.textContent == 'Any color' ? '' : e.target.textContent;
   }
 
   render() {
