@@ -29,8 +29,8 @@ module.exports = {
       'window.jQuery': 'jquery',
     }),
     new MiniCssExtractPlugin({
-      filename: 'style.css',
-      entrypoints: false,
+      filename: '[name].css',
+      chunkFilename: '[id].css',
     }),
   ],
   resolve: {
