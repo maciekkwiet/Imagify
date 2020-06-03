@@ -8,6 +8,9 @@ class ImageService {
     try {
       const { data } = await axios.get(`/api/images?searchText=${searchText}`, {
         services: store.services,
+        color: store.color,
+        orientation: store.orientation,
+        orderBy: store.sort,
       });
       const allImages = [];
 

@@ -1,13 +1,21 @@
+import store from '../Store.js';
+
 class Sort extends HTMLElement {
   connectedCallback() {
     this.render();
+    store.sort = 'Any';
 
     this.querySelectorAll('.sort').forEach((node) => node.addEventListener('click', (e) => this.sortPopularity(e)));
   }
 
   sortPopularity(e) {
-    const ascending = e.srcElement.classList.value.includes('ascending') ? 'ascending' : 'descending';
-    console.log(e.target.textContent + ascending);
+    if (e.srcElement.classList.value.includes('ascending')) {
+      store.sort = 'max_popularity';
+    } else if (e.srcElement.classList.value.includes('descendig')) {
+      store.sort = 'min_popularity';
+    } else {
+      store.sort = 'Any';
+    }
   }
 
   render() {
