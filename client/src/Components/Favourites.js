@@ -42,7 +42,7 @@ class Favourites extends HTMLElement {
         },
         { headers: { 'x-auth': token } },
       );
-      return true;
+     
     } catch (ex) {
       $('body').toast({
         message: ex.response.data.error,
@@ -50,7 +50,6 @@ class Favourites extends HTMLElement {
       console.error(ex);
       this.isChecked = !this.isChecked;
       this.render();
-      return false;
     }
   }
 
