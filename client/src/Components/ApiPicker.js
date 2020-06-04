@@ -23,18 +23,25 @@ class ApiPicker extends HTMLElement {
 
   render() {
     this.innerHTML = `
+    <div class="ui relaxed horizontal list">
   <div class="ui form inline fields">
-    <div class="ui checked checkbox api">
+  <div class="ui left floated compact segment">
+    <div class="ui fitted toggle checkbox">
       <input type="checkbox" id="Pexels" checked=""/>
       <label for="Pexels">Pexels</label>
     </div>
-    <div class="ui checked checkbox api">
+    </div>
+    <div class="ui left floated compact segment">
+    <div class="ui fitted toggle checkbox">
       <input type="checkbox" id="Pixabay" checked=""/>
       <label for="Pixabay">Pixabay</label>
     </div>
-    <div class="ui checked checkbox api">
+    </div>
+    <div class="ui left floated compact segment">
+    <div class="ui fitted toggle checkbox">
       <input type="checkbox" id="Unsplash" checked=""/>
       <label for="Unsplash">Unsplash</label>
+    </div>
     </div>
   </div>
 `;
