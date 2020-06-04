@@ -33,9 +33,14 @@ router.post('/', async (req, res) => {
 
   if (error) return res.status(400).json({ error: error.details[0].message });
 
-  const newArrayColor = services.filter((serviceName) => serviceName !== 'PEXELS');
-
-  apiRequests = newArrayColor.map((serviceName) => createRequest(serviceName, searchText, color, orderBy, orientation));
+  if (color || orientation || orderBy) {
+    const newArrayColor = services.filter((serviceName) => serviceName !== 'PEXELS');
+    apiRequests = newArrayColor.map((serviceName) =>
+      createRequest(serviceName, searchText, color, orderBy, orientation),
+    );
+  } else {
+    apiRequests = services.map((serviceName) => createRequest(serviceName));
+  }
 
   const responses = await Promise.all(apiRequests);
 
