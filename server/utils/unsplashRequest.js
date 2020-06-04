@@ -14,15 +14,14 @@ const unsplashRequest = (searchText, color, orderBy, orientation) => {
   }
   if (orientation) {
     if (orientation == 'Vertical') {
-      orientation = 'landscape';
-    } else if (orientation == 'Horizontal') {
       orientation = 'portrait';
+    } else if (orientation == 'Horizontal') {
+      orientation = 'landscape';
     }
     baseURL += `&orientation=${orientation}`;
   }
 
   const url = `https://api.unsplash.com/search/photos?page=1&query=${searchText}&client_id=${process.env.UNSPLASH_CLIENT_ID}${baseURL}`;
-  console.log(url);
   return url;
 };
 module.exports = unsplashRequest;

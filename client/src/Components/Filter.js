@@ -13,7 +13,7 @@ class Filter extends HTMLElement {
   }
 
   filterColor(e) {
-    store.color = e.target.textContent == 'Any color' ? '' : e.target.textContent;
+    store.color = e.target.textContent == 'Any color' ? '' : e.target.textContent.toLowerCase();
   }
 
   render() {

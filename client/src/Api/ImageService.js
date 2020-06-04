@@ -6,20 +6,16 @@ import $ from 'jquery';
 class ImageService {
   async getImages(searchText) {
     try {
-      console.log(store.color);
-      console.log(store.orientation);
-      console.log(store.sort);
-
       const { data } = await axios.post(`/api/images?searchText=${searchText}`, {
         services: store.services,
         filters: { color: store.color, orientation: store.orientation, orderBy: store.sort },
       });
+
       const allImages = [];
 
-      if (store.services.includes('Pexels')) allImages.push(...data.pexels.photos.map((image) => image.src.medium));
-      if (store.services.includes('Pixabay')) allImages.push(...data.pixabay.hits.map((image) => image.webformatURL));
-      if (store.services.includes('Unsplash'))
-        allImages.push(...data.unsplash.results.map((image) => image.urls.small));
+      if (data.pexels) allImages.push(...data.pexels.photos.map((image) => image.src.medium));
+      if (data.pixabay) allImages.push(...data.pixabay.hits.map((image) => image.webformatURL));
+      if (data.unsplash) allImages.push(...data.unsplash.results.map((image) => image.urls.small));
 
       return this.shuffleImages(allImages);
     } catch (ex) {

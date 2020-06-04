@@ -22,7 +22,6 @@ const pixabayRequest = (searchText, color, orderBy, orientation) => {
   }
 
   const url = `https://pixabay.com/api/?key=${process.env.PIXABAY_KEY}&q=${searchText}&image_type=photo${baseURL}`;
-  console.log(url);
   return url;
 };
 
