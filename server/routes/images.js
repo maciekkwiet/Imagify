@@ -16,11 +16,18 @@ const schema = Joi.object({
   filters: Joi.object(),
 });
 
-router.get('/', async (req, res) => {
+router.post('/', async (req, res) => {
+  console.log(req.body);
+
   const { searchText } = req.query;
   const {
     filters: { color, orientation, orderBy },
   } = req.body;
+
+  console.log(color);
+  console.log(orientation);
+  console.log(orderBy);
+
   let apiRequests = [];
   let orderByUs;
   let orderByPb;

@@ -10,11 +10,9 @@ class ImageService {
       console.log(store.orientation);
       console.log(store.sort);
 
-      const { data } = await axios.get(`/api/images?searchText=${searchText}`, {
+      const { data } = await axios.post(`/api/images?searchText=${searchText}`, {
         services: store.services,
-        color: store.color,
-        orientation: store.orientation,
-        orderBy: store.sort,
+        filters: { color: store.color, orientation: store.orientation, orderBy: store.sort },
       });
       const allImages = [];
 
