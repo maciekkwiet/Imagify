@@ -5,9 +5,19 @@ const pixabayRequest = (searchText, color, orderBy, orientation) => {
     baseURL += `&color=${color}`;
   }
   if (orderBy) {
+    if (orderBy == 'max_popularity') {
+      orderBy = 'popular';
+    } else if (orderBy == 'min_popularity') {
+      orderBy = 'latest';
+    }
     baseURL += `&order_by=${orderBy}`;
   }
   if (orientation) {
+    if (orientation == 'Vertical') {
+      orientation = 'vertical';
+    } else if (orientation == 'Horizontal') {
+      orientation = 'horizontal';
+    }
     baseURL += `&orientation=${orientation}`;
   }
 

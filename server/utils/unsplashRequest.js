@@ -5,9 +5,19 @@ const unsplashRequest = (searchText, color, orderBy, orientation) => {
     baseURL += `&color=${color}`;
   }
   if (orderBy) {
+    if (orderBy == 'min_popularity') {
+      orderBy = 'latest';
+    } else if (orderBy == 'max_popularity') {
+      orderBy = 'relevant';
+    }
     baseURL += `&order_by=${orderBy}`;
   }
   if (orientation) {
+    if (orientation == 'Vertical') {
+      orientation = 'landscape';
+    } else if (orientation == 'Horizontal') {
+      orientation = 'portrait';
+    }
     baseURL += `&orientation=${orientation}`;
   }
 
