@@ -14,7 +14,6 @@ class ResetPassword extends HTMLElement {
   async handleResetSubmit(event) {
     this.email = document.querySelector('.email-input').value; // catch email
     event.preventDefault(); //stop refresh
-    //const isCorrect = $('.ui.form').form('is valid');
 
     try {
       await axios.post(`/api/resetpassword/reset?email=${this.email}`);
