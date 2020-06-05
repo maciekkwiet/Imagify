@@ -3,15 +3,15 @@ import store from '../Store';
 class SearchBar extends HTMLElement {
   connectedCallback() {
     this.render();
-    this.input = this.querySelector('input');
+    this.input = this.querySelector('.input-legit');
     store.searchTextInput = fromEvent(this.input, 'input');
   }
 
   render() {
     this.innerHTML = `
-    <div class="ui big icon input four wide column searchBarMain">
-        <input type="text" placeholder="Search big...">
-        <i class="search icon"></i>
+    <div class="ui big right icon input four wide column searchBarMain">
+      <i class="search icon"></i>
+      <input class="input-legit" type="text" placeholder="Search big...">
     </div>`;
   }
 }
