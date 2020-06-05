@@ -1,12 +1,11 @@
 @import 'partials/mixins';
 
-app-apipicker {
+app-sort {
   @include alignItems();
-  .inline {
+  .filt {
     @include alignItems();
-
-    .api {
-      margin-left: 10px;
+    .dropdown {
+      margin-left: 8px;
     }
   }
 }

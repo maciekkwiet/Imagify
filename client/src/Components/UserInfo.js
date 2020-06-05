@@ -21,7 +21,7 @@ class UserInfo extends HTMLElement {
         this.avatar = response.data.user.avatar;
       } catch (ex) {
         console.error(ex);
-        this.render();
+        //this.render();
       }
     }
     this.render(token);
