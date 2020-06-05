@@ -11,27 +11,26 @@ const schema = Joi.object({
     .unique()
     .default(['UNSPLASH', 'PIXABAY', 'PEXELS']),
 
-  orderBy: Joi.string().valid('min_popularity', 'max_popularity'),
+  orderBy: Joi.string().valid('min_popularity', 'max_popularity', '').default(''),
   filters: {
-    orientation: Joi.string().valid('Vertical', 'Horizontal'),
-    color: Joi.string().valid('red', 'black', 'white', 'yellow', 'orange', 'green', 'blue'),
+    orientation: Joi.string().valid('Vertical', 'Horizontal', '').default(''),
+    color: Joi.string().valid('red', 'black', 'white', 'yellow', 'orange', 'green', 'blue', '').default(''),
   },
 });
 
 router.post('/', async (req, res) => {
   const { searchText } = req.query;
-  const { orderBy } = req.body;
-  const {
-    filters: { color, orientation },
-  } = req.body;
   let apiRequests = [];
-
   const {
-    value: { services },
+    value: {
+      services,
+      orderBy,
+      filters: { color, orientation },
+    },
     error,
   } = schema.validate(req.body);
 
-  //if (error) return res.status(400).json({ error: error.details[0].message });
+  if (error) return res.status(400).json({ error: error.details[0].message });
 
   if (color || orientation || orderBy) {
     const newArrayColor = services.filter((serviceName) => serviceName !== 'PEXELS');
