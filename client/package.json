@@ -5,7 +5,8 @@
   "scripts": {
     "start": "webpack-dev-server --open --watch",
     "build": "webpack --mode production",
-    "server": "webpack-dev-server --inline --hot"
+    "server": "webpack-dev-server --inline --hot",
+    "build:watch": "webpack --watch --mode production "
   },
   "author": "",
   "license": "ISC",

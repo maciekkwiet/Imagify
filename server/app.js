@@ -16,6 +16,8 @@ const port = process.env.PORT || 12345;
 
 const dbKey = process.env.DB_KEY;
 
+const resetToken = require('./routes/email/resetpassword');
+
 mongoose
   .connect(dbKey, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('Connecting with Data Base is ok'))
@@ -23,18 +25,6 @@ mongoose
 
 app.use(express.static(__dirname + '/public/resetpassword'));
 
-app.get('/passwordreset', (req, res) => {
-  const fileName = path.join(__dirname, 'public/resetpassword/resetpassword.html');
-  res.sendFile(fileName);
-});
-
-app.get('/passwordcreate/:resetToken', (req, res) => {
-  const fileName = path.join(__dirname, 'public/resetpassword/createpassword.html');
-  res.sendFile(fileName);
-});
-
-// app.use('/api', router);
-// app.use(error);
 app.use(passport.initialize()); // inicjalizacja passporta
 initializeFacebookStrategy(passport);
 
@@ -47,6 +37,10 @@ app.use(cookieParser());
 app.use('/api', router); //na endpoint api dzieje się to co jest w router
 
 app.get('/', function (req, res) {
+  const indexPath = path.join(publicPath, 'index.html');
+  res.sendFile(indexPath);
+});
+app.get(`/passwordCreate`, (req, res) => {
   const indexPath = path.join(publicPath, 'index.html');
   res.sendFile(indexPath);
 });
