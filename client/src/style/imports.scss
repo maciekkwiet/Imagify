@@ -1,10 +1,9 @@
+@import "main";
+@import "favourites";
 @import 'partials/variables';
-
-@import 'main';
-@import 'modal';
+@import 'partials/mixins';
 @import 'Avatar';
 @import 'ResetPassword';
-@import 'main';
 @import 'ImageList';
 @import 'Image';
 @import 'Modal';

@@ -8,6 +8,7 @@ import ApiPicker from './Components/ApiPicker.js';
 import Image from './Components/Image.js';
 import LoginForm from './Components/LoginForm.js';
 import RegistrationForm from './Components/RegistrationForm.js';
+import Favourites from './Components/Favourites.js';
 import Avatar from './Components/Avatar.js';
 import Modal from './Components/Modal.js';
 import LoginButton from './Components/LoginButton.js';
@@ -21,6 +22,7 @@ const setup = () => {
   customElements.define('app-apipicker', ApiPicker);
   customElements.define('app-imagelist', ImageList);
   customElements.define('app-image', Image);
+  customElements.define('app-favourites', Favourites);
   customElements.define('app-loginform', LoginForm);
   customElements.define('app-registrationform', RegistrationForm);
   customElements.define('app-avatar', Avatar);

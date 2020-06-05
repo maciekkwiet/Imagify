@@ -18,8 +18,11 @@ router.post('/:url', async (req, res) => {
   res.json({ favourities });
 });
 
-router.delete('/:url', async (req, res) => {
-  const { url } = req.params;
+router.delete('/', async (req, res) => {
+  const { url } = req.body;
+  // const { url } = req;
+  // console.log(body);
+
   let { favourities } = req.user;
   favourities = favourities.filter((el) => el !== url);
   await User.findOneAndUpdate({ _id: req.user._id }, { $set: { favourities } }, { new: true });
