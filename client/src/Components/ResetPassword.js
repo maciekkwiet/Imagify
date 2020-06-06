@@ -14,15 +14,14 @@ class ResetPassword extends HTMLElement {
   async handleResetSubmit(event) {
     this.email = document.querySelector('.email-input').value; // catch email
     event.preventDefault(); //stop refresh
-    const isCorrect = $('.ui.form').form('is valid');
 
-    if (isCorrect[0] && isCorrect[1]) {
-      try {
-        await axios.post(`/api/resetpassword/reset?email=${this.email}`);
-        this.closeModal();
-      } catch (ex) {
-        console.error(ex);
-      }
+    try {
+      await axios.post(`/api/resetpassword/reset?email=${this.email}`);
+      console.log('dupa');
+
+      this.closeModal();
+    } catch (ex) {
+      console.error(ex);
     }
   }
 

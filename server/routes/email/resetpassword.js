@@ -18,6 +18,7 @@ router.post('/reset', async (req, res) => {
   const token = jwt.sign({ _id: user._id }, jwtKey);
   res.header('auth', token).json({ email });
   user.resetToken = token;
+  console.log(token);
   user.resetTokenExpiration = Date.now() + tokenLifeTime;
 
   if (!user) return res.status(400).json({ error: 'Invalid email' });

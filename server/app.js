@@ -15,21 +15,14 @@ const router = require('./routes');
 const port = process.env.PORT || 12345;
 const dbKey = process.env.DB_KEY;
 
+const resetToken = require('./routes/email/resetpassword');
+
 mongoose
   .connect(dbKey, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('Connecting with Data Base is ok'))
   .catch(() => console.error('Error with Data Base'));
 app.use(express.static(__dirname + '/public/resetpassword'));
-app.get('/passwordreset', (req, res) => {
-  const fileName = path.join(__dirname, 'public/resetpassword/resetpassword.html');
-  res.sendFile(fileName);
-});
-app.get('/passwordcreate/:resetToken', (req, res) => {
-  const fileName = path.join(__dirname, 'public/resetpassword/createpassword.html');
-  res.sendFile(fileName);
-});
-// app.use('/api', router);
-// app.use(error);
+
 app.use(passport.initialize()); // inicjalizacja passporta
 initializeFacebookStrategy(passport);
 const publicPath = path.join(__dirname, '../', '/client', '/public');
@@ -41,4 +34,11 @@ app.get('/', function (req, res) {
   const indexPath = path.join(publicPath, 'index.html');
   res.sendFile(indexPath);
 });
+
+app.get(`/passwordCreate`, (req, res) => {
+  const indexPath = path.join(publicPath, 'index.html');
+  res.sendFile(indexPath);
+});
+
 app.listen(port, () => console.log(`Listening on port ${port}`));
+
