@@ -10,7 +10,21 @@ app-apipicker {
       margin-left: 10px;
     }
   }
-  .ui.segment {
+.ui {
+  .toggle.checkbox input:checked ~ label:before {
+    background: linear-gradient(90deg, rgba(101,253,255,1) 0%, rgb(197, 136, 255) 100%) !important;
+  }
+  .floated.segment, .ui[class*="left floated"].segment {text-align: center;}
+
+  label {
+    cursor: auto;
+    position: relative;
+    display: block;
+    outline: none;
+    font-size: 1em;
+  }
+
+  .segment {
     position: relative;
     background: #FFFFFF;
     box-shadow: 0 1px 2px 0 rgba(34, 36, 38, 0.15);
@@ -23,20 +37,14 @@ app-apipicker {
 
     .checkbox {
       line-height: 60px;
-
     }
 
     label {
-      height: 40px;
-      width: 90px;
+      height: 35px;
+      width: 45px;
     }
 }
-.ui.checkbox label {
-  cursor: auto;
-  position: relative;
-  display: block;
-padding-left: -8em;
-  outline: none;
-  font-size: 1em;
 }
+
 }
+
