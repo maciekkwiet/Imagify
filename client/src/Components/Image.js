@@ -2,8 +2,8 @@ import store from '../Store';
 class Image extends HTMLElement {
   constructor() {
     super();
-    this.url = this.getAttribute('source');
-    this.removeAttribute('src');
+    this.url = this.getAttribute('data-big-image');
+   
   }
   connectedCallback() {
     this.favourites = document.createElement('app-favourites');
