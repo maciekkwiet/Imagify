@@ -30,11 +30,11 @@ class ImageList extends HTMLElement {
   }
 
   createImageList() {
-    return this.images.map((image) => this.createImage(image)).join('');
+    return this.images.map((image) => this.createImage(image.mediumImage, image.bigImage)).join('');
   }
 
-  createImage(url) {
-    return `<app-image source=${url}></app-image>`;
+  createImage(url, bigUrl) {
+    return `<app-image source=${url} data-big-image=${bigUrl}></app-image>`;
   }
 
   render() {

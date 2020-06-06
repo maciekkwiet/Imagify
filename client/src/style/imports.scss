@@ -1,10 +1,9 @@
-@import 'partials/variables';
-
 @import 'main';
-@import 'modal';
+@import 'partials/variables';
+@import 'partials/mixins';
+@import 'Favourites';
 @import 'Avatar';
 @import 'ResetPassword';
-@import 'main';
 @import 'ImageList';
 @import 'Image';
 @import 'Modal';
@@ -16,3 +15,5 @@
 @import 'SearchBar';
 @import 'Settings';
 @import 'UserInfo';
+@import 'Filter';
+@import 'Sort';
