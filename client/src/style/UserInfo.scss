@@ -1,0 +1,16 @@
+app-userinfo {
+  .userInfo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    .labelDiv {
+      margin-left: 5px;
+      @media screen and (max-width: 1000px) {
+        display: none;
+      }
+    }
+    app-settingsbutton {
+      margin-left: 5px;
+    }
+  }
+}

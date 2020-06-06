@@ -1,0 +1,12 @@
+@import 'partials/mixins';
+
+app-apipicker {
+  @include alignItems();
+  .inline {
+    @include alignItems();
+
+    .api {
+      margin-left: 10px;
+    }
+  }
+}
