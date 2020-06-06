@@ -13,6 +13,9 @@ class SettingsButton extends HTMLElement {
     this.querySelector('#logOut').addEventListener('click', () => {
       this.logOut();
     });
+    this.querySelector('#resetPassword').addEventListener('click', () => {
+      this.resetPassword();
+    });
   }
 
   logOut() {
@@ -29,10 +32,10 @@ class SettingsButton extends HTMLElement {
     <div class="ui icon top left pointing dropdown button">
      <i class="wrench icon" id = "wrenchIcon"></i>
      <div class="menu">
-      <div class="item" id = "favourites">favourites</div>
-      <div class="item" id = "setAvatar">set avatar</div>
-      <div class="item" id = "changePassword">change password</div>
-      <div class="item" id = "logOut">log out</div>
+      <div class="item" id = "favourites">Favourites</div>
+      <div class="item" id = "setAvatar">Set avatar</div>
+      <div class="item" id = "resetPassword">Reset password</div>
+      <div class="item" id = "logOut">Log out</div>
      </div>
     </div>`;
   }
@@ -43,6 +46,18 @@ class SettingsButton extends HTMLElement {
   get avatarModalContent() {
     return `
       <app-avatar class="content"></<app-avatar>
+    `;
+  }
+
+  resetPassword() {
+    const content = this.resetPasswordModalContent;
+    store.modal.next({ type: 'OPEN', content });
+  }
+  get resetPasswordModalContent() {
+    return `
+    <div class="ui tiny modal">
+      <app-resetpassword class="content"></<app-resetpassword>
+    </div>
     `;
   }
 }

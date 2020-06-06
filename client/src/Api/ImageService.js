@@ -6,8 +6,10 @@ import $ from 'jquery';
 class ImageService {
   async getImages(searchText) {
     try {
-      const { data } = await axios.get(`/api/images?searchText=${searchText}`, {
+      const { data } = await axios.post(`/api/images?searchText=${searchText}`, {
         services: store.services,
+        filters: { color: store.color, orientation: store.orientation },
+        orderBy: store.sort,
       });
       const allImages = [];
 
@@ -32,6 +34,7 @@ class ImageService {
           allImages,
         );
       }
+
       return this.shuffleImages(allImages);
     } catch (ex) {
       $('body').toast({

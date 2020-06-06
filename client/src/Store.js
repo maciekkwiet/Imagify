@@ -7,6 +7,9 @@ class Store {
     this.modal = new Subject();
     this.token = new Subject();
     this.user = null;
+    this.color = '';
+    this.orientation = '';
+    this.sort = '';
   }
 }
 
