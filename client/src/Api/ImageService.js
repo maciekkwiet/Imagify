@@ -8,15 +8,14 @@ class ImageService {
     try {
       const { data } = await axios.post(`/api/images?searchText=${searchText}`, {
         services: store.services,
-        filters: { color: store.color, orientation: store.orientation, orderBy: store.sort },
+        filters: { color: store.color, orientation: store.orientation },
+        orderBy: store.sort,
       });
-
       const allImages = [];
 
       if (data.pexels) allImages.push(...data.pexels.photos.map((image) => image.src.medium));
       if (data.pixabay) allImages.push(...data.pixabay.hits.map((image) => image.webformatURL));
       if (data.unsplash) allImages.push(...data.unsplash.results.map((image) => image.urls.small));
-
       return this.shuffleImages(allImages);
     } catch (ex) {
       $('body').toast({
