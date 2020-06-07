@@ -40,7 +40,7 @@ class Favourites extends HTMLElement {
         {
           favourites: `${this.url}`,
         },
-        { headers: { 'x-auth': token } },
+        { headers: { 'auth': token } },
       );
      
     } catch (ex) {

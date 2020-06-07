@@ -14,7 +14,7 @@ class UserInfo extends HTMLElement {
       try {
         const response = await axios.get('/api/me', {
           headers: {
-            'x-auth': token,
+            'auth': token,
           },
         });
         store.user = response.data.user;

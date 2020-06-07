@@ -23,11 +23,11 @@ class RegistrationForm extends HTMLElement {
 
     const isCorrect = $('.ui.form').form('is valid');
 
-    if (isCorrect[0] && isCorrect[1]) {
+    if (isCorrect[2]) {
       try {
         const response = await axios.post('/api/register', {
-          email: `${this.email}`,
-          password: `${this.password}`,
+          email: `${this.email[1]}`,
+          password: `${this.password[1]}`,
         });
 
         const token = response.headers.auth;
@@ -35,9 +35,9 @@ class RegistrationForm extends HTMLElement {
         store.token.next(token);
         this.closeModal();
       } catch (ex) {
-        $('body').toast({
-          message: ex.response.data.error,
-        });
+        // $('body').toast({
+        //   message: ex.response.data.error,
+        // });
         console.error(ex);
       }
     }
