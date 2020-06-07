@@ -16,4 +16,8 @@ app-modal {
   .fields {
     @include alignItems();
   }
+  .image {
+    max-height: 90vh;
+    max-width: auto;
+  }
 }

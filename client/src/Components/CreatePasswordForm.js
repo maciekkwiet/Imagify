@@ -80,7 +80,7 @@ class CreatePassword extends HTMLElement {
 
   render() {
     this.innerHTML = `
-    <div class="ui tiny modal id="create">
+    <div class="ui tiny modal" id="create">
   <div class="ui form">
     <div class="field">
       <label>Username</label>
