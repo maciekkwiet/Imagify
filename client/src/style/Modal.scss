@@ -2,19 +2,18 @@
 
 app-modal {
   #image-modal {
+    max-height: 90vh;
     width: auto;
-    height: auto;
   }
 
   #reset {
     padding: 10px;
   }
+  #create {
+    padding: 10px;
+  }
 
   .fields {
     @include alignItems();
-  }
-  .image {
-    max-height: 90vh;
-    max-width: auto;
   }
 }
