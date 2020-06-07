@@ -2,11 +2,49 @@
 
 app-apipicker {
   @include alignItems();
+   text-align: center;
   .inline {
     @include alignItems();
-
+   
     .api {
       margin-left: 10px;
     }
   }
+.ui {
+  .toggle.checkbox input:checked ~ label:before {
+    background: linear-gradient(90deg, rgba(101,253,255,1) 0%, rgb(197, 136, 255) 100%) !important;
+  }
+  .floated.segment, .ui[class*="left floated"].segment {text-align: center;}
+
+  label {
+    cursor: auto;
+    position: relative;
+    display: block;
+    outline: none;
+    font-size: 1em;
+  }
+
+  .segment {
+    position: relative;
+    background: #FFFFFF;
+    box-shadow: 0 1px 2px 0 rgba(34, 36, 38, 0.15);
+    margin: 0rem 0; 
+    padding: 1em 1em;
+    border-radius: 0.28571429rem;
+    border: 1px solid rgba(34, 36, 38, 0.15);
+    text-align: center;
+    
+
+    .checkbox {
+      line-height: 60px;
+    }
+
+    label {
+      height: 35px;
+      width: 45px;
+    }
 }
+}
+
+}
+

@@ -26,12 +26,6 @@ class CreatePassword extends HTMLElement {
       const response = await axios.post(
         `/api/resetpassword/create?` + `resetToken=` + locationToken + '&' + `password=` + this.password,
       );
-      console.log('git');
-      console.log(response);
-      // te zakomentowane linie chyba mogą się przydać w przyszłości
-      // const token = response.headers.auth;
-      // localStorage.setItem('token', token);
-      // store.token.next(token);
       this.closeModal();
     } catch (ex) {
       $('body').toast({
@@ -86,7 +80,7 @@ class CreatePassword extends HTMLElement {
 
   render() {
     this.innerHTML = `
-    <div class="ui tiny modal">
+    <div class="ui tiny modal" id="create">
   <div class="ui form">
     <div class="field">
       <label>Username</label>
@@ -111,7 +105,7 @@ class CreatePassword extends HTMLElement {
     </div>
     <div class="fields">
       <div id="close" class="ui red button">Close</div>
-      <div id="change" class="ui green submit button">Change Password</div>
+      <a href="https://cc-imagify.herokuapp.com/" id="change" class="ui green submit button">Change Password</a>
     </div>
     <div class="ui error message"></div>
   </div>
