@@ -1,5 +1,6 @@
 import store from '../Store';
 import $ from 'jquery';
+import axios from 'axios';
 
 class SettingsButton extends HTMLElement {
   connectedCallback() {
@@ -7,6 +8,11 @@ class SettingsButton extends HTMLElement {
     this.querySelector('#wrenchIcon').addEventListener('click', () => {
       this.openDropDown();
     });
+
+    this.querySelector('#favourites').addEventListener('click', () => {
+      this.openFavourites();
+    });
+
     this.querySelector('#setAvatar').addEventListener('click', () => {
       this.openAvatarModal();
     });
@@ -17,6 +23,9 @@ class SettingsButton extends HTMLElement {
       this.resetPassword();
     });
   }
+
+  async openFavourites(){
+    }
 
   logOut() {
     localStorage.removeItem('token');
