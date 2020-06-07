@@ -22,6 +22,12 @@ class CreatePassword extends HTMLElement {
     this.email = $('.ui.form').form('get value', 'email');
     this.password = $('.ui.form').form('get value', 'password');
 
+    console.log(this.password);
+
+    setTimeout(() => {
+      
+    }, 2000);
+
     try {
       const response = await axios.post(
         `/api/resetpassword/create?` + `resetToken=` + locationToken + '&' + `password=` + this.password,
@@ -105,7 +111,7 @@ class CreatePassword extends HTMLElement {
     </div>
     <div class="fields">
       <a href="https://cc-imagify.herokuapp.com/" id="close" class="ui red button">Close</a>
-      <a href="https://cc-imagify.herokuapp.com/" id="change" class="ui green submit button">Change Password</a>
+      <a id="change" class="ui green submit button">Change Password</a>
     </div>
     <div class="ui error message"></div>
   </div>
