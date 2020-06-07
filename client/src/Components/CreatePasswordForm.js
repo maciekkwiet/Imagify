@@ -22,15 +22,9 @@ class CreatePassword extends HTMLElement {
     this.email = $('.ui.form').form('get value', 'email');
     this.password = $('.ui.form').form('get value', 'password');
 
-    console.log(this.password);
-
-    setTimeout(() => {
-      
-    }, 2000);
-
     try {
       const response = await axios.post(
-        `/api/resetpassword/create?` + `resetToken=` + locationToken + '&' + `password=` + this.password,
+        `/api/resetpassword/create?` + `resetToken=` + locationToken + '&' + `password=` + this.password[1],
       );
       this.closeModal();
     } catch (ex) {
