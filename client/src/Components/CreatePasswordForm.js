@@ -105,7 +105,7 @@ class CreatePassword extends HTMLElement {
     </div>
     <div class="fields">
       <a href="https://cc-imagify.herokuapp.com/" id="close" class="ui red button">Close</a>
-      <a id="change" class="ui green submit button">Change Password</a>
+      <a href="https://cc-imagify.herokuapp.com/" id="change" class="ui green submit button">Change Password</a>
     </div>
     <div class="ui error message"></div>
   </div>
