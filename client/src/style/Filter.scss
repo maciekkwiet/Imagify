@@ -2,6 +2,7 @@
 
 app-filter {
   @include alignItems();
+  margin: auto;
   .filt {
     @include alignItems();
     .dropdown {

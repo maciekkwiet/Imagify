@@ -2,6 +2,7 @@
 
 app-sort {
   @include alignItems();
+  margin: auto;
   .filt {
     @include alignItems();
     .dropdown {

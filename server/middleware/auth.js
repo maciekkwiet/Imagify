@@ -3,7 +3,7 @@ const jwtKey = process.env.JWT_SECRET;
 const { User } = require('../model/user');
 
 module.exports = async function (req, res, next) {
-  const token = req.cookies.auth || req.header('x-auth');
+  const token = req.cookies.auth || req.header('auth');
   if (!token) return res.status(401).json({ error: 'No token' });
 
   try {
