@@ -13,21 +13,21 @@ class ImageService {
       });
       const allImages = [];
 
-      if (store.services.includes('Pexels')) {
+      if (data.pexels) {
         this.pairImages(
           data.pexels.photos.map((image) => image.src.large2x),
           data.pexels.photos.map((image) => image.src.medium),
           allImages,
         );
       }
-      if (store.services.includes('Pixabay')) {
+      if (data.pixabay) {
         this.pairImages(
           data.pixabay.hits.map((image) => image.largeImageURL),
           data.pixabay.hits.map((image) => image.webformatURL),
           allImages,
         );
       }
-      if (store.services.includes('Unsplash')) {
+      if (data.unsplash) {
         this.pairImages(
           data.unsplash.results.map((image) => image.urls.full),
           data.unsplash.results.map((image) => image.urls.small),
