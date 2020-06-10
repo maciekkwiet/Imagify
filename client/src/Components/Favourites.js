@@ -1,11 +1,12 @@
 import axios from 'axios';
 import $ from 'jquery';
+import store from '../Store';
 
 class Favourites extends HTMLElement {
   connectedCallback() {
     this.isChecked = false;
     this.render();
-    this.url = this.parentElement.getAttribute('src');
+    this.url = this.previousElementSibling.getAttribute('src');
     this.addEventListener('click', () => {
       this.handleClick();
     });
@@ -36,13 +37,14 @@ class Favourites extends HTMLElement {
   async addToFavourites(token) {
     try {
       const response = await axios.post(
-        `api/favourities/:url`,
+        `api/favourities/url`,
         {
-          favourites: `${this.url}`,
+          url: this.url,
         },
         { headers: { 'auth': token } },
       );
-     
+      this.getUser(token);
+      console.log(store.user);
     } catch (ex) {
       $('body').toast({
         message: ex.response.data.error,
@@ -58,7 +60,7 @@ class Favourites extends HTMLElement {
       const response = await axios.delete(
         `api/favourities/`,
 
-        { headers: { 'x-auth': token }, data: { url: this.url } },
+        { headers: { 'auth': token }, data: { 'url': this.url } },
       );
       return true;
     } catch (ex) {
@@ -68,5 +70,22 @@ class Favourites extends HTMLElement {
       return false;
     }
   }
+
+  async getUser(token = null) {
+    if (token) {
+      try {
+        const response = await axios.get('/api/me', {
+          headers: {
+            'auth': token,
+          },
+        });
+        store.user = response.data.user;
+      } catch (ex) {
+        console.error(ex);
+      }
+    }
+  }
+
+
 }
 export default Favourites;
