@@ -44,7 +44,6 @@ class Favourites extends HTMLElement {
         { headers: { 'auth': token } },
       );
       this.getUser(token);
-      console.log(store.user);
     } catch (ex) {
       $('body').toast({
         message: ex.response.data.error,

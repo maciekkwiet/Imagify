@@ -2,10 +2,10 @@ const express = require('express');
 const router = express.Router();
 const { User } = require('../model/user');
 
-router.get('/', async (req, res) => {
-  const { favourities } = req.user;
-  res.send({ favourities });
-});
+// router.get('/', async (req, res) => {
+//   const { favourities } = req.user;
+//   res.send({ favourities });
+// });
 
 router.post('/url', async (req, res) => {
   const { url } = req.body;

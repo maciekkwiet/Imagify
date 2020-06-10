@@ -33,8 +33,6 @@ class SettingsButton extends HTMLElement {
   }
 
   createImage(url) {
-    console.log(url);
-    console.log("jestem");
     return `<app-image favourities=${url}></app-image>`;
   }
 
