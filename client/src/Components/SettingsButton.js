@@ -1,13 +1,10 @@
 import store from '../Store';
 import $ from 'jquery';
-import axios from 'axios';
 
 class SettingsButton extends HTMLElement {
   connectedCallback() {
     this.render();
-    this.querySelector('#wrenchIcon').addEventListener('click', () => {
-      this.openDropDown();
-    });
+    $('.ui.dropdown').dropdown();
 
     this.querySelector('#favourites').addEventListener('click', () => {
       this.openFavourites();
@@ -24,16 +21,11 @@ class SettingsButton extends HTMLElement {
     });
   }
 
-  async openFavourites(){
-    }
+  async openFavourites() {}
 
   logOut() {
     localStorage.removeItem('token');
     store.token.next(null);
-  }
-
-  openDropDown() {
-    $('.ui.dropdown').dropdown('refresh');
   }
 
   render() {
