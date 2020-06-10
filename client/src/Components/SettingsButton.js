@@ -25,7 +25,19 @@ class SettingsButton extends HTMLElement {
   }
 
   async openFavourites(){
+    document.querySelector('app-imageList').innerHTML = this.createImageList();
     }
+
+  createImageList() {
+    return store.user.favourities.map((url) => this.createImage(url)).join('');
+  }
+
+  createImage(url) {
+    console.log(url);
+    console.log("jestem");
+    return `<app-image favourities=${url}></app-image>`;
+  }
+
 
   logOut() {
     localStorage.removeItem('token');
