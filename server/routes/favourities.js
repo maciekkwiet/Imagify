@@ -2,13 +2,13 @@ const express = require('express');
 const router = express.Router();
 const { User } = require('../model/user');
 
-router.get('/', async (req, res) => {
-  const { favourities } = req.user;
-  res.send({ favourities });
-});
+// router.get('/', async (req, res) => {
+//   const { favourities } = req.user;
+//   res.send({ favourities });
+// });
 
-router.post('/:url', async (req, res) => {
-  const { url } = req.params;
+router.post('/url', async (req, res) => {
+  const { url } = req.body;
   const { favourities } = req.user;
 
   if (!favourities.includes(url)) {
@@ -20,8 +20,6 @@ router.post('/:url', async (req, res) => {
 
 router.delete('/', async (req, res) => {
   const { url } = req.body;
-  // const { url } = req;
-  // console.log(body);
 
   let { favourities } = req.user;
   favourities = favourities.filter((el) => el !== url);
