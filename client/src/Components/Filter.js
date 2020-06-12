@@ -1,9 +1,10 @@
 import store from '../Store.js';
+import $ from 'jquery';
 
 class Filter extends HTMLElement {
   connectedCallback() {
     this.render();
-
+    $('.ui.dropdown').dropdown();
     this.querySelectorAll('.orient').forEach((node) => node.addEventListener('click', (e) => this.filterOrient(e)));
     this.querySelectorAll('.color').forEach((node) => node.addEventListener('click', (e) => this.filterColor(e)));
   }

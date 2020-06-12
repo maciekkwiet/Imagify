@@ -1,13 +1,10 @@
 import store from '../Store';
 import $ from 'jquery';
-import axios from 'axios';
 
 class SettingsButton extends HTMLElement {
   connectedCallback() {
     this.render();
-    this.querySelector('#wrenchIcon').addEventListener('click', () => {
-      this.openDropDown();
-    });
+    $('.ui.dropdown').dropdown();
 
     this.querySelector('#favourites').addEventListener('click', () => {
       this.openFavourites();
@@ -28,6 +25,7 @@ class SettingsButton extends HTMLElement {
     document.querySelector('app-imageList').innerHTML = this.createImageList();
     }
 
+
   createImageList() {
     return store.user.favourities.map((url) => this.createImage(url)).join('');
   }
@@ -40,10 +38,6 @@ class SettingsButton extends HTMLElement {
   logOut() {
     localStorage.removeItem('token');
     store.token.next(null);
-  }
-
-  openDropDown() {
-    $('.ui.dropdown').dropdown('refresh');
   }
 
   render() {

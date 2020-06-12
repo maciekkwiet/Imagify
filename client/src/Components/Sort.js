@@ -1,9 +1,10 @@
 import store from '../Store.js';
+import $ from 'jquery';
 
 class Sort extends HTMLElement {
   connectedCallback() {
     this.render();
-
+    $('.ui.dropdown').dropdown();
     this.querySelectorAll('.sort').forEach((node) => node.addEventListener('click', (e) => this.sortPopularity(e)));
   }
 

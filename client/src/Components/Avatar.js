@@ -15,7 +15,7 @@ class Avatar extends HTMLElement {
     const token = localStorage.getItem('token');
     const photo = await toBase64(this.input.files[0]);
     try {
-      const response = await axios.post('api/upload-avatar', { photo }, { headers: { 'auth': token } });
+      const response = await axios.post('api/upload-avatar', { photo }, { headers: { auth: token } });
       this.uploadedImage = response.data.avatar;
       store.token.next(token);
       this.closeModal();
