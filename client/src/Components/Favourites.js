@@ -6,7 +6,7 @@ class Favourites extends HTMLElement {
   connectedCallback() {
     this.isChecked = false;
     this.render();
-    this.url = this.previousElementSibling.getAttribute('src');
+    this.url = this.parentElement.getAttribute('data-big-image');
     this.addEventListener('click', () => {
       this.handleClick();
     });
@@ -41,7 +41,7 @@ class Favourites extends HTMLElement {
         {
           url: this.url,
         },
-        { headers: { 'auth': token } },
+        { headers: { auth: token } },
       );
       this.getUser(token);
     } catch (ex) {
@@ -59,7 +59,7 @@ class Favourites extends HTMLElement {
       const response = await axios.delete(
         `api/favourities/`,
 
-        { headers: { 'auth': token }, data: { 'url': this.url } },
+        { headers: { auth: token }, data: { url: this.url } },
       );
       return true;
     } catch (ex) {
@@ -75,7 +75,7 @@ class Favourites extends HTMLElement {
       try {
         const response = await axios.get('/api/me', {
           headers: {
-            'auth': token,
+            auth: token,
           },
         });
         store.user = response.data.user;
@@ -84,7 +84,5 @@ class Favourites extends HTMLElement {
       }
     }
   }
-
-
 }
 export default Favourites;

@@ -12,6 +12,7 @@ class LoginForm extends HTMLElement {
 
   closeModal() {
     store.modal.next({ type: 'CLOSE' });
+    console.log('zamykam');
   }
 
   rules() {

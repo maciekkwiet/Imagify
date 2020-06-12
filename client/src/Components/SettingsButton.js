@@ -21,19 +21,22 @@ class SettingsButton extends HTMLElement {
     });
   }
 
-  async openFavourites(){
+  async openFavourites() {
     document.querySelector('app-imageList').innerHTML = this.createImageList();
-    }
-
+    const allFavourites = document.querySelectorAll('app-favourites');
+    allFavourites.forEach((image) => {
+      image.querySelector('input').setAttribute('checked', true);
+    });
+    //allFavourites.querySelectorAll('.checkbox').classList.add('checked');
+  }
 
   createImageList() {
     return store.user.favourities.map((url) => this.createImage(url)).join('');
   }
 
   createImage(url) {
-    return `<app-image favourities=${url}></app-image>`;
+    return `<app-image favourities=${url} data-big-image=${url} ></app-image>`;
   }
-
 
   logOut() {
     localStorage.removeItem('token');
