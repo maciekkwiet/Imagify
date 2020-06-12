@@ -16,13 +16,13 @@ import LoginOrRegister from './Components/LoginOrRegister.js';
 import SettingsButton from './Components/SettingsButton';
 import UserInfo from './Components/UserInfo';
 import ResetPassword from './Components/ResetPassword';
+import LoadMoreButton from './Components/LoadMoreButton';
 
 import CreatePasswordForm from './Components/CreatePasswordForm';
 import CreatePassword from './Components/CreatePassword';
 
 import Filter from './Components/Filter';
 import Sort from './Components/Sort';
-
 
 const setup = () => {
   customElements.define('app-searchbar', SearchBar);
@@ -39,13 +39,13 @@ const setup = () => {
   customElements.define('app-settingsbutton', SettingsButton);
   customElements.define('app-userinfo', UserInfo);
   customElements.define('app-resetpassword', ResetPassword);
+  customElements.define('app-loadmorebutton', LoadMoreButton);
 
   customElements.define('app-createpasswordform', CreatePasswordForm);
   customElements.define('app-createpassword', CreatePassword);
 
   customElements.define('app-filter', Filter);
   customElements.define('app-sort', Sort);
-
 };
 
 window.addEventListener('load', setup);

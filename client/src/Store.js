@@ -10,6 +10,7 @@ class Store {
     this.color = '';
     this.orientation = '';
     this.sort = '';
+    this.n = 1;
   }
 }
 

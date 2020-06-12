@@ -25,13 +25,14 @@ class ImageList extends HTMLElement {
   }
 
   async refreshImages(searchText = '') {
+    store.n = 1;
     this.images = await this.imageService.getImages(searchText);
     this.render();
   }
 
   createImageList() {
-    const tab2 = this.images.slice(0, 10);
-    return tab2.map((image) => this.createImage(image.mediumImage, image.bigImage)).join('');
+    const tabImages = this.images.slice(0, 10 * store.n);
+    return tabImages.map((image) => this.createImage(image.mediumImage, image.bigImage)).join('');
   }
 
   createImage(url, bigUrl) {
@@ -39,7 +40,9 @@ class ImageList extends HTMLElement {
   }
 
   render() {
-    this.innerHTML = this.createImageList();
+    if (this.images.length > 10 * store.n) {
+      this.innerHTML = this.createImageList();
+    }
   }
   disconnectedCallback() {
     this.searchTextInputSubscription.unsubscribe();
