@@ -30,7 +30,8 @@ class ImageList extends HTMLElement {
   }
 
   createImageList() {
-    return this.images.map((image) => this.createImage(image.mediumImage, image.bigImage)).join('');
+    const tab2 = this.images.slice(0, 10);
+    return tab2.map((image) => this.createImage(image.mediumImage, image.bigImage)).join('');
   }
 
   createImage(url, bigUrl) {
