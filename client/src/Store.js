@@ -11,6 +11,7 @@ class Store {
     this.orientation = '';
     this.sort = '';
     this.n = 1;
+    this.counter = new Subject();
   }
 }
 

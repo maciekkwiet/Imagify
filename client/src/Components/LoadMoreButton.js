@@ -8,7 +8,7 @@ class LoadMoreButton extends HTMLElement {
 
   counter() {
     store.n++;
-    //console.log(store.n);
+    store.counter.next();
   }
 
   render() {

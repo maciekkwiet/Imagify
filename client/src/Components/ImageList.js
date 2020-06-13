@@ -12,7 +12,11 @@ class ImageList extends HTMLElement {
 
   connectedCallback() {
     this.render();
+    this.getImageList();
+    store.counter.subscribe(() => this.render());
+  }
 
+  getImageList() {
     this.searchTextInputSubscription = store.searchTextInput
       .pipe(
         map((e) => e.target.value),
@@ -25,8 +29,9 @@ class ImageList extends HTMLElement {
   }
 
   async refreshImages(searchText = '') {
-    store.n = 1;
     this.images = await this.imageService.getImages(searchText);
+    if ((this.images * 0, 1 > store.n)) store.n++;
+    console.log(store.n);
     this.render();
   }
 
@@ -40,7 +45,9 @@ class ImageList extends HTMLElement {
   }
 
   render() {
-    if (this.images.length > 10 * store.n) {
+    console.log(this.images);
+    console.log(store.n);
+    if (this.images.length >= 10 * store.n) {
       this.innerHTML = this.createImageList();
     }
   }
