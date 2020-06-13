@@ -30,8 +30,7 @@ class ImageList extends HTMLElement {
 
   async refreshImages(searchText = '') {
     this.images = await this.imageService.getImages(searchText);
-    if ((this.images * 0, 1 > store.n)) store.n++;
-    console.log(store.n);
+    store.n = 1;
     this.render();
   }
 
@@ -47,6 +46,9 @@ class ImageList extends HTMLElement {
   render() {
     console.log(this.images);
     console.log(store.n);
+    // tu jest błąd(kom), zły moment pojawiania sie buttona oraz chyba trzeba append child do nowych zdjec a nie innerHTML
+    //if (store.n == 1) store.loadmore.next();
+    store.n++;
     if (this.images.length >= 10 * store.n) {
       this.innerHTML = this.createImageList();
     }
