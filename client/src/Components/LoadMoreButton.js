@@ -2,9 +2,13 @@ import store from '../Store.js';
 
 class LoadMoreButton extends HTMLElement {
   connectedCallback() {
+    //this.render();
+    store.loadmore.subscribe(() => this.create());
+  }
+  create() {
     this.render();
-    store.loadmore.subscribe(() => this.render());
-    this.querySelector('#loadMore').addEventListener('click', () => this.counter());
+    const button = this.querySelector('#loadMore');
+    button.addEventListener('click', () => this.counter());
   }
 
   counter() {

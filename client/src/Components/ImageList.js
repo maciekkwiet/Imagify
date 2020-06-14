@@ -47,7 +47,7 @@ class ImageList extends HTMLElement {
     console.log(this.images);
     console.log(store.n);
     // tu jest błąd(kom), zły moment pojawiania sie buttona oraz chyba trzeba append child do nowych zdjec a nie innerHTML
-    //if (store.n == 1) store.loadmore.next();
+    store.loadmore.next();
     store.n++;
     if (this.images.length >= 10 * store.n) {
       this.innerHTML = this.createImageList();
