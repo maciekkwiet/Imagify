@@ -14,14 +14,13 @@ class UserInfo extends HTMLElement {
       try {
         const response = await axios.get('/api/me', {
           headers: {
-            'auth': token,
+            auth: token,
           },
         });
         store.user = response.data.user;
         this.avatar = response.data.user.avatar;
       } catch (ex) {
         console.error(ex);
-        //this.render();
       }
     }
     this.render(token);

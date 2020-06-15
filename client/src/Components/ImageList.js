@@ -12,7 +12,11 @@ class ImageList extends HTMLElement {
 
   connectedCallback() {
     this.render();
+    this.getImageList();
+    store.counter.subscribe(() => this.render());
+  }
 
+  getImageList() {
     this.searchTextInputSubscription = store.searchTextInput
       .pipe(
         map((e) => e.target.value),
@@ -26,11 +30,13 @@ class ImageList extends HTMLElement {
 
   async refreshImages(searchText = '') {
     this.images = await this.imageService.getImages(searchText);
+    store.n = 1;
     this.render();
   }
 
   createImageList() {
-    return this.images.map((image) => this.createImage(image.mediumImage, image.bigImage)).join('');
+    const tabImages = this.images.slice(0, 10 * store.n);
+    return tabImages.map((image) => this.createImage(image.mediumImage, image.bigImage)).join('');
   }
 
   createImage(url, bigUrl) {
@@ -38,8 +44,13 @@ class ImageList extends HTMLElement {
   }
 
   render() {
-    this.innerHTML = this.createImageList();
+    store.loadmore.next();
+    store.n++;
+    if (this.images.length >= 10 * store.n) {
+      this.innerHTML = this.createImageList();
+    }
   }
+
   disconnectedCallback() {
     this.searchTextInputSubscription.unsubscribe();
   }

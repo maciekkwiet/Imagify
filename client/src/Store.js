@@ -10,6 +10,9 @@ class Store {
     this.color = '';
     this.orientation = '';
     this.sort = '';
+    this.n = 0;
+    this.counter = new Subject();
+    this.loadmore = new Subject();
   }
 }
 
